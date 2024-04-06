@@ -1,5 +1,11 @@
+import ProductsNewArrivals from "../components/product/ProductsNewArrivals";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <ProductsNewArrivals />
+    </>
+  );
 };
 
 export default Home;
