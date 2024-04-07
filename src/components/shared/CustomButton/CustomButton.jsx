@@ -16,6 +16,7 @@ const CustomButton = ({ label, icon, onClick }) => {
                 backgroundColor: '#2B6A8B',
                 color: 'white',
             },
+            textTransform: 'none',
         }}
             variant="contained"
             startIcon={icon ? <Icon>{icon}</Icon> : undefined}

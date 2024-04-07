@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box } from '@mui/material';
 import styles from './ImageCarousel.module.css'; // Import the CSS module
+import CustomButton from '../CustomButton/CustomButton';
 
 const ImageCarousel = ({ images }) => {
     const settings = {
@@ -32,9 +33,7 @@ const ImageCarousel = ({ images }) => {
                         <h2 className={styles.infoHeading}>Carry your Funk</h2>
                         <p className={styles.infoText}>Trendy handbags collection for your party animal</p>
                     </Box>
-                    <Button sx={{ backgroundColor: '#1B4B66', color: 'white' }} variant="contained">
-                        See more
-                    </Button>
+                    <CustomButton label={'See more'} icon={'east'} />
                 </Box>
             </div>
         </Box>
