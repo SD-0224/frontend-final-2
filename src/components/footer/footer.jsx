@@ -56,7 +56,7 @@ export default function Footer() {
     >
       <Grid item xs={9} padding={0}>
         <Stack
-          direction={{ sm: "column", md: "row" }}
+          direction={{ xs: "column", sm: "row" }}
           spacing={{ sm: 2, md: 1 }}
         >
           <QuickLinks
@@ -77,8 +77,18 @@ export default function Footer() {
         container
         direction="column"
         justifyContent="space-evenly"
-        alignItems="flex-end"
-        sx={{ maxHeight: "220px" }}
+        sx={{
+          maxHeight: "220px",
+          [theme.breakpoints.down("sm")]: {
+            alignItems: "flex-start",
+            paddingTop: "30px",
+            marginTop: "30px",
+            borderTop: "1px solid #3E6F73",
+          },
+          [theme.breakpoints.up("sm")]: {
+            alignItems: "flex-end",
+          },
+        }}
       >
         {/* logos component: four icons with avatar */}
         <Logos />

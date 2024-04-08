@@ -35,7 +35,7 @@ export default function QuickLinks({ listHeader, menuItems }) {
         </ListSubheader>
       }
     >
-      {menuItems.map((item) => {
+      {menuItems.map((item, index) => {
         return (
           <ListItem
             disablePadding
