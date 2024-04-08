@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Icon from '@mui/material/Icon';
 
 
-const CustomButton = ({ label, icon, onClick }) => {
+const PrimaryButton = ({ label, icon, onClick }) => {
     return (
         <Button sx={{
             backgroundColor: '#1B4B66', color: 'white',
@@ -27,4 +27,4 @@ const CustomButton = ({ label, icon, onClick }) => {
     );
 };
 
-export default CustomButton;
+export default PrimaryButton;
