@@ -11,6 +11,7 @@ export default function QuickLinks({ listHeader, menuItems }) {
   return (
     <List
       sx={{
+        paddingBottom: "30px",
         maxWidth: 200,
         [theme.breakpoints.down("sm")]: {
           width: "100%",

@@ -1,8 +1,9 @@
 import React from "react";
 import QuickLinks from "./QuickLinks.jsx";
-import { Stack, Grid, useTheme } from "@mui/material";
+import { Stack, Grid, useTheme, useMediaQuery } from "@mui/material";
 import Logos from "./logos.jsx";
 import FooterInfoStack from "./footerInfoStack.jsx";
+import DividerStack from "./dividerStack.jsx";
 
 export default function Footer() {
   const categoryMenuItems = [
@@ -37,6 +38,9 @@ export default function Footer() {
     { text: "EPR Compliance", path: "/" },
   ];
 
+  // Check if the screen is small
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   const theme = useTheme();
 
   return (
@@ -52,9 +56,9 @@ export default function Footer() {
           padding: "32px 60px 74px",
         },
       }}
-      direction={{ xs: "column", sm: "column", md: "row" }}
+      direction={"row"}
     >
-      <Grid item xs={9} padding={0}>
+      <Grid item xs={12} md={9} padding={0}>
         <Stack
           direction={{ xs: "column", sm: "row" }}
           spacing={{ sm: 2, md: 1 }}
@@ -67,13 +71,39 @@ export default function Footer() {
             listHeader={"Shop by products"}
             menuItems={productsMenuItems}
           />
-          <QuickLinks listHeader={"About"} menuItems={aboutMenuItems} />
-          <QuickLinks listHeader={"Policy"} menuItems={policyMenuItems} />
+          {isSmallScreen ? (
+            <>
+              <DividerStack
+                listHeader={"Policy"}
+                menuItems={policyMenuItems}
+                isSmallScreen={isSmallScreen}
+              />
+              <DividerStack
+                listHeader={"About"}
+                menuItems={aboutMenuItems}
+                isSmallScreen={isSmallScreen}
+              />
+            </>
+          ) : (
+            <>
+              <DividerStack
+                listHeader={"About"}
+                menuItems={aboutMenuItems}
+                isSmallScreen={isSmallScreen}
+              />
+              <DividerStack
+                listHeader={"Policy"}
+                menuItems={policyMenuItems}
+                isSmallScreen={isSmallScreen}
+              />
+            </>
+          )}
         </Stack>
       </Grid>
       <Grid
         item
-        xs={3}
+        xs={12}
+        md={3}
         container
         direction="column"
         justifyContent="space-evenly"
