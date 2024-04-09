@@ -1,0 +1,59 @@
+.carouselBox {
+    width: 100%;
+    max-width: 1240px;
+    height: 400px;
+    position: relative;
+}
+
+.imageSlide {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+}
+
+.infoOverlay {
+    position: absolute;
+    top: 48px;
+    left: 516px;
+    text-align: left;
+    width: 723px;
+    height: 316px;
+    background-color: rgba(222, 222, 222, 0.7);
+    border-radius: 8px;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    z-index: 1;
+}
+
+.infoBox {
+    padding-inline: 43px;
+    z-index: 2;
+    position: absolute;
+}
+
+.infoHeading {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 84px;
+    color: #1B4B66;
+    margin: 0;
+}
+
+.infoText {
+    font-size: 28px;
+    line-height: 38px;
+    font-weight: 500;
+    color: #1B4B66;
+    margin: 0;
+    max-width: 27ch;
+}
+
+.infoButton {
+    background-color: rgba(27, 75, 102, 1);
+    color: white;
+    text-decoration: none;
+}
