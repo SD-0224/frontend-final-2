@@ -19,7 +19,7 @@
     width: 723px;
     height: 316px;
     background-color: rgba(222, 222, 222, 0.7);
-    border-radius: 8px;
+    /* border-radius: 8px; */
     padding: 1rem;
     box-sizing: border-box;
     border-top-left-radius: 24px;
@@ -56,4 +56,148 @@
     background-color: rgba(27, 75, 102, 1);
     color: white;
     text-decoration: none;
+}
+
+.textWrapper {
+    margin-bottom: 25px;
+}
+
+
+
+@media (max-width: 1200px) {
+    .infoBox {
+        padding-inline: 20px;
+    }
+
+    .infoOverlay {
+        top: 31px;
+        width: 60%;
+        left: 40%;
+        padding: 0.5rem;
+        height: 212px;
+    }
+
+    .infoHeading {
+        font-size: 28px;
+        line-height: 35px;
+
+    }
+
+    .infoText {
+        font-size: 20px;
+        line-height: 24px;
+        margin: 0;
+        max-width: 27ch;
+    }
+
+    .textWrapper {
+        margin-bottom: 25px;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+    .infoBox {
+        padding-inline: 20px;
+    }
+
+    .infoOverlay {
+        top: 31px;
+        width: 60%;
+        left: 40%;
+        padding: 0.5rem;
+        height: 150px;
+    }
+
+    .infoHeading {
+        font-size: 24px;
+        line-height: 35px;
+
+    }
+
+    .infoText {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0;
+        max-width: 27ch;
+    }
+
+    .textWrapper {
+        margin-bottom: 20px;
+    }
+
+}
+
+@media (max-width: 700px) {
+    .infoBox {
+        padding-inline: 10px;
+    }
+
+    .infoOverlay {
+        top: 10px;
+        width: 60%;
+        left: 40%;
+        padding: 0.5rem;
+        height: 85px;
+    }
+
+    .infoHeading {
+        font-size: 12px;
+        line-height: 6px;
+
+    }
+
+    .infoText {
+        font-size: 8px;
+        line-height: 17px;
+        margin: 0;
+        max-width: 27ch;
+    }
+
+    .textWrapper {
+        margin-bottom: 5px;
+    }
+
+
+}
+
+/* Responsive Media Queries for extra small screens (xs) */
+@media (max-width: 600px) {
+
+    .infoBox {
+        padding-inline: 10px;
+    }
+
+    .infoOverlay {
+        top: 10px;
+        width: 60%;
+        left: 40%;
+        padding: 0.5rem;
+        height: 85px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .infoHeading {
+        font-size: 12px;
+        line-height: 18px;
+
+    }
+
+    .infoText {
+        font-size: 8px;
+        line-height: 10px;
+        margin: 0;
+        max-width: 27ch;
+    }
+
+    .textWrapper {
+        margin-bottom: 5px;
+    }
+
+
+
 }
