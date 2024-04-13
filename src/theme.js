@@ -4,7 +4,11 @@ import { red } from "@mui/material/colors";
 const theme = createTheme({
   breakpoints: {
     values: {
+      xs: 0,
+      sm: 700,
+      md: 900,
       lg: 1300,
+      xl: 1920,
     },
   },
   typography: {
