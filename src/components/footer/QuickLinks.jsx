@@ -12,11 +12,12 @@ export default function QuickLinks({ listHeader, menuItems }) {
     <List
       sx={{
         paddingBottom: "30px",
-        maxWidth: 200,
         [theme.breakpoints.down("sm")]: {
+          maxWidth: 300,
           width: "100%",
         },
         [theme.breakpoints.up("sm")]: {
+          maxWidth: 200,
           width: "30%",
         },
       }}
