@@ -40,7 +40,7 @@ export default function QuickLinks({ listHeader, menuItems }) {
         return (
           <ListItem
             disablePadding
-            sx={{ width: "fit-content" }}
+            sx={{ width: "fit-content", maxWidth: '100%' }}
             key={item.text}
           >
             <ListItemButton
