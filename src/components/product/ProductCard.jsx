@@ -19,7 +19,7 @@ const ProductCard = ({ title, type, price, image, link }) => {
           <CardMedia draggable="false" component="img" image={`/images/${image}`} sx={{ borderRadius: 2 }} />
         </CardActionArea>
       </Link>
-      <CardContent sx={{ padding: "1rem 0 0", userSelect: "none" }}>
+      <CardContent sx={{ padding: "1rem 0 0 !important", userSelect: "none" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography>{title}</Typography>
           <IconButton sx={{ padding: 0 }}>
