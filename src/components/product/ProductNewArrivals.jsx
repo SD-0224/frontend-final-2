@@ -1,13 +1,9 @@
 import { Typography, Container, Box, Link } from "@mui/material";
-import { useRef } from "react";
 import ProductCard from "./ProductCard";
-import { useDraggable } from "react-use-draggable-scroll";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import HorizontalList from "../shared/HorizontalList/HorizontalList";
 
 const ProductNewArrivals = ({ products }) => {
-  const ref = useRef();
-  const { events } = useDraggable(ref);
-
   return (
     <Container>
       <Box
@@ -31,17 +27,7 @@ const ProductNewArrivals = ({ products }) => {
           <ArrowForwardIosIcon fontSize="small" sx={{ color: "black" }} />
         </Link>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          gap: "40px",
-          width: "100%",
-          paddingTop: "1.5rem",
-          overflowX: "scroll",
-        }}
-        {...events}
-        ref={ref}
-      >
+      <HorizontalList>
         {products ? (
           products.map((product) => {
             return (
@@ -58,7 +44,7 @@ const ProductNewArrivals = ({ products }) => {
         ) : (
           <Typography>Loading...</Typography>
         )}
-      </Box>
+      </HorizontalList>
     </Container>
   );
 };
