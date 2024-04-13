@@ -11,6 +11,7 @@ const theme = createTheme({
       xl: 1920,
     },
   },
+  spacing: 6,
   typography: {
     fontFamily: ["Inter", "sans-serif"].join(","),
   },

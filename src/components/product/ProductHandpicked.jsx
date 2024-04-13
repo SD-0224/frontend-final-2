@@ -4,7 +4,7 @@ import HorizontalList from "../shared/HorizontalList/HorizontalList";
 
 const ProductHandpicked = ({ products }) => {
   return (
-    <Container maxWidth="full" sx={{ backgroundColor: "primary.main", padding: "2rem 0 1rem 0" }}>
+    <Box maxWidth="full" sx={{ backgroundColor: "primary.main", padding: "2rem 0 1rem 0" }}>
       <Container>
         <Box
           sx={{
@@ -36,7 +36,7 @@ const ProductHandpicked = ({ products }) => {
           )}
         </HorizontalList>
       </Container>
-    </Container>
+    </Box>
   );
 };
 
