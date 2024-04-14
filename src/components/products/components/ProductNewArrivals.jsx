@@ -1,7 +1,7 @@
 import { Typography, Container, Box, Link } from "@mui/material";
 import ProductCard from "./ProductCard";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import HorizontalList from "../shared/HorizontalList/HorizontalList";
+import HorizontalList from "../../shared/HorizontalList/HorizontalList";
 
 const ProductNewArrivals = ({ products }) => {
   return (

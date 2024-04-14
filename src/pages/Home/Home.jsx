@@ -1,8 +1,8 @@
 import { Container, Box } from "@mui/material";
 import ImageCarousel from "../../components/shared/ImageCarousel/ImageCarousel";
-import ProductNewArrivals from "../../components/product/ProductNewArrivals";
-import ProductHandpicked from "../../components/product/ProductHandpicked";
-import ProductBrands from "../../components/product/ProductBrands";
+import ProductNewArrivals from "../../components/products/components/ProductNewArrivals";
+import ProductHandpicked from "../../components/products/components/ProductHandpicked";
+import ProductBrands from "../../components/products/components/ProductBrands";
 import { useState, useEffect } from "react";
 import { fetchPath } from "../../utilities/fetch";
 import Services from "../../components/shared/Banners/Services";

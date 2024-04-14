@@ -1,5 +1,5 @@
 import { Typography, Container, Box } from "@mui/material";
-import HorizontalList from "../shared/HorizontalList/HorizontalList";
+import HorizontalList from "../../shared/HorizontalList/HorizontalList";
 import ProductBrandCard from "./ProductBrandCard";
 
 const ProductBrands = ({ brands }) => {
