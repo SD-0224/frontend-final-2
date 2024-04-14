@@ -1,6 +1,6 @@
 import { Typography, Container, Box } from "@mui/material";
 import ProductHandpickedCard from "./ProductHandpickedCard";
-import HorizontalList from "../shared/HorizontalList/HorizontalList";
+import HorizontalList from "../../shared/HorizontalList/HorizontalList";
 
 const ProductHandpicked = ({ products }) => {
   return (
