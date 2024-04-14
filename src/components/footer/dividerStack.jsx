@@ -7,12 +7,11 @@ import {
   Box,
   styled,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(() => ({
   width: "fit-content",
   backgroundColor: "transparent",
   boxShadow: "none",
@@ -32,6 +31,7 @@ export default function DividerStack({ listHeader, menuItems, isSmallScreen }) {
           width: "100%",
         },
         [theme.breakpoints.up("sm")]: {
+          maxWidth: 200,
           width: "30%",
         },
       }}
