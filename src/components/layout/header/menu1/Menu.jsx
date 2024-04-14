@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../searchBar1/SearchBar";
 import { FaRegRectangleXmark } from "react-icons/fa6";
 import { Box } from "@mui/system";
 

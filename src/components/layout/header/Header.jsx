@@ -5,10 +5,10 @@ import { Container } from "@mui/system";
 import Toolbar from "@mui/material/Toolbar";
 import logo from "../../../assets/HedearLogo/home-logo.svg";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import BurgerMenu from "./Menu/Menu";
+import BurgerMenu from "./menu1/Menu";
 import HeaderIcons from "./HeaderIcons/HeaderIcons";
-import SearchBar from "./SearchBar/SearchBar";
-import NavCategory from "./NavCategory/NavCategory";
+import SearchBar from "./searchBar1/SearchBar";
+import NavCategory from "./navCategory1/NavCategory";
 
 export default function Header() {
   const theme = useTheme();
