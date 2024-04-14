@@ -11,23 +11,43 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
 
-const ProductCard = ({ title, type, price, image, link }) => {
+const ProductCard = ({ title, category, price, image, link }) => {
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2 }}>
       <Link href={`/products/${link}`} draggable="false">
         <CardActionArea>
-          <CardMedia draggable="false" component="img" image={`/images/${image}`} sx={{ borderRadius: 2 }} />
+          <CardMedia draggable="false" component="img" image={image} sx={{ borderRadius: 2, height: 285 }} />
         </CardActionArea>
       </Link>
       <CardContent sx={{ padding: "1rem 0 0 !important", userSelect: "none" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography>{title}</Typography>
+          <Typography
+            sx={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "1",
+              WebkitBoxOrient: "vertical",
+            }}
+          >
+            {title}
+          </Typography>
           <IconButton sx={{ padding: 0 }}>
             <FavoriteBorderIcon />
           </IconButton>
         </Box>
-        <Typography fontSize={"0.9rem"} color={"gray"}>
-          {type}
+        <Typography
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: "1",
+            WebkitBoxOrient: "vertical",
+          }}
+          fontSize={"0.9rem"}
+          color={"gray"}
+        >
+          {category}
         </Typography>
         <Typography>${price}</Typography>
       </CardContent>

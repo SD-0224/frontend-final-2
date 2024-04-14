@@ -18,12 +18,7 @@ const ProductBrandCard = ({ image, link }) => {
     >
       <Link href={`/brand/${link}`} draggable="false" sx={{ height: "100%", width: "100%" }}>
         <CardActionArea sx={{ height: "100%", width: "100%" }}>
-          <CardMedia
-            draggable="false"
-            component="img"
-            image={`/images/${image}`}
-            sx={{ padding: "1.6rem" }}
-          />
+          <CardMedia draggable="false" component="img" image={image} sx={{ padding: "1.6rem" }} />
         </CardActionArea>
       </Link>
     </Card>
