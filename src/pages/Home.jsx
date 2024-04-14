@@ -5,6 +5,7 @@ import ProductHandpicked from "../components/product/ProductHandpicked";
 import ProductBrands from "../components/product/ProductBrands";
 import { useState, useEffect } from "react";
 import { fetchPath } from "../utilities/fetch";
+import Services from "../components/Banners/Services";
 
 const baseURL = "backend-final-2-1.onrender.com";
 
@@ -53,6 +54,7 @@ const Home = () => {
         <ProductNewArrivals products={newArrivals} />
         <ProductHandpicked products={handpicked} />
         <ProductBrands brands={brands} />
+        <Services />
       </Box>
     </>
   );
