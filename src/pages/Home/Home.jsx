@@ -1,11 +1,11 @@
 import { Container, Box } from "@mui/material";
-import ImageCarousel from "../components/shared/ImageCarousel/ImageCarousel";
-import ProductNewArrivals from "../components/product/ProductNewArrivals";
-import ProductHandpicked from "../components/product/ProductHandpicked";
-import ProductBrands from "../components/product/ProductBrands";
+import ImageCarousel from "../../components/shared/ImageCarousel/ImageCarousel";
+import ProductNewArrivals from "../../components/product/ProductNewArrivals";
+import ProductHandpicked from "../../components/product/ProductHandpicked";
+import ProductBrands from "../../components/product/ProductBrands";
 import { useState, useEffect } from "react";
-import { fetchPath } from "../utilities/fetch";
-import Services from "../components/Banners/Services";
+import { fetchPath } from "../../utilities/fetch";
+import Services from "../../components/shared/Banners/Services";
 
 const baseURL = "backend-final-2-1.onrender.com";
 

@@ -1,9 +1,9 @@
 import React from "react";
 import QuickLinks from "./QuickLinks.jsx";
 import { Stack, Grid, useTheme, useMediaQuery } from "@mui/material";
-import Logos from "./logos.jsx";
-import FooterInfoStack from "./footerInfoStack.jsx";
-import DividerStack from "./dividerStack.jsx";
+import Logos from "./Logos.jsx";
+import FooterInfoStack from "./FooterInfoStack.jsx";
+import DividerStack from "./DividerStack.jsx";
 
 export default function Footer() {
   const categoryMenuItems = [
