@@ -34,7 +34,7 @@ const ProductNewArrivals = ({ products }) => {
               <ProductCard
                 key={product.id}
                 title={product.title}
-                type={product.type}
+                category={product.category}
                 price={product.price}
                 image={product.image}
                 link={product.id}

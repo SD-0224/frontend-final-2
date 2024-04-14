@@ -6,7 +6,7 @@ const ProductHandpickedCard = ({ title, image, link }) => {
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2, position: "relative" }}>
       <Link href={`/collection/${link}`} draggable="false">
         <CardActionArea>
-          <CardMedia draggable="false" component="img" image={`/images/${image}`} sx={{ borderRadius: 2 }} />
+          <CardMedia draggable="false" component="img" image={image} sx={{ borderRadius: 2, height: 285 }} />
           <CardContent
             sx={{
               width: "100%",
@@ -16,7 +16,18 @@ const ProductHandpickedCard = ({ title, image, link }) => {
               background: "linear-gradient(to top, rgb(3,24,26,0.46), transparent)",
             }}
           >
-            <Typography color={"black"} fontWeight={"700"} fontSize={"1.5rem"}>
+            <Typography
+              sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "1",
+                WebkitBoxOrient: "vertical",
+              }}
+              color={"black"}
+              fontWeight={"700"}
+              fontSize={"1.5rem"}
+            >
               {title}
             </Typography>
           </CardContent>
