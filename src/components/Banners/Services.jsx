@@ -1,5 +1,5 @@
 import React from "react";
-import BannerWide from "./banner-wide";
+import BannerWide from "./BannerWide.jsx";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
