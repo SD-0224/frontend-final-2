@@ -6,7 +6,6 @@ export default function BottomNavigation() {
   if (!isSmallScreen) {
     return null;
   }
-
   return (
     <>
       <BottomNavBox />

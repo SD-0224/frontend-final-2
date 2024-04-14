@@ -1,5 +1,6 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import { useState } from "react";
 import home from "../../../assets/bottomNavIcons/home.svg";
 import homeGray from "../../../assets/bottomNavIcons/home-gray.svg";
 import categories from "../../../assets/bottomNavIcons/categories.svg";
@@ -10,7 +11,6 @@ import profile from "../../../assets/bottomNavIcons/profile.svg";
 import profileGray from "../../../assets/bottomNavIcons/profile-gray.svg";
 import bag from "../../../assets/bottomNavIcons/bag.svg";
 import bagGray from "../../../assets/bottomNavIcons/bag-gray.svg";
-import { useState } from "react";
 
 const NavItemWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
