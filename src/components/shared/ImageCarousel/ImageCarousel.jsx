@@ -28,11 +28,13 @@ const ImageCarousel = ({ images }) => {
             </Slider>
             <div className={styles.infoOverlay}>
                 <Box className={styles.infoBox}>
-                    <Box marginBottom={7}>
+                    <Box className={styles.textWrapper}>
                         <h2 className={styles.infoHeading}>Carry your Funk</h2>
                         <p className={styles.infoText}>Trendy handbags collection for your party animal</p>
                     </Box>
-                    <PrimaryButton label={'See more'} icon={'east'} />
+                    <Box marginBottom={'8px'}>
+                        <PrimaryButton label={'See more'} icon={'east'} />
+                    </Box>
                 </Box>
             </div>
         </Box>
