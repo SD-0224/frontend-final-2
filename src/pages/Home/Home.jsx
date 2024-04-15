@@ -6,6 +6,7 @@ import ProductBrands from "../../components/products/components/ProductBrands";
 import { useState, useEffect } from "react";
 import { fetchPath } from "../../utilities/fetch";
 import Services from "../../components/shared/Banners/Services";
+import { fetchHandpicked, fetchNewArrivals } from "../../components/products/services/ProductsService";
 
 const baseURL = "backend-final-2-1.onrender.com";
 
@@ -17,23 +18,14 @@ const Home = () => {
   const [brands, setBrands] = useState();
 
   useEffect(() => {
-    fetchPath("https://fakestoreapi.com/products?limit=10&sort=desc") // Mock: Replace with API endpoint /products/new
-      .then((data) => {
-        console.log("New Arrivals: ", data);
-        Array.isArray(data) && setNewArrivals(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    fetchNewArrivals()
+      .then(data => setNewArrivals(data))
+      .catch(error => console.error('Failed to load new arrivals:', error));
 
-    fetchPath("https://fakestoreapi.com/products?limit=10") // Mock: Replace with API endpoint /products/handpicked
-      .then((data) => {
-        console.log("Handpicked: ", data);
-        Array.isArray(data) && setHandpicked(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    fetchHandpicked()
+      .then(data => setHandpicked(data))
+      .catch(error => console.error('Failed to load handpicked:', error));
+
 
     fetchPath("https://fakestoreapi.com/products?limit=10&sort=desc") // Mock: Replace with API endpoint /brands
       .then((data) => {
