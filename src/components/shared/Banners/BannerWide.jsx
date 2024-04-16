@@ -1,16 +1,14 @@
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function BannerWide({
   img,
   text,
-  subText,
-  type,
   textPosition,
   color,
+  type,
+  children,
 }) {
   return (
     <Link to="/">
@@ -24,13 +22,13 @@ export default function BannerWide({
           borderRadius: "15px",
           cursor: "pointer",
           overflow: "hidden",
-          // Adjust height based on screen size
-          ...(type === "wide" && { height: { xs: 200, sm: 200, md: 300 } }),
-          ...(type === "short" && { height: { xs: 150, sm: 150, md: 200 } }),
+           // Adjust height based on screen size
+           ...(type === "wide" && { height: { xs: 200, sm: 200, md: 300 } }),
+           ...(type === "short" && { height: { xs: 150, sm: 150, md: 200 } }),
         }}
       >
         <img
-          src={`${img}`}
+          src={img}
           alt={"Card 2: 15% off and more!"}
           loading="lazy"
           style={{
@@ -42,16 +40,11 @@ export default function BannerWide({
             top: 0,
           }}
         />
-        <Typography
+        <Box
           sx={{
             position: "absolute",
             top: "50%",
             zIndex: 1,
-            color: color,
-            fontFamily: "Inter",
-            fontSize: { xs: "18px", sm: "24px", md: "32px" }, // Adjust font size based on screen size
-            fontWeight: "800",
-            borderRadius: "15px", // Add border radius to match the box
             transform: "translate(0, -50%)", // Center align vertically
             // Adjust max width based on screen size
             ...(type === "wide" && {
@@ -70,35 +63,19 @@ export default function BannerWide({
             }),
           }}
         >
-          {text}
-          {type === "wide" ? (
-            <Typography
-              sx={{
-                bgcolor: "#FFDD9D",
-                width: "fit-content",
-                padding: "5px 10px",
-                borderRadius: "6px",
-                marginTop: "20px",
-              }}
-            >
-              {subText}
-            </Typography>
-          ) : (
-            <Typography
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                bgcolor: "rgba(23, 73, 77, 0.16)",
-                width: "fit-content",
-                padding: "5px",
-                borderRadius: "50%",
-                marginTop: "20px",
-              }}
-            >
-              <ArrowForwardIcon />
-            </Typography>
-          )}
-        </Typography>
+          <Typography
+            component="span" // Use span instead of paragraph
+            sx={{
+              color: color,
+              fontFamily: "Inter",
+              fontSize: { xs: "18px", sm: "24px", md: "32px" }, // Adjust font size based on screen size
+              fontWeight: "800",
+            }}
+          >
+            {text}
+          </Typography>
+          {children}
+        </Box>
       </Box>
     </Link>
   );
