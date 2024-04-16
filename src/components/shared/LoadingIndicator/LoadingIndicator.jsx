@@ -14,10 +14,11 @@ const LoadingIndicator = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)'
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                zIndex: 999
             }}
         >
-            <CircularProgress />
+            <CircularProgress color="primary" />
         </Box>
     );
 }

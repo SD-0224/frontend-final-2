@@ -9,7 +9,7 @@ export const fetchProducts = (pageSize = 9, page = 1) => {
 };
 
 export const fetchProductsByCategoryId = (categoryId, page = 1, pageSize = 9) => {
-    return fetchPath(`${baseUrl}/category/${categoryId}?page=${page}&pageSize=${pageSize}`);
+    return fetchPath(`${baseUrl}/category/${categoryId}?page=${page}&limit=${pageSize}`);
 };
 
 
