@@ -22,9 +22,30 @@ export default function BannerWide({
           borderRadius: "15px",
           cursor: "pointer",
           overflow: "hidden",
-           // Adjust height based on screen size
-           ...(type === "wide" && { height: { xs: 200, sm: 200, md: 300 } }),
-           ...(type === "short" && { height: { xs: 150, sm: 150, md: 200 } }),
+
+          // Adjust height based on screen size
+          height: {
+            xs: type === "wide" ? 200 : 150,
+            sm: type === "wide" ? 200 : 150,
+            md: type === "wide" ? 300 : 200,
+          },
+          "&::after": {
+            position: "absolute",
+            display: "block",
+            width: "100%",
+            height: "100%",
+            top: "0",
+            left: "0",
+            content: '""',
+            backgroundColor: "rgba(255, 255, 255, .25)",
+            opacity: "0",
+            transition: "opacity .2s ease-in-out",
+          },
+          "&:hover": {
+            // Define styles for hover effect
+            "&::after": { opacity: "0.5", zIndex: "1" },
+          },
+
         }}
       >
         <img
