@@ -18,7 +18,13 @@ export default function Header() {
     <>
       <Container sx={{ mx: 2 }}>
         <AppBar
-          sx={{ bgcolor: "white", margin: "0px", Height: "80px", boxShadow: 0 }}
+          sx={{
+            bgcolor: "white",
+            margin: "0px",
+            Height: "80px",
+            boxShadow: 0,
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          }}
         >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <img sx={{ width: "108" }} src={logo} alt="home-logo" />

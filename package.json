@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
@@ -16,11 +18,13 @@
     "react-dom": "latest",
     "react-icons": "^5.0.1",
     "react-slick": "^0.30.2",
+    "react-swipeable-views": "^0.14.0",
     "react-use-draggable-scroll": "^0.4.7",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "latest",
+    "gh-pages": "^6.1.1",
     "react-router-dom": "^6.22.3",
     "vite": "latest"
   }

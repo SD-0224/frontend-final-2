@@ -2,6 +2,8 @@ import React from "react";
 import BannerWide from "./BannerWide.jsx";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box } from "@mui/material";
 
 export default function Services() {
   return (
@@ -11,11 +13,23 @@ export default function Services() {
           <BannerWide
             img={`/images/coral-alpha-banner 2.png`}
             text={`Discount Bonanza: Enjoy 15% Off and Beyond!`}
-            subText={`UPTO 15% OFF`}
             type="wide"
             textPosition="left"
             color={"#9C1C00"}
-          />
+          >
+            <Box
+              sx={{
+                bgcolor: "#FFDD9D",
+                color:"#9C1C00",
+                width: "fit-content",
+                padding: "5px 10px",
+                borderRadius: "6px",
+                marginTop: "20px",
+              }}
+            >
+              {`UPTO 15% OFF`}
+            </Box>
+          </BannerWide>
         </Grid>
         <Grid item xs={6}>
           <BannerWide
@@ -24,7 +38,22 @@ export default function Services() {
             type="short"
             textPosition="right"
             color="#1B4B66"
-          />
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                bgcolor: "rgba(23, 73, 77, 0.16)",
+                color: "#1B4B66",
+                width: "fit-content",
+                padding: "5px",
+                borderRadius: "50%",
+                marginTop: "20px",
+              }}
+            >
+              <ArrowForwardIcon />
+            </Box>
+          </BannerWide>
         </Grid>
         <Grid item xs={6}>
           <BannerWide
@@ -33,7 +62,22 @@ export default function Services() {
             type="short"
             textPosition="right"
             color={"#1B4B66"}
-          />
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                bgcolor: "rgba(23, 73, 77, 0.16)",
+                color: "#1B4B66",
+                width: "fit-content",
+                padding: "5px",
+                borderRadius: "50%",
+                marginTop: "20px",
+              }}
+            >
+              <ArrowForwardIcon />
+            </Box>
+          </BannerWide>
         </Grid>
       </Grid>
     </Container>
