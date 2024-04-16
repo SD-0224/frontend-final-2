@@ -33,6 +33,7 @@ function Counter() {
         padding: '0 5px',
         margin: '0 10px',
         border: `1px solid ${theme.palette.primary.main}`,
+        borderRadius: '4px',
         color: `${theme.palette.primary.main}`,
       }}
     >

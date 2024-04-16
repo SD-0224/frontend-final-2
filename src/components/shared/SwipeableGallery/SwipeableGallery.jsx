@@ -59,7 +59,7 @@ function SwipeableGallery() {
             maxWidth: "300px",
           },
           [theme.breakpoints.up("sm")]: {
-            maxWidth: "400px",
+            maxWidth: "450px",
           },
           flexGrow: 1,
         }}
@@ -81,8 +81,8 @@ function SwipeableGallery() {
                       maxWidth: "300px",
                     },
                     [theme.breakpoints.up("sm")]: {
-                      height: "400px",
-                      maxWidth: "400px",
+                      height: "450px",
+                      maxWidth: "450px",
                     },
                     display: "block",
                     overflow: "hidden",
