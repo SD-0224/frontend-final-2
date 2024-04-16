@@ -14,7 +14,7 @@ const ProductGrid = ({ products }) => {
     >
       {products &&
         products.map((product) => {
-          return <ProductCard key={product.id} product={product} />;
+          return <ProductCard key={product.productID} product={product} />;
         })}
     </List>
   );

@@ -65,7 +65,6 @@ const TextStyledButton = styled('button')(({ theme, selected }) => ({
 const AppPagination = ({ currentPage, onPageChange, count, pageSize }) => {
     const theme = useTheme();
     const numOfPages = Math.ceil(count / pageSize);
-    console.log(numOfPages);
 
     const { items } = usePagination({
         count: numOfPages,
@@ -75,7 +74,6 @@ const AppPagination = ({ currentPage, onPageChange, count, pageSize }) => {
 
     });
 
-    console.log(currentPage);
 
     return (
         <ItemContainer sx={{ gap: 3 }}>

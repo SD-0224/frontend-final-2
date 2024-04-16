@@ -18,11 +18,13 @@ const Category = () => {
     useEffect(() => {
         fetchProductsByCategoryId(categoryId, currentPage, pageSize)
             .then(data => {
-                console.log(data);
                 setProductsResult(data);
             })
             .catch(error => console.error('Failed to load products:', error));
     }, [currentPage]);
+    useEffect(() => {
+        console.log(productsResult);
+    }, [productsResult]);
 
 
 
@@ -36,6 +38,8 @@ const Category = () => {
                     currentPage={currentPage}
                     onPageChange={setCurrentPage}
                     count={productsResult.count}
+                    pageSize={pageSize}
+
                 />
             </Container>
         </>
