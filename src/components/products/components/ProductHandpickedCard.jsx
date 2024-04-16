@@ -1,7 +1,8 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Link } from "@mui/material";
 import React from "react";
 
-const ProductHandpickedCard = ({ title, image, link }) => {
+const ProductHandpickedCard = ({ product }) => {
+  const { title, image, link } = product;
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2, position: "relative" }}>
       <Link href={`/collection/${link}`} draggable="false">

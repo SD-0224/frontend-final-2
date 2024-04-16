@@ -1,7 +1,8 @@
 import { Card, CardActionArea, CardMedia, Link } from "@mui/material";
 import React from "react";
 
-const ProductBrandCard = ({ image, link }) => {
+const ProductBrandCard = ({ brand }) => {
+  const { image, link } = brand;
   return (
     <Card
       sx={{
