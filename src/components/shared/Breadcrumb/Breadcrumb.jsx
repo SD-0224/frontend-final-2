@@ -26,6 +26,7 @@ const Breadcrumb = ({ list }) => {
                       style={{
                         textDecoration: "none",
                         color: theme.palette.primary.main,
+                        fontWeight: "600",
                       }}
                       to={item.link}
                     >
@@ -39,7 +40,7 @@ const Breadcrumb = ({ list }) => {
                 </>
               ) : (
                 <ListItem key={index} sx={{ width: "max-content", padding: "0" }}>
-                  <ListItemText>{item.text}</ListItemText>
+                  <ListItemText sx={{ fontWeight: "600" }}>{item.text}</ListItemText>
                 </ListItem>
               )}
             </>
