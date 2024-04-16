@@ -11,12 +11,12 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
 
-const ProductCard = ({ title, category, price, image, link }) => {
+const ProductCard = ({ title, category, price, imgPath, link }) => {
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2 }}>
       <Link href={`/products/${link}`} draggable="false">
         <CardActionArea>
-          <CardMedia draggable="false" component="img" image={image} sx={{ borderRadius: 2, height: 285 }} />
+          <CardMedia draggable="false" component="img" image={imgPath ?? '/public/images/img-placeholder.png'} sx={{ borderRadius: 2, height: 285 }} />
         </CardActionArea>
       </Link>
       <CardContent sx={{ padding: "1rem 0 0 !important", userSelect: "none" }}>
