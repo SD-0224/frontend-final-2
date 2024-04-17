@@ -10,9 +10,9 @@ const ProductBrands = ({ brands }) => {
       </Typography>
 
       <HorizontalList gap="44px">
-        {brands ? (
+        {Array.isArray(brands) ? (
           brands.map((brand) => {
-            return <ProductBrandCard key={brand.id} image={brand.image} link={brand.id} />;
+            return <ProductBrandCard key={brand.id} brand={brand} />;
           })
         ) : (
           <Typography>Loading...</Typography>

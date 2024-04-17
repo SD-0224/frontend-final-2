@@ -28,18 +28,9 @@ const ProductNewArrivals = ({ products }) => {
         </Link>
       </Box>
       <HorizontalList>
-        {products ? (
+        {Array.isArray(products) ? (
           products.map((product) => {
-            return (
-              <ProductCard
-                key={product.id}
-                title={product.title}
-                category={product.category}
-                price={product.price}
-                image={product.image}
-                link={product.id}
-              />
-            );
+            return <ProductCard key={product.id} product={product} />;
           })
         ) : (
           <Typography>Loading...</Typography>
