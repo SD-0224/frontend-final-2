@@ -49,6 +49,31 @@ const CustomTabs = styled(Tabs)({
   },
 });
 
+//custome style for the 3 tab
+const tabStyles = {
+  color: "#626262",
+  fontSize: "16px",
+  fontWeight: "500",
+  textTransform: "none",
+  marginRight: "30px",
+  marginLeft: "30px",
+  marginTop: "18px",
+  marginBottom: "18px",
+  borderRadius: "10px",
+  padding: "12px",
+  "&.Mui-selected": {
+    backgroundColor: "#1B4B66",
+    color: "white",
+  },
+  "@media (max-width: 700px)": {
+    padding: "1px 2px",
+    marginRight: "0px",
+    marginLeft: "5px",
+    fontSize: "12px",
+    fontWeight: "400",
+  },
+};
+
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
 
@@ -65,6 +90,11 @@ export default function BasicTabs() {
             marginRight: "20px",
             marginLeft: "20px",
             borderRadius: "10px",
+            "@media (max-width: 700px)": {
+              marginRight: "5px",
+              marginLeft: "5px",
+              borderRadius: "10px",
+            },
           }}
           value={value}
           onChange={handleChange}
@@ -72,67 +102,21 @@ export default function BasicTabs() {
         >
           <Tab
             sx={{
-              color: "#626262",
-              padding: "6px 12px",
-              fontSize: "16px",
-              fontWeight: "500",
-              textTransform: "none",
-              marginRight: "30px",
-              marginLeft: "30px",
-              marginTop: "18px",
-              marginBottom: "18px",
-
-              borderRadius: "10px",
-              //   margin: "12px",
-              padding: "12px",
-              "&.Mui-selected": {
-                backgroundColor: "#1B4B66",
-                color: "white",
-              },
+              ...tabStyles,
             }}
             label="Product Description"
             {...a11yProps(0)}
           />
           <Tab
             sx={{
-              color: "#626262",
-              fontSize: "16px",
-              fontWeight: "500",
-              textTransform: "none",
-              marginRight: "30px",
-              marginLeft: "30px",
-              marginTop: "18px",
-              marginBottom: "18px",
-
-              borderRadius: "10px",
-              //   margin: "12px",
-              padding: "12px",
-              "&.Mui-selected": {
-                backgroundColor: "#1B4B66",
-                color: "white",
-              },
+              ...tabStyles,
             }}
             label="Related Products"
             {...a11yProps(1)}
           />
           <Tab
             sx={{
-              color: "#626262",
-              fontSize: "16px",
-              fontWeight: "500",
-              textTransform: "none",
-              marginRight: "30px",
-              marginLeft: "30px",
-              marginTop: "18px",
-              marginBottom: "18px",
-
-              borderRadius: "10px",
-              //   margin: "12px",
-              padding: "12px",
-              "&.Mui-selected": {
-                backgroundColor: "#1B4B66",
-                color: "white",
-              },
+              ...tabStyles,
             }}
             label="Ratings and Reviews"
             {...a11yProps(2)}
@@ -140,7 +124,15 @@ export default function BasicTabs() {
         </CustomTabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <p style={{ whiteSpace: "pre-wrap" }}>
+        <Typography
+          sx={{
+            whiteSpace: "pre-wrap",
+            fontSize: {
+              xs: "13px",
+              sm: "16px",
+            },
+          }}
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus
           scelerisque laoreet tortor cras molestie tincidunt malesuada
           malesuada. Neque, mauris duis dui id morbi magna. Cras lacus, viverra
@@ -156,14 +148,25 @@ export default function BasicTabs() {
           pellentesque. Justo, sed nunc, pretium turpis scelerisque. Enim urna
           etiam morbi vestibulum ac dictumst. Ac ut elementum molestie sit felis
           imperdiet.
-        </p>
+        </Typography>
       </CustomTabPanel>
+
       <CustomTabPanel value={value} index={1}>
         <RelatedProduct />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Ratings and reviews are feedback provided by the customer for the brand,
-        usually available on third-party websites
+        <Typography
+          sx={{
+            whiteSpace: "pre-wrap",
+            fontSize: {
+              xs: "13px", // Font size for extra small screens (less than 600px)
+              sm: "16px", // Font size for small screens (600px and up)
+            },
+          }}
+        >
+          Ratings and reviews are feedback provided by the customer for the
+          brand, usually available on third-party websites
+        </Typography>
       </CustomTabPanel>
     </Box>
   );
