@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
           <CardMedia
             draggable="false"
             component="img"
-            image={imgPath ?? '/public/images/img-placeholder.png'}
+            image={image ?? '/public/images/img-placeholder.png'}
             sx={{
               borderRadius: 2,
               height: 285,
