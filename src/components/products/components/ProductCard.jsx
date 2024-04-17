@@ -11,9 +11,9 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
 
+
 const ProductCard = ({ product }) => {
   const { title, category, price, image, link } = product;
-
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2 }}>
       <Link href={`/products/${link}`} draggable="false">
@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
           <CardMedia
             draggable="false"
             component="img"
-            image={image}
+            image={imgPath ?? '/public/images/img-placeholder.png'}
             sx={{
               borderRadius: 2,
               height: 285,

@@ -3,6 +3,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 
 const ProductGrid = ({ products }) => {
+
   return (
     <List
       sx={{
@@ -14,7 +15,7 @@ const ProductGrid = ({ products }) => {
     >
       {products &&
         products.map((product) => {
-          return <ProductCard product={product} />;
+          return <ProductCard key={product.productID} {...product} />;
         })}
     </List>
   );
