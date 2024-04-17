@@ -20,16 +20,9 @@ const ProductHandpicked = ({ products }) => {
         </Box>
 
         <HorizontalList>
-          {products ? (
+          {Array.isArray(products) ? (
             products.map((product) => {
-              return (
-                <ProductHandpickedCard
-                  key={product.id}
-                  title={product.title}
-                  image={product.image}
-                  link={product.id}
-                />
-              );
+              return <ProductHandpickedCard key={product.id} product={product} />;
             })
           ) : (
             <Typography>Loading...</Typography>
