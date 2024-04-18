@@ -5,8 +5,8 @@ export const fetchProducts = (pageSize = 9, page = 1) => {
     return fetchPath(`${environment.baseUrl}/products/search?limit=${pageSize}&page=${page}`);
 };
 
-export const fetchProductsByCategoryId = (categoryId, page = 1, pageSize = 9) => {
-    return fetchPath(`${environment.baseUrl}/products/category/${categoryId}?page=${page}&limit=${pageSize}`);
+export const fetchProductsByCategorySlug = (slug, page = 1, pageSize = 9) => {
+    return fetchPath(`${environment.baseUrl}/products/category/${slug}?page=${page}&limit=${pageSize}`);
 };
 
 
