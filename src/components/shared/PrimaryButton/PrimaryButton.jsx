@@ -9,6 +9,7 @@ const PrimaryButton = ({ label, icon, onClick }) => {
     return (
         <Button sx={{
             backgroundColor: theme.palette.primary.main,
+            flexGrow: 1,
             color: 'white',
             padding: {
                 xs: '2px 10px',
@@ -19,7 +20,7 @@ const PrimaryButton = ({ label, icon, onClick }) => {
             width: {
                 xs: '70px',
                 sm: '105px',
-                md: '180px'
+                md: '180px',
             },
             minWidth: {
                 xs: '20px',

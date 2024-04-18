@@ -1,13 +1,13 @@
 import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
-import { Box } from "@mui/material";
+import { Box, List } from "@mui/material";
 
 const HorizontalList = ({ children, gap = "40px" }) => {
   const ref = useRef();
   const { events } = useDraggable(ref);
 
   return (
-    <Box
+    <List
       sx={{
         display: "flex",
         gap: { gap },
@@ -19,7 +19,7 @@ const HorizontalList = ({ children, gap = "40px" }) => {
       ref={ref}
     >
       {children}
-    </Box>
+    </List>
   );
 };
 

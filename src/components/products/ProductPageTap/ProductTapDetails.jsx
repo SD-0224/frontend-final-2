@@ -19,8 +19,8 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{ pt: 3 }}>
+          {children}
         </Box>
       )}
     </div>
@@ -60,7 +60,6 @@ const tabStyles = {
   marginTop: "18px",
   marginBottom: "18px",
   borderRadius: "10px",
-  padding: "12px",
   "&.Mui-selected": {
     backgroundColor: "#1B4B66",
     color: "white",
@@ -74,7 +73,7 @@ const tabStyles = {
   },
 };
 
-export default function BasicTabs() {
+export default function BasicTabs({ description, relatedProducts }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -87,8 +86,6 @@ export default function BasicTabs() {
         <CustomTabs
           sx={{
             backgroundColor: "#F1F1F1",
-            marginRight: "20px",
-            marginLeft: "20px",
             borderRadius: "10px",
             "@media (max-width: 700px)": {
               marginRight: "5px",
@@ -133,26 +130,12 @@ export default function BasicTabs() {
             },
           }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus
-          scelerisque laoreet tortor cras molestie tincidunt malesuada
-          malesuada. Neque, mauris duis dui id morbi magna. Cras lacus, viverra
-          auctor in turpis est quisque eget tristique.
-          {"\n\n"}
-          Dolor augue mattis duis semper gravida enim eu imperdiet sit. Et
-          pharetra platea pretium nec feugiat tincidunt quam leo tristique.
-          Nulla enim consectetur sit et tempus, faucibus leo ac cras. Purus ut
-          non eu mus volutpat.
-          {"\n\n"}
-          Eget est vel sagittis amet sit eu eu ullamcorper tellus. Leo mauris,
-          faucibus vulputate adipiscing elementum tristique dictumst augue
-          pellentesque. Justo, sed nunc, pretium turpis scelerisque. Enim urna
-          etiam morbi vestibulum ac dictumst. Ac ut elementum molestie sit felis
-          imperdiet.
+          {description}
         </Typography>
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={1}>
-        <RelatedProduct />
+        <RelatedProduct products={relatedProducts} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <Typography
@@ -164,8 +147,7 @@ export default function BasicTabs() {
             },
           }}
         >
-          Ratings and reviews are feedback provided by the customer for the
-          brand, usually available on third-party websites
+          Coming Soon ...
         </Typography>
       </CustomTabPanel>
     </Box>

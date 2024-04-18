@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 
 function Counter() {
   const theme = useTheme();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const increment = () => {
     setCount(count + 1);
@@ -20,9 +20,9 @@ function Counter() {
 
   const buttonStyle = {
     padding: 0,
-    fontSize: '1.2rem',
-    minWidth: 'fit-content',
-    lineHeight: '0',
+    fontSize: "1.2rem",
+    minWidth: "fit-content",
+    lineHeight: "0",
   };
 
   return (
@@ -30,10 +30,10 @@ function Counter() {
       sx={{
         display: "flex",
         alignItems: "center",
-        padding: '0 5px',
-        margin: '0 10px',
+        padding: "0 5px",
+        margin: "0 10px",
         border: `1px solid ${theme.palette.primary.main}`,
-        borderRadius: '4px',
+        borderRadius: "4px",
         color: `${theme.palette.primary.main}`,
       }}
     >
@@ -51,4 +51,3 @@ function Counter() {
 }
 
 export default Counter;
-
