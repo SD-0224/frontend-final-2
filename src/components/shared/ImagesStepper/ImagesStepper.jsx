@@ -27,6 +27,7 @@ export default function ImagesStepper({
         {images.map((elm, index) => (
           <Box
             component="img"
+            draggable="false"
             key={index}
             src={elm.imgPath}
             alt={elm.label}
@@ -49,11 +50,7 @@ export default function ImagesStepper({
           />
         ))}
       </Box>
-      <Button
-        size="small"
-        onClick={handleNext}
-        disabled={activeStep === maxSteps - 1}
-      >
+      <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft sx={{ fontSize: "2.5rem" }} />
         ) : (
