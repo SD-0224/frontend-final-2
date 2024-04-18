@@ -4,17 +4,25 @@ import { Stack, Grid, useTheme, useMediaQuery } from "@mui/material";
 import Logos from "./Logos.jsx";
 import FooterInfoStack from "./FooterInfoStack.jsx";
 import DividerStack from "./DividerStack.jsx";
+import { useCategoriesContext } from "../../../context/CategoriesContext";
 
 export default function Footer() {
-  const categoryMenuItems = [
-    { text: "Skincare", path: "/" },
-    { text: "Personal Care", path: "/" },
-    { text: "Handbags", path: "/" },
-    { text: "Apparels", path: "/" },
-    { text: "Watches", path: "/" },
-    { text: "Eye Wear", path: "/" },
-    { text: "jewelry", path: "/" },
-  ];
+
+  const { categories } = useCategoriesContext();
+  const categoryMenuItems = categories.map((category) => ({
+    text: category.name,
+    path: `/category/${category.slug}`,
+  }));
+
+  // const categoryMenuItems = [
+  //   { text: "Skincare", path: "/" },
+  //   { text: "Personal Care", path: "/" },
+  //   { text: "Handbags", path: "/" },
+  //   { text: "Apparels", path: "/" },
+  //   { text: "Watches", path: "/" },
+  //   { text: "Eye Wear", path: "/" },
+  //   { text: "jewelry", path: "/" },
+  // ];
 
   const productsMenuItems = [
     { text: "Featured", path: "/" },
