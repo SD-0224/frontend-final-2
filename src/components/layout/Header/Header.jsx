@@ -22,7 +22,6 @@ export default function Header() {
             bgcolor: "white",
             margin: "0px",
             Height: "80px",
-            boxShadow: 0,
             boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
           }}
         >
