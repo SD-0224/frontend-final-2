@@ -5,6 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { ListSubheader } from "@mui/material";
 import { useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function QuickLinks({ listHeader, menuItems }) {
   const theme = useTheme();
@@ -45,8 +46,8 @@ export default function QuickLinks({ listHeader, menuItems }) {
             key={item.text}
           >
             <ListItemButton
-              component="a"
-              href={item.path}
+              component={Link}
+              to={item.path}
               sx={{
                 padding: "0",
                 "&:hover": {
