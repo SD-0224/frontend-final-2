@@ -11,6 +11,7 @@ const SecondaryButton = ({ label, icon, onClick }) => {
       sx={{
         backgroundColor: "#fff",
         color: theme.palette.primary.main,
+        flexGrow: 1,
         padding: "5px 10px",
         borderRadius: "8px",
         border: `1px solid ${theme.palette.primary.main}`,
