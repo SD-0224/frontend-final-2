@@ -13,7 +13,7 @@ import React from "react";
 
 
 const ProductCard = ({ product }) => {
-  const { title, category, price, image, link } = product;
+  const { title, category, price, imgPath, link } = product;
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2 }}>
       <Link href={`/products/${link}`} draggable="false">
