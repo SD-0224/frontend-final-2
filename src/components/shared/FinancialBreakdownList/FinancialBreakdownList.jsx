@@ -1,17 +1,17 @@
 import React from "react";
-import GutterlessList from "./GutterlessList";
+import Invoice from "../Invoice/Invoice";
 import { Box, Divider, Typography } from "@mui/material";
 
 const OrderDetails = [
-  ["Sub Total", 119.69],
-  ["Discount", -13.4],
-  ["Delivery Fee", -0.0],
-  ["Grand Total", 106.29],
+  { label: "Sub Total", amount: 119.69 },
+  { label: "Discount", amount: -13.4 },
+  { label: "Delivery Fee", amount: 0.0 },
+  { label: "Grand Total", amount: 106.29 },
 ];
 
-export default function OrderSummary() {
+export default function FinancialBreakdownList({ title }) {
   return (
-    <Box>
+    <Box sx={{ maxWidth: 360 }}>
       <Typography
         variant="h1"
         sx={{
@@ -24,10 +24,10 @@ export default function OrderSummary() {
           color: "#13101E",
         }}
       >
-        Order Details
+        {title}
       </Typography>
       <Divider width={"100%"} />
-      <GutterlessList OrderDetails={OrderDetails} />
+      <Invoice OrderDetails={OrderDetails} />
     </Box>
   );
 }
