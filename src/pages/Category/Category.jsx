@@ -9,6 +9,7 @@ import LoadingIndicator from "../../components/shared/LoadingIndicator/LoadingIn
 import { Grid } from "@mui/material";
 import { capitalizeSlug } from "../../utilities/helpers";
 import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
+import TitleBanner from "../../components/shared/CateogryTitleBanner/TitleBanner";
 
 const Category = () => {
   const { slug } = useParams();
@@ -41,24 +42,28 @@ const Category = () => {
   return (
     <>
       <Box sx={{ display: "flex", flexDirection: "column", gap: "3rem", margin: "7rem 0" }}>
-        {loading && <LoadingIndicator />}
         <Container>
-          <Grid container spacing={2}>
-            <Grid item xs={2}>
-              <Breadcrumb list={breadcrumbList} />
-              <h2>{capitalizeSlug(slug)}</h2>
-            </Grid>
+          <TitleBanner />
+          {loading ? (
+            <LoadingIndicator />
+          ) : (
+            <Grid container spacing={2} sx={{ marginTop: "3rem" }}>
+              <Grid item xs={2}>
+                <Breadcrumb list={breadcrumbList} />
+                <h2>{capitalizeSlug(slug)}</h2>
+              </Grid>
 
-            <Grid item xs={10}>
-              <ProductGrid products={productsResult.products} />
-              <AppPagination
-                currentPage={currentPage}
-                onPageChange={setCurrentPage}
-                count={productsResult.count}
-                pageSize={pageSize}
-              />
+              <Grid item xs={10}>
+                <ProductGrid products={productsResult.products} />
+                <AppPagination
+                  currentPage={currentPage}
+                  onPageChange={setCurrentPage}
+                  count={productsResult.count}
+                  pageSize={pageSize}
+                />
+              </Grid>
             </Grid>
-          </Grid>
+          )}
         </Container>
       </Box>
     </>
