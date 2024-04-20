@@ -1,6 +1,7 @@
 import { Typography, Container, Box } from "@mui/material";
 import ProductHandpickedCard from "./ProductHandpickedCard";
 import HorizontalList from "../../shared/HorizontalList/HorizontalList";
+import LoadingIndicator from "../../shared/LoadingIndicator/LoadingIndicator";
 
 const ProductHandpicked = ({ products }) => {
   return (
@@ -25,7 +26,7 @@ const ProductHandpicked = ({ products }) => {
               return <ProductHandpickedCard key={product.id} product={product} />;
             })
           ) : (
-            <Typography>Loading...</Typography>
+            <LoadingIndicator />
           )}
         </HorizontalList>
       </Container>

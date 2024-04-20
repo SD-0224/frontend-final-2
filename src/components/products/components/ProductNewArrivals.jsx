@@ -2,6 +2,7 @@ import { Typography, Container, Box, Link } from "@mui/material";
 import ProductCard from "./ProductCard";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import HorizontalList from "../../shared/HorizontalList/HorizontalList";
+import LoadingIndicator from "../../shared/LoadingIndicator/LoadingIndicator";
 
 const ProductNewArrivals = ({ products }) => {
   return (
@@ -33,7 +34,7 @@ const ProductNewArrivals = ({ products }) => {
             return <ProductCard key={product.id} product={product} />;
           })
         ) : (
-          <Typography>Loading...</Typography>
+          <LoadingIndicator />
         )}
       </HorizontalList>
     </Container>
