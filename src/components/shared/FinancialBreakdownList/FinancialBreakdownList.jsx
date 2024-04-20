@@ -9,7 +9,7 @@ const OrderDetails = [
   { label: "Grand Total", amount: 106.29 },
 ];
 
-export default function FinancialBreakdownList({ title }) {
+export default function FinancialBreakdownList({ title, children }) {
   return (
     <Box sx={{ maxWidth: 360 }}>
       <Typography
@@ -28,6 +28,7 @@ export default function FinancialBreakdownList({ title }) {
       </Typography>
       <Divider width={"100%"} />
       <Invoice OrderDetails={OrderDetails} />
+      {children}
     </Box>
   );
 }
