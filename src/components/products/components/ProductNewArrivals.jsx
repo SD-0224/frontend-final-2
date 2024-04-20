@@ -31,7 +31,7 @@ const ProductNewArrivals = ({ products }) => {
       <HorizontalList>
         {Array.isArray(products) ? (
           products.map((product) => {
-            return <ProductCard key={product.id} product={product} />;
+            return <ProductCard key={product.slug} product={product} />;
           })
         ) : (
           <LoadingIndicator />

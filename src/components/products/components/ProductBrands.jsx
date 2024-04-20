@@ -13,7 +13,7 @@ const ProductBrands = ({ brands }) => {
       <HorizontalList gap="44px">
         {Array.isArray(brands) ? (
           brands.map((brand) => {
-            return <ProductBrandCard key={brand.id} brand={brand} />;
+            return <ProductBrandCard key={brand.brandID} brand={brand} />;
           })
         ) : (
           <LoadingIndicator />
