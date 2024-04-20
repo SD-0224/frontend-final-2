@@ -2,7 +2,7 @@ import * as React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
-const LoadingIndicator = () => {
+const LoadingIndicator = ({ color = "primary" }) => {
   return (
     <Box
       sx={{
@@ -14,7 +14,7 @@ const LoadingIndicator = () => {
         zIndex: 999,
       }}
     >
-      <CircularProgress color="primary" />
+      <CircularProgress color={color} />
     </Box>
   );
 };

@@ -23,10 +23,10 @@ const ProductHandpicked = ({ products }) => {
         <HorizontalList>
           {Array.isArray(products) ? (
             products.map((product) => {
-              return <ProductHandpickedCard key={product.id} product={product} />;
+              return <ProductHandpickedCard key={product.slug} product={product} />;
             })
           ) : (
-            <LoadingIndicator />
+            <LoadingIndicator color="secondary" />
           )}
         </HorizontalList>
       </Container>
