@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import React, { useEffect } from "react";
 import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import SwipeableGallery from "../../components/shared/SwipeableGallery/Swipeable
 import ProductInfo from "../../components/shared/ProductInfo/ProductInfo";
 import ProductTapDetails from "../../components/products/ProductPageTap/ProductTapDetails";
 import { useParams } from "react-router-dom";
+import LoadingIndicator from "../../components/shared/LoadingIndicator/LoadingIndicator";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -71,13 +72,7 @@ const ProductDetails = () => {
   }
 
   if (!product) {
-    return (
-      <Container
-        sx={{ minHeight: "100svh", display: "flex", justifyContent: "center", alignItems: "center" }}
-      >
-        <CircularProgress />
-      </Container>
-    );
+    return <LoadingIndicator />;
   }
 
   return (
