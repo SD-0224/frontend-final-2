@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Divider, Rating, Stack, Typography } from "@mui/material";
+import { Box, Divider, Rating, Stack, Typography } from "@mui/material";
 import React from "react";
 import Counter from "../Counter/Counter";
 import { useTheme } from "@mui/material/styles";
