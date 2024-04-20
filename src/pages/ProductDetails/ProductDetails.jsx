@@ -30,22 +30,6 @@ const ProductDetails = () => {
       },
       [product]
     );
-
-    //for breadcrumbList Possible useMemo if calculations get expensive
-    breadcrumbList = [
-      {
-        text: "Home",
-        link: "/",
-      },
-      {
-        text: product.category,
-        link: product["category-slug"],
-      },
-      {
-        text: product.title,
-        link: product.slug,
-      },
-    ];
   }, [product]);
 
   let breadcrumbList = [
@@ -72,7 +56,11 @@ const ProductDetails = () => {
   }
 
   if (!product) {
-    return <LoadingIndicator />;
+    return (
+      <Container sx={{ minHeight: "100vh" }}>
+        <LoadingIndicator />
+      </Container>
+    );
   }
 
   return (
