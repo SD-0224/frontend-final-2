@@ -6,17 +6,17 @@ import {
   Typography,
   Box,
   IconButton,
-  Link,
   Rating,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, onClick }) => {
   const { title, category, price, discount, imgPath, slug, avgReview, reviewCount } = product;
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2 }}>
-      <Link href={`/products/${slug}`} draggable="false">
+      <Link to={`/products/${slug}`} draggable="false">
         <CardActionArea>
           <CardMedia
             draggable="false"

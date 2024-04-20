@@ -63,7 +63,7 @@ const ProductDetails = () => {
       },
       {
         text: product.category,
-        link: product["category-slug"],
+        link: "/category/" + product["category-slug"],
       },
       {
         text: product.title,
