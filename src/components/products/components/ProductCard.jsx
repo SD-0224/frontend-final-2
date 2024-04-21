@@ -6,22 +6,22 @@ import {
   Typography,
   Box,
   IconButton,
-  Link,
+  Rating,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
+import { Link } from "react-router-dom";
 
-
-const ProductCard = ({ product }) => {
-  const { title, category, price, imgPath, link } = product;
+const ProductCard = ({ product, onClick }) => {
+  const { title, category, price, discount, imgPath, slug, avgReview, reviewCount } = product;
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2 }}>
-      <Link href={`/products/${link}`} draggable="false">
+      <Link to={`/products/${slug}`} draggable="false">
         <CardActionArea>
           <CardMedia
             draggable="false"
             component="img"
-            image={imgPath ?? '/public/images/img-placeholder.png'}
+            image={imgPath ?? "/images/img-placeholder.png"}
             sx={{
               borderRadius: 2,
               height: 285,
@@ -32,6 +32,7 @@ const ProductCard = ({ product }) => {
           />
         </CardActionArea>
       </Link>
+
       <CardContent sx={{ padding: "1rem 0 0 !important", userSelect: "none" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography
@@ -45,7 +46,7 @@ const ProductCard = ({ product }) => {
           >
             {title}
           </Typography>
-          <IconButton sx={{ padding: 0 }}>
+          <IconButton sx={{ padding: 0 }} onClick={onClick}>
             <FavoriteBorderIcon />
           </IconButton>
         </Box>
@@ -62,7 +63,25 @@ const ProductCard = ({ product }) => {
         >
           {category}
         </Typography>
-        <Typography>${price}</Typography>
+
+        {avgReview > 0 && reviewCount > 0 && (
+          <Box sx={{ display: "flex", justifyContent: "start", gap: "0.5rem", alignItems: "center" }}>
+            <Rating value={avgReview} precision={0.5} readOnly />
+            <Typography sx={{ color: "primary.main", fontSize: "0.8rem" }}>{reviewCount} Ratings</Typography>
+          </Box>
+        )}
+
+        <Box sx={{ display: "flex", justifyContent: "start", gap: "0.5rem", alignItems: "center" }}>
+          <Typography>${false ? price : (price - price * discount).toFixed(2)}</Typography>
+          {discount > 0 && (
+            <>
+              <Typography sx={{ color: "gray", textDecoration: "line-through", fontSize: "0.8rem" }}>
+                ${price}
+              </Typography>
+              <Typography sx={{ color: "red" }}>{discount}% off</Typography>
+            </>
+          )}
+        </Box>
       </CardContent>
     </Card>
   );

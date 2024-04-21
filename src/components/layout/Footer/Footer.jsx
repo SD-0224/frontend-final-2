@@ -7,22 +7,11 @@ import DividerStack from "./DividerStack.jsx";
 import { useCategoriesContext } from "../../../context/CategoriesContext";
 
 export default function Footer() {
-
   const { categories } = useCategoriesContext();
   const categoryMenuItems = categories.map((category) => ({
     text: category.name,
     path: `/category/${category.slug}`,
   }));
-
-  // const categoryMenuItems = [
-  //   { text: "Skincare", path: "/" },
-  //   { text: "Personal Care", path: "/" },
-  //   { text: "Handbags", path: "/" },
-  //   { text: "Apparels", path: "/" },
-  //   { text: "Watches", path: "/" },
-  //   { text: "Eye Wear", path: "/" },
-  //   { text: "jewelry", path: "/" },
-  // ];
 
   const productsMenuItems = [
     { text: "Featured", path: "/" },
@@ -67,43 +56,18 @@ export default function Footer() {
       direction={"row"}
     >
       <Grid item xs={12} md={9} padding={0}>
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={{ sm: 2, md: 1 }}
-        >
-          <QuickLinks
-            listHeader={"Shop by Category"}
-            menuItems={categoryMenuItems}
-          />
-          <QuickLinks
-            listHeader={"Shop by products"}
-            menuItems={productsMenuItems}
-          />
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={{ sm: 2, md: 1 }}>
+          <QuickLinks listHeader={"Shop by Category"} menuItems={categoryMenuItems} />
+          <QuickLinks listHeader={"Shop by products"} menuItems={productsMenuItems} />
           {isSmallScreen ? (
             <>
-              <DividerStack
-                listHeader={"Policy"}
-                menuItems={policyMenuItems}
-                isSmallScreen={isSmallScreen}
-              />
-              <DividerStack
-                listHeader={"About"}
-                menuItems={aboutMenuItems}
-                isSmallScreen={isSmallScreen}
-              />
+              <DividerStack listHeader={"Policy"} menuItems={policyMenuItems} isSmallScreen={isSmallScreen} />
+              <DividerStack listHeader={"About"} menuItems={aboutMenuItems} isSmallScreen={isSmallScreen} />
             </>
           ) : (
             <>
-              <DividerStack
-                listHeader={"About"}
-                menuItems={aboutMenuItems}
-                isSmallScreen={isSmallScreen}
-              />
-              <DividerStack
-                listHeader={"Policy"}
-                menuItems={policyMenuItems}
-                isSmallScreen={isSmallScreen}
-              />
+              <DividerStack listHeader={"About"} menuItems={aboutMenuItems} isSmallScreen={isSmallScreen} />
+              <DividerStack listHeader={"Policy"} menuItems={policyMenuItems} isSmallScreen={isSmallScreen} />
             </>
           )}
         </Stack>

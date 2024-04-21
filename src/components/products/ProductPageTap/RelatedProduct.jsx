@@ -1,6 +1,7 @@
-import { CircularProgress, ListItem } from "@mui/material";
+import { ListItem } from "@mui/material";
 import HorizontalList from "../../shared/HorizontalList/HorizontalList";
 import ProductCard from "../components/ProductCard";
+import LoadingIndicator from "../../shared/LoadingIndicator/LoadingIndicator";
 
 export default function RelatedProducts({ products }) {
   return (
@@ -15,7 +16,7 @@ export default function RelatedProducts({ products }) {
             );
           })
         ) : (
-          <CircularProgress sx={{ width: "100%", height: "100%", m: "auto" }} />
+          <LoadingIndicator />
         )}
       </HorizontalList>
     </>

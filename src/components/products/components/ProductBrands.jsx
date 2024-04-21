@@ -1,6 +1,7 @@
 import { Typography, Container, Box } from "@mui/material";
 import HorizontalList from "../../shared/HorizontalList/HorizontalList";
 import ProductBrandCard from "./ProductBrandCard";
+import LoadingIndicator from "../../shared/LoadingIndicator/LoadingIndicator";
 
 const ProductBrands = ({ brands }) => {
   return (
@@ -12,10 +13,10 @@ const ProductBrands = ({ brands }) => {
       <HorizontalList gap="44px">
         {Array.isArray(brands) ? (
           brands.map((brand) => {
-            return <ProductBrandCard key={brand.id} brand={brand} />;
+            return <ProductBrandCard key={brand.brandID} brand={brand} />;
           })
         ) : (
-          <Typography>Loading...</Typography>
+          <LoadingIndicator />
         )}
       </HorizontalList>
     </Container>
