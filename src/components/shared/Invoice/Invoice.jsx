@@ -3,7 +3,15 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 
-export default function Invoice({ OrderDetails }) {
+
+const OrderDetails = [
+  { label: "Sub Total", amount: 119.69 },
+  { label: "Discount", amount: -13.4 },
+  { label: "Delivery Fee", amount: 0.0 },
+  { label: "Grand Total", amount: 106.29 },
+];
+
+export default function Invoice() {
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       {OrderDetails.map((value, index) => (
