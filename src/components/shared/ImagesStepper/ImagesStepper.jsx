@@ -14,6 +14,9 @@ export default function ImagesStepper({
   maxSteps,
 }) {
   const theme = useTheme();
+  // Slice the images array to get exactly 4 images starting from startIdx
+  const startIdx = Math.max(activeStep - 3, 0);
+  const visibleImages = images.slice(startIdx, startIdx + 4);
   return (
     <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
       <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
@@ -24,7 +27,7 @@ export default function ImagesStepper({
         )}
       </Button>
       <Box>
-        {images.map((elm, index) => (
+        {visibleImages.map((elm, index) => (
           <Box
             component="img"
             draggable="false"
@@ -44,13 +47,17 @@ export default function ImagesStepper({
               },
               borderRadius: "8px",
               cursor: "pointer",
-              opacity: activeStep === index ? 0.5 : 1,
+              opacity: activeStep === startIdx + index ? 0.5 : 1,
             }}
-            onClick={() => handleStepChange(index)}
+            onClick={() => handleStepChange(startIdx + index)}
           />
         ))}
       </Box>
-      <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+      <Button
+        size="small"
+        onClick={handleNext}
+        disabled={activeStep === maxSteps - 1}
+      >
         {theme.direction === "rtl" ? (
           <KeyboardArrowLeft sx={{ fontSize: "2.5rem" }} />
         ) : (
