@@ -10,7 +10,6 @@ function SwipeableGallery({ images }) {
   const maxSteps = images.length;
 
   const [springProps, set] = useSprings(images.length, (index) => ({
-    x: index * 100,
     display: index === 0 ? "block" : "none",
   }));
 
@@ -53,7 +52,7 @@ function SwipeableGallery({ images }) {
           flexGrow: 1,
         }}
       >
-        {springProps.map(({ x, display }, index) => (
+        {springProps.map(({ display }, index) => (
           <animated.img
             key={index}
             src={images[index].imgPath}
