@@ -1,23 +1,49 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
+
 import Home from "./pages/Home/Home";
 import Category from "./pages/Category/Category";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
-
 import { CategoriesProvider } from "./context/CategoriesContext";
+import Login from "./pages/Auth/Login/Login";
 
 export default function App() {
   return (
     <>
       <CategoriesProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/category/:slug" element={<Category />} />
-            <Route path="/products/:slug" element={<ProductDetails />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <Home />
+              </Layout>
+            }
+          />
+          <Route
+            path="/category/:slug"
+            element={
+              <Layout>
+                <Category />
+              </Layout>
+            }
+          />
+          <Route
+            path="/products/:slug"
+            element={
+              <Layout>
+                <ProductDetails />
+              </Layout>
+            }
+          />
+
+
+          <Route path="/auth/login" element={<Login />} />
+        </Routes>
       </CategoriesProvider>
     </>
   );
 }
+
+
+
