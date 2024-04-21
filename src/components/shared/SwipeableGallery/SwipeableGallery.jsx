@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
+import { useSprings, animated } from "react-spring";
 import Box from "@mui/material/Box";
-import SwipeableViews from "react-swipeable-views";
 import ImagesStepper from "../ImagesStepper/ImagesStepper";
 
 function SwipeableGallery({ images }) {
@@ -9,17 +9,30 @@ function SwipeableGallery({ images }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
 
+  const [springProps, set] = useSprings(images.length, (index) => ({
+    display: index === 0 ? "block" : "none",
+  }));
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => (prevActiveStep + 1) % maxSteps);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => (prevActiveStep === 0 ? maxSteps - 1 : prevActiveStep - 1));
+    setActiveStep((prevActiveStep) =>
+      prevActiveStep === 0 ? maxSteps - 1 : prevActiveStep - 1
+    );
   };
 
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
+
+  React.useEffect(() => {
+    set((index) => ({
+      x: (index - activeStep) * 100,
+      display: index === activeStep ? "block" : "none",
+    }));
+  }, [activeStep, set]);
 
   return (
     <Box
@@ -39,40 +52,29 @@ function SwipeableGallery({ images }) {
           flexGrow: 1,
         }}
       >
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={activeStep}
-          onChangeIndex={handleStepChange}
-          enableMouseEvents
-        >
-          {images.map((step, index) => (
-            <Box key={index}>
-              {Math.abs(activeStep - index) <= 2 ? (
-                <Box
-                  component="img"
-                  draggable="false"
-                  sx={{
-                    [theme.breakpoints.down("sm")]: {
-                      height: "300px",
-                      maxWidth: "300px",
-                    },
-                    [theme.breakpoints.up("sm")]: {
-                      height: "450px",
-                      maxWidth: "450px",
-                    },
-                    display: "block",
-                    overflow: "hidden",
-                    width: "100%",
-                    borderRadius: "16px",
-                    objectFit: "cover",
-                  }}
-                  src={step.imgPath}
-                  alt={step.label}
-                />
-              ) : null}
-            </Box>
-          ))}
-        </SwipeableViews>
+        {springProps.map(({ display }, index) => (
+          <animated.img
+            key={index}
+            src={images[index].imgPath}
+            alt={images[index].label}
+            style={{
+              display,
+              overflow: "hidden",
+              borderRadius: "16px",
+              objectFit: "cover",
+              width: "100%",
+              ...(theme.breakpoints.down("sm") && {
+                height: "300px",
+                maxWidth: "300px",
+              }),
+              ...(theme.breakpoints.up("sm") && {
+                height: "450px",
+                maxWidth: "450px",
+              }),
+            }}
+            draggable="false"
+          />
+        ))}
         <ImagesStepper
           images={images}
           handleBack={handleBack}

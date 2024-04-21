@@ -15,9 +15,11 @@ const ProductDetails = () => {
   const { slug } = useParams();
 
   useEffect(() => {
-    fetchPath(`https://backend-final-2-1.onrender.com/products/${slug}`).then((data) => {
-      setProduct(data.product);
-    });
+    fetchPath(`https://backend-final-2-1.onrender.com/products/${slug}`).then(
+      (data) => {
+        setProduct(data.product);
+      }
+    );
   }, [slug]);
 
   useEffect(() => {
@@ -66,7 +68,14 @@ const ProductDetails = () => {
   return (
     <>
       <Container>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "3rem", margin: "7rem 0" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "3rem",
+            margin: "7rem 0",
+          }}
+        >
           <Box>
             <Breadcrumb list={breadcrumbList} />
             <Box sx={{ display: "flex", gap: "3rem" }}>
@@ -78,7 +87,10 @@ const ProductDetails = () => {
               <ProductInfo product={product} />
             </Box>
           </Box>
-          <ProductTapDetails description={product.description} relatedProducts={relatedProducts} />
+          <ProductTapDetails
+            description={product.description}
+            relatedProducts={relatedProducts}
+          />
         </Box>
       </Container>
     </>
