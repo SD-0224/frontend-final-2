@@ -36,7 +36,7 @@ export default function FooterInfoStack() {
           textAlign: "end",
         }}
       >
-        © 2021 | Cora Leviene All Rights Reserved
+        © {new Date().getFullYear()} | Cora Leviene™ All Rights Reserved
       </Typography>
     </Stack>
   );

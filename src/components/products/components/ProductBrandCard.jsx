@@ -2,7 +2,7 @@ import { Card, CardActionArea, CardMedia, Link } from "@mui/material";
 import React from "react";
 
 const ProductBrandCard = ({ brand }) => {
-  const { image, link } = brand;
+  const { imagePath, slug } = brand;
   return (
     <Card
       sx={{
@@ -17,9 +17,9 @@ const ProductBrandCard = ({ brand }) => {
         alignItems: "center",
       }}
     >
-      <Link href={`/brand/${link}`} draggable="false" sx={{ height: "100%", width: "100%" }}>
+      <Link href={`/category/${slug}`} draggable="false" sx={{ height: "100%", width: "100%" }}>
         <CardActionArea sx={{ height: "100%", width: "100%" }}>
-          <CardMedia draggable="false" component="img" image={image} sx={{ padding: "1.6rem" }} />
+          <CardMedia draggable="false" component="img" image={imagePath} sx={{ padding: "1.6rem" }} />
         </CardActionArea>
       </Link>
     </Card>

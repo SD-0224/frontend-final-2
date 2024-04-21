@@ -9,6 +9,8 @@ import BurgerMenu from "./Menu/Menu";
 import HeaderIcons from "./HeaderIcons/HeaderIcons";
 import SearchBar from "./SearchBar/SearchBar";
 import NavCategory from "./NavCategory/NavCategory";
+import { Box } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const theme = useTheme();
@@ -26,7 +28,9 @@ export default function Header() {
           }}
         >
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-            <img sx={{ width: "108" }} src={logo} alt="home-logo" />
+            <Link to={"/"}>
+              <Box component={"img"} sx={{ width: "108" }} src={logo} alt="home-logo" />
+            </Link>
             {isLargerScreen && (
               <>
                 <NavCategory />

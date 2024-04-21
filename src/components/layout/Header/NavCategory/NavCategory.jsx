@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import { useCategoriesContext } from "../../../../context/CategoriesContext";
 import { Link } from "react-router-dom";
+import LoadingIndicator from "../../../shared/LoadingIndicator/LoadingIndicator";
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   display: "flex",
@@ -16,35 +17,31 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
     margin: theme.spacing(1),
     width: "auto",
   },
-  '& a': {
-    textDecoration: 'none',
-    color: 'inherit',
-    transition: 'color 0.3s',
+  "& a": {
+    textDecoration: "none",
+    color: "inherit",
+    transition: "color 0.3s",
   },
-  '& a:hover': {
+  "& a:hover": {
     color: theme.palette.primary.main,
   },
 }));
 export default function NavCategory() {
-  const { categories } = useCategoriesContext();
+  const { categories, isLoading } = useCategoriesContext();
   const limitCategories = categories.slice(0, 5);
+
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
 
   return (
     <>
-      <Box
-        display="flex"
-        alignItems="center"
-        color="black"
-        gap={2}
-        sx={{ width: "500px" }}
-      >
-        {
-          limitCategories.map((category) => (
-
-            <StyledTypography key={category.categoryID}><Link to={`/category/${category.slug}`}  >{category.name}</Link></StyledTypography>
-          ))
-        }
-
+      <Box display="flex" alignItems="center" color="black" gap={2} sx={{ width: "500px" }}>
+        {limitCategories.map((category) => (
+          <StyledTypography key={category.categoryID}>
+            <Link to={`/category/${category.slug}`}>{category.name}</Link>
+          </StyledTypography>
+        ))}
       </Box>
     </>
   );

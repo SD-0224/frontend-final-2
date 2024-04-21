@@ -2,12 +2,17 @@ import { Card, CardActionArea, CardContent, CardMedia, Typography, Link } from "
 import React from "react";
 
 const ProductHandpickedCard = ({ product }) => {
-  const { title, image, link } = product;
+  const { title, imgPath, slug } = product;
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2, position: "relative" }}>
-      <Link href={`/collection/${link}`} draggable="false">
+      <Link href={`/products/${slug}`} draggable="false">
         <CardActionArea>
-          <CardMedia draggable="false" component="img" image={image} sx={{ borderRadius: 2, height: 285 }} />
+          <CardMedia
+            draggable="false"
+            component="img"
+            image={imgPath}
+            sx={{ borderRadius: 2, height: 285 }}
+          />
           <CardContent
             sx={{
               width: "100%",
