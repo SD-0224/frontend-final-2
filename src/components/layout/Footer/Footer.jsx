@@ -21,7 +21,7 @@ export default function Footer() {
 
   const aboutMenuItems = [
     { text: "Contact Us", path: "/" },
-    { text: "About Us", path: "/" },
+    { text: "About Us", path: "/about" },
     { text: "Careers", path: "/" },
     { text: "Press", path: "/" },
   ];

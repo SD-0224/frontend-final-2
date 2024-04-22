@@ -4,6 +4,9 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home/Home";
 import Category from "./pages/Category/Category";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+
+import About from "./pages/About/About";
+
 import { CategoriesProvider } from "./context/CategoriesContext";
 import Login from "./pages/Auth/Login/Login";
 import SignUp from "./pages/Auth/Signup/Signup";
@@ -37,6 +40,15 @@ export default function App() {
               </Layout>
             }
           />
+             <Route
+            path="/about"
+            element={
+              <Layout>
+               <About />
+              </Layout>
+            }
+          />
+   
 
 
           <Route path="/auth/login" element={<Login />} />

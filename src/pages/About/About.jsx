@@ -1,7 +1,7 @@
-import aboutBanner from "../../../assets/AboutPageImg/banner-image.svg";
-import Rectangle1 from "../../../assets/AboutPageImg/Rectangle1.png";
-import Rectangle2 from "../../../assets/AboutPageImg/Rectangle2.png";
-import Rectangle3 from "../../../assets/AboutPageImg/Rectangle3.png";
+import aboutBanner from "../../assets/AboutPageImg/banner-image.svg";
+import Rectangle1 from "../../assets/AboutPageImg/Rectangle1.png";
+import Rectangle2 from "../../assets/AboutPageImg/Rectangle2.png";
+import Rectangle3 from "../../assets/AboutPageImg/Rectangle3.png";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
@@ -48,7 +48,8 @@ function TextImageSection({ title, content, imageSrc }) {
             marginTop: "20px",
           }}
         >
-          <img
+          <Box
+            component={"img"}
             src={imageSrc}
             style={{
               width: "100%",
@@ -66,7 +67,7 @@ export default function About() {
   return (
     <>
       <Box sx={{ width: "100%" }}>
-        <img src={aboutBanner} alt="aboutBanner" style={{ width: "100%" }} />
+        <Box component={"img"} src={aboutBanner} alt="aboutBanner" style={{ width: "100%" }} />
       </Box>
       <Box sx={{ marginTop: "20px", marginLeft: "20px", marginRight: "20px" }}>
         <Typography
@@ -90,11 +91,9 @@ export default function About() {
             fontWeight: "400",
           }}
         >
-          Coral's designs, manufactures and markets hand-finished and
-          contemporary jewelry made from high-quality materials at affordable
-          prices. Coral's jewelry is sold in more than 100 countries on six
-          continents through more than 7,700 points of sale, including more than
-          2,600 concept stores.
+          Coral's designs, manufactures and markets hand-finished and contemporary jewelry made from
+          high-quality materials at affordable prices. Coral's jewelry is sold in more than 100 countries on
+          six continents through more than 7,700 points of sale, including more than 2,600 concept stores.
         </Typography>
       </Box>
 
@@ -122,7 +121,8 @@ export default function About() {
             marginTop: "20px",
           }}
         >
-          <img
+          <Box
+            component="img"
             src={Rectangle2}
             style={{
               width: "100%",
@@ -150,10 +150,9 @@ export default function About() {
           >
             Coral's Newsletter
           </Typography>
-          Manufactures and markets hand-finished and contemporary jewelry made
-          from high-quality materials at affordable prices. Pandora jewelry is
-          sold in more than 100 countries on six continents through more than
-          7,700 points of sale, including more than 2,600 concept stores.
+          Manufactures and markets hand-finished and contemporary jewelry made from high-quality materials at
+          affordable prices. Pandora jewelry is sold in more than 100 countries on six continents through more
+          than 7,700 points of sale, including more than 2,600 concept stores.
         </Typography>
       </Box>
       <TextImageSection
