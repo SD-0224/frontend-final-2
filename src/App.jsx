@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 
 import Home from "./pages/Home/Home";
@@ -41,30 +41,11 @@ export default function App() {
               </Layout>
             }
           />
-          <Route
-            path="/products/list/brand/:slug"
-            element={
-              <Layout>
-                <ProductsList />
-              </Layout>
-            }
-          />
-          <Route
-            path="/products/list/newest"
-            element={
-              <Layout>
-                <ProductsList />
-              </Layout>
-            }
-          />
-          <Route
-            path="/products/list/handpicked"
-            element={
-              <Layout>
-                <ProductsList />
-              </Layout>
-            }
-          />
+          <Route path="/products/list" element={<Layout><ProductsList /></Layout>}>
+            <Route path="brand/:slug" element={<Outlet />} />
+            <Route path="newest" element={<Outlet />} />
+            <Route path="handpicked" element={<Outlet />} />
+          </Route>
           <Route
             path="/about"
             element={
