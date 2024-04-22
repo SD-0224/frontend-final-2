@@ -29,6 +29,8 @@ function Counter() {
     <Box
       sx={{
         display: "flex",
+        width:'fit-content',
+        minWidth:'20px',
         alignItems: "center",
         padding: "0 5px",
         margin: "0 10px",

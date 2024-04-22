@@ -4,17 +4,17 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 
 
-const OrderDetails = [
-  { label: "Sub Total", amount: 119.69 },
-  { label: "Discount", amount: -13.4 },
-  { label: "Delivery Fee", amount: 0.0 },
-  { label: "Grand Total", amount: 106.29 },
-];
+// const OrderDetails = [
+//   { label: "Sub Total", amount: 119.69 },
+//   { label: "Discount", amount: -13.4 },
+//   { label: "Delivery Fee", amount: 0.0 },
+//   { label: "Grand Total", amount: 106.29 },
+// ];
 
-export default function Invoice() {
+export default function Invoice({invoiceData}) {
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      {OrderDetails.map((value, index) => (
+    <List sx={{ width: "100%", maxWidth: 400, bgcolor: "background.paper" }}>
+      {invoiceData.map((value, index) => (
         <ListItem key={value} disableGutters sx={{ padding: "0" }}>
           <ListItemText
             primary={`${value.label}`}
@@ -27,7 +27,7 @@ export default function Invoice() {
                 textAlign: "left",
                 color: "#626262",
                 marginBottom: '10px',
-                ...(index === OrderDetails.length - 1 && {
+                ...(index === invoiceData.length - 1 && {
                   fontWeight: 600,
                   color: "#171520",
                   marginBottom: '0px',
@@ -45,7 +45,7 @@ export default function Invoice() {
                 lineHeight: "18px",
                 color: "#171520",
                 marginBottom: '10px',
-                ...(index === OrderDetails.length - 1 && {
+                ...(index === invoiceData.length - 1 && {
                   fontWeight: 600,
                   lineHeight: "20px",
                   marginBottom: '0px',

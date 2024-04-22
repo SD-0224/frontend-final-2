@@ -12,6 +12,7 @@ import Divider from "@mui/material/Divider";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import CartDetails from "../../shared/CartPopup/CartDetails";
 import { Link } from "react-router-dom";
+import MyCartDataContainer from "../MyCartDataContainer/MyCartDataContainer";
 
 const cartData = [
   {
@@ -32,6 +33,12 @@ const cartData = [
     subtitle: "Leather Coach Bag",
     price: "$225",
   },
+];
+
+const invoiceData = [
+  { label: "Subtotal:", amount: 119.69 },
+  { label: "Tax:", amount: -13.4 },
+  { label: "Total:", amount: 0.0 },
 ];
 
 export default function PopUp() {
@@ -78,8 +85,14 @@ export default function PopUp() {
           sx={{
             display: "flex",
             alignItems: "center",
-            paddingLeft: "20px",
-            marginTop: "20px",
+            width: "100%",
+            backgroundColor: "#fff",
+            position: "sticky",
+            top: "0",
+            left: "0",
+            zIndex: "2",
+            padding: "10px 20px",
+            borderBottom: "1px solid #ececec",
           }}
         >
           <IconButton onClick={handleClose}>
@@ -92,11 +105,7 @@ export default function PopUp() {
           </Typography>
         </Box>
 
-        <Box sx={{ marginLeft: "20px" }}>
-          {cartData.map((item, index) => (
-            <CartDetails key={index} item={item} />
-          ))}
-        </Box>
+        <MyCartDataContainer cartData={cartData} invoiceData={invoiceData} />
 
         {/* <CartDetails
           CounterComponent={Counter} />; */}
