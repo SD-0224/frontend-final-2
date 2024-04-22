@@ -1,6 +1,6 @@
 import { Box, IconButton } from "@mui/material";
 import React from "react";
-import CartDetails from "../CartPopup/CartDetails";
+import CartDetails from "../Popup/CartDetails";
 import Invoice from "../Invoice/Invoice";
 import CloseIcon from "@mui/icons-material/Close";
 
