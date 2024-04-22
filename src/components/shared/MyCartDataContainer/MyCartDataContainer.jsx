@@ -1,8 +1,9 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React from "react";
 import CartDetails from "../CartPopup/CartDetails";
 import Invoice from "../Invoice/Invoice";
-import CloseIcon from "@mui/icons-material/Close";
+import PriceDeleteComp from "../CartPopup/PriceDeleteComp";
+import Divider from "@mui/material/Divider";
 
 export default function MyCartDataContainer({ cartData, invoiceData }) {
   return (
@@ -13,21 +14,35 @@ export default function MyCartDataContainer({ cartData, invoiceData }) {
         justifyContent: "center",
       }}
     >
-      <Box sx={{}}>
+      <Box>
         {cartData.map((item, index) => (
           <Box key={index}>
-            <CartDetails item={item} />
-            {/* add clode icon */}
-            {/* <Box sx={{ marginLeft: "80px" }}>
-            <IconButton>
-              <CloseIcon />
-            </IconButton>
-            <Typography sx={{ marginTop: "20px" }}>{item.price}</Typography>
-          </Box> */}
+            <Box
+              sx={{
+                marginTop: "20px",
+                display: "flex",
+                justifyContent: { xs: "flex-start", sm: "space-evenly" },
+                marginLeft: { xs: "5px", sm: "20px" },
+              }}
+            >
+              <CartDetails item={item} />
+              <PriceDeleteComp item={item} />
+            </Box>
+            <Divider
+              sx={{
+                marginTop: "50px",
+                marginRight: "20px",
+                marginBottom: "20px",
+                marginLeft: "37px",
+                width: "85%",
+              }}
+            />
           </Box>
         ))}
       </Box>
-      <Invoice invoiceData={invoiceData}></Invoice>
+      <Stack sx={{ marginLeft: "40px", marginRight: "30px" }}>
+        <Invoice invoiceData={invoiceData}></Invoice>
+      </Stack>
     </Box>
   );
 }
