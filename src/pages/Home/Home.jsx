@@ -23,11 +23,11 @@ const Home = () => {
 
   useEffect(() => {
     fetchNewArrivals()
-      .then((data) => setNewArrivals(data))
+      .then((data) => setNewArrivals(data.products))
       .catch((error) => console.error("Failed to load new arrivals:", error));
 
     fetchHandpicked()
-      .then((data) => setHandpicked(data))
+      .then((data) => setHandpicked(data.products))
       .catch((error) => console.error("Failed to load handpicked:", error));
 
     fetchBrands()
