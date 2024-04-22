@@ -10,6 +10,7 @@ import About from "./pages/About/About";
 import { CategoriesProvider } from "./context/CategoriesContext";
 import Login from "./pages/Auth/Login/Login";
 import SignUp from "./pages/Auth/Signup/Signup";
+import ProductsList from "./pages/ProductsList/ProductsList";
 
 export default function App() {
   return (
@@ -40,20 +41,46 @@ export default function App() {
               </Layout>
             }
           />
-             <Route
-            path="/about"
+          <Route
+            path="/products/list/brand/:slug"
             element={
               <Layout>
-               <About />
+                <ProductsList />
               </Layout>
             }
           />
-   
+          <Route
+            path="/products/list/newest"
+            element={
+              <Layout>
+                <ProductsList />
+              </Layout>
+            }
+          />
+          <Route
+            path="/products/list/handpicked"
+            element={
+              <Layout>
+                <ProductsList />
+              </Layout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Layout>
+                <About />
+              </Layout>
+            }
+          />
+
 
 
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/signup" element={<SignUp />} />
         </Routes>
+
+
       </CategoriesProvider>
     </>
   );
