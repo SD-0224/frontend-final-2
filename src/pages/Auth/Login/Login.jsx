@@ -11,31 +11,33 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
+import Copyright from '../../../components/authentication/components/Copyright';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const loginValidationSchema = yup.object({
+    email: yup.string().required('Email is required').email('Enter a valid email'),
+    password: yup.string().required('Password is required'),
+}).required();
 
 
-
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" to={"/"}  >
-                CORA'L
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 export default function Login() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(loginValidationSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+        }
+    });
+
+    const onSubmit = (data) => {
+        console.log(data);
+    }
+
+
 
     return (
 
@@ -71,8 +73,10 @@ export default function Login() {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
                         <TextField
+                            error={!!errors.email}
+                            helperText={errors?.email?.message}
                             margin="normal"
                             required
                             fullWidth
@@ -81,8 +85,11 @@ export default function Login() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            {...register('email')}
                         />
                         <TextField
+                            error={!!errors.password}
+                            helperText={errors?.password?.message}
                             margin="normal"
                             required
                             fullWidth
@@ -91,11 +98,9 @@ export default function Login() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            {...register('password')}
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
+
                         <Button
                             type="submit"
                             fullWidth
@@ -104,13 +109,9 @@ export default function Login() {
                         >
                             Sign In
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
+                        <Grid container justifyContent={"flex-end"}>
+
+                            <Grid item >
                                 <Link href="#" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
