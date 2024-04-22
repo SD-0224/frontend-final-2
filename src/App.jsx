@@ -6,6 +6,7 @@ import Category from "./pages/Category/Category";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import { CategoriesProvider } from "./context/CategoriesContext";
 import Login from "./pages/Auth/Login/Login";
+import SignUp from "./pages/Auth/Signup/Signup";
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
 
 
           <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/signup" element={<SignUp />} />
         </Routes>
       </CategoriesProvider>
     </>
