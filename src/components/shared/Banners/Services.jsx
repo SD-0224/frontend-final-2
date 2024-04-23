@@ -16,11 +16,13 @@ export default function Services() {
             type="wide"
             textPosition="left"
             color={"#9C1C00"}
+            link={"/products/list/discount"}
+
           >
             <Box
               sx={{
                 bgcolor: "#FFDD9D",
-                color:"#9C1C00",
+                color: "#9C1C00",
                 width: "fit-content",
                 padding: "5px 10px",
                 borderRadius: "6px",
@@ -62,6 +64,7 @@ export default function Services() {
             type="short"
             textPosition="right"
             color={"#1B4B66"}
+            link={"/products/list/trendy"}
           >
             <Box
               sx={{

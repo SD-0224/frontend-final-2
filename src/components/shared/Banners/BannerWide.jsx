@@ -8,10 +8,11 @@ export default function BannerWide({
   textPosition,
   color,
   type,
+  link,
   children,
 }) {
   return (
-    <Link to="/">
+    <Link to={link}>
       <Box
         width={"100%"}
         mx="auto" // Center align the box horizontally

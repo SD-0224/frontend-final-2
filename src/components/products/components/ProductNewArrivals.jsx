@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import HorizontalList from "../../shared/HorizontalList/HorizontalList";
 import LoadingIndicator from "../../shared/LoadingIndicator/LoadingIndicator";
+import { Link as RouterLink } from 'react-router-dom';
 
 const ProductNewArrivals = ({ products }) => {
   return (
@@ -19,7 +20,8 @@ const ProductNewArrivals = ({ products }) => {
           New Arrivals
         </Typography>
         <Link
-          href={"/products/new"}
+          component={RouterLink}
+          to={"/products/list/newest"}
           sx={{ textDecoration: "none", display: "flex", gap: "1rem", alignItems: "center" }}
         >
           <Typography fontSize="small" sx={{ fontWeight: "600", textDecoration: "none" }}>
