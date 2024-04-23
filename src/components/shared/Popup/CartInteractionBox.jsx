@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function CartInteractionBox() {
   return (
     <Box>
-      <Box sx={{ display: "flex", margin: "50px" }}>
+      <Box sx={{ display: "flex", margin: "30px 50px" }}>
         <PrimaryButton label={"Place Order"} />
       </Box>
       <Box

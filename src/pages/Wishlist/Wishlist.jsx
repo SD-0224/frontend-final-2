@@ -1,6 +1,6 @@
 import React from "react";
-import PopUp from "../Popup/Popup";
-import WishlistDataContainer from "./WishlistDataContainer";
+import PopUp from "../../components/shared/Popup/Popup";
+import WishlistDataContainer from "../../components/shared/Popup/WishlistDataContainer";
 
 const WishlistData = [
   {

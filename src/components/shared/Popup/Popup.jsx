@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import { Box } from "@mui/material";
 import BackButton from "./BackButton";
-import CartInteractionBox from "./CartInteractionBox";
 
 // const cartData = [
 //   {
@@ -78,7 +77,6 @@ export default function PopUp({ children }) {
         <Box sx={{ padding: "20px" }}>
           {children}
         </Box>
-        <CartInteractionBox />
       </Dialog>
     </>
   );
