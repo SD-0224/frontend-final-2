@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { fetchProductsByCategorySlug, fetchProductsByBrandSlug, fetchHandpicked, fetchNewArrivals } from "../../components/products/services/ProductsService";
+import { fetchProductsByCategorySlug, fetchProductsByBrandSlug, fetchHandpicked, fetchNewArrivals, fetchTrendyProducts, fetchDiscountProducts } from "../../components/products/services/ProductsService";
 import { Container, Box } from "@mui/material";
 import ProductGrid from "../../components/products/components/ProductGrid";
 import AppPagination from "../../components/shared/AppPagination/AppPagination";
@@ -19,6 +19,9 @@ const ProductsList = () => {
   const matchBrand = useMatch('/products/list/brand/:slug');
   const matchNewest = useMatch('/products/list/newest');
   const matchHandpicked = useMatch('/products/list/handpicked/:slug');
+  const matchTrendy = useMatch('/products/list/trendy');
+  const matchDiscount = useMatch('/products/list/discount');
+
 
 
   const [loading, setLoading] = useState(false);
@@ -27,7 +30,7 @@ const ProductsList = () => {
   const [pageSize, setPageSize] = useState(9);
   const breadcrumbList = [
     { text: "Home", link: "/" },
-    { text: (matchBrand || matchHandpicked) ? capitalizeSlug(slug) : "Newest" },
+    { text: (matchBrand || matchHandpicked) ? capitalizeSlug(slug) : matchTrendy ? "Trendy" : matchDiscount ? "Discount" : "Newest" },
   ];
 
 
@@ -35,6 +38,7 @@ const ProductsList = () => {
   useEffect(() => {
     setLoading(true);
     if (matchBrand) {
+
       fetchProductsByBrandSlug(slug, currentPage, pageSize)
         .then((data) => {
           setLoading(false);
@@ -55,9 +59,23 @@ const ProductsList = () => {
           setProductsResult(data);
         })
         .catch((error) => console.error("Failed to load handpicked products:", error));
+    } else if (matchTrendy) {
+      fetchTrendyProducts(currentPage, pageSize)
+        .then((data) => {
+          setLoading(false);
+          setProductsResult(data);
+        })
+        .catch((error) => console.error("Failed to load handpicked products:", error));
+    } else if (matchDiscount) {
+      fetchDiscountProducts(currentPage, pageSize)
+        .then((data) => {
+          setLoading(false);
+          setProductsResult(data);
+        })
+        .catch((error) => console.error("Failed to load handpicked products:", error));
     }
 
-  }, [currentPage, slug, matchBrand, matchNewest, matchHandpicked]);
+  }, [currentPage, slug, matchBrand, matchNewest, matchHandpicked, matchTrendy, matchDiscount]);
 
 
 
