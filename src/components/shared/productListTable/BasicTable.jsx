@@ -6,8 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
-import CartDetails from "../CartPopup/CartDetails";
+import { Button, Typography } from "@mui/material";
+import CardVertical from "../CardVertical/CardVertical";
 
 import { Box } from "@mui/material";
 
@@ -28,7 +28,6 @@ const cartData = [
 export function MyComponent() {
   return (
     <Box>
-      {/* Render CartDetails only once for all items */}
       <Box
         sx={{
           marginTop: "20px",
@@ -38,7 +37,9 @@ export function MyComponent() {
         }}
       >
         {cartData.map((item, index) => (
-          <CartDetails key={index} item={item} />
+          <CardVertical key={index} item={item}>
+            <Typography sx={{ color: "#626262" }}>Qty -1</Typography>
+          </CardVertical>
         ))}
       </Box>
     </Box>

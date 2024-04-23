@@ -16,7 +16,14 @@ import { Stack, Box } from "@mui/material";
 export default function Invoice({ invoiceData }) {
   return (
     <>
-      <List sx={{ width: "100%", maxWidth: 400, bgcolor: "background.paper" }}>
+      <List
+        sx={{
+          width: "100%",
+          maxWidth: 400,
+          bgcolor: "background.paper",
+          marginTop: "20px",
+        }}
+      >
         {invoiceData.map((value, index) => (
           <ListItem key={value} disableGutters sx={{ padding: "0" }}>
             <ListItemText
@@ -60,13 +67,6 @@ export default function Invoice({ invoiceData }) {
           </ListItem>
         ))}
       </List>
-      <Box sx={{ marginTop: "60px", marginBottom: "0px" }}>
-        <PrimaryButton
-          sx={{ width: "50%", marginRight: "5px" }}
-          label={"Place Order"}
-        />
-        <SecondaryButton sx={{ width: "50%" }} label={"Continue Shopping"} />
-      </Box>
     </>
   );
 }
