@@ -31,22 +31,22 @@ import BackButton from "./BackButton";
 //   { label: "Total:", amount: 0.0 },
 // ];
 
-export default function PopUp({ children }) {
-  const [open, setOpen] = React.useState(false);
+export default function PopUp({ open, handleClose, children }) {
+  // const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <>
-      <Button sx={{ marginTop: "100px" }} onClick={handleClickOpen}>
+      {/* <Button sx={{ marginTop: "100px" }} onClick={handleClickOpen}>
         Open
-      </Button>
+      </Button> */}
       <Dialog
         open={open}
         onClose={handleClose}
@@ -74,9 +74,7 @@ export default function PopUp({ children }) {
         }}
       >
         <BackButton handleClose={handleClose} />
-        <Box sx={{ padding: "20px" }}>
-          {children}
-        </Box>
+        <Box sx={{ padding: "20px" }}>{children}</Box>
       </Dialog>
     </>
   );
