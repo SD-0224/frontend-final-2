@@ -1,38 +1,26 @@
-import React from 'react'
-import PopUp from '../../components/shared/Popup/Popup'
-import MyCartDataContainer from '../../components/shared/Popup/MyCartDataContainer';
+import BasicTable from "../../components/shared/productListTable/BasicTable";
+import OrderSummary from "../../components/shared/OrderSummary/OrderSummary";
+import Invoice from "../../components/shared/Invoice/Invoice";
+import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
+import { Stack, Box } from "@mui/material";
 
-const cartData = [
-  {
-    image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$665",
-  },
-  {
-    image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$33",
-  },
-  {
-    image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$225",
-  },
+const OrderDetails = [
+  { label: "Sub Total", amount: 119.69 },
+  { label: "Discount", amount: -13.4 },
+  { label: "Delivery Fee", amount: 0.0 },
+  { label: "Grand Total", amount: 106.29 },
 ];
-
-const invoiceData = [
-  { label: "Subtotal:", amount: 119.69 },
-  { label: "Tax:", amount: -13.4 },
-  { label: "Total:", amount: 0.0 },
-];
-
-export default function MyCart() {
+export default function MyCary({}) {
   return (
-    <PopUp>
-        <MyCartDataContainer cartData={cartData} invoiceData={invoiceData} />
-    </PopUp>
-  )
+    <>
+      <Box sx={{ display: "flex" }}>
+        <BasicTable />
+        <OrderSummary title={"order summery"}>
+          <Stack sx={{ display: "flex", minWidth: "321px;" }}>
+            <Invoice invoiceData={OrderDetails}></Invoice>
+          </Stack>
+        </OrderSummary>
+      </Box>
+    </>
+  );
 }
