@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Divider, Typography } from "@mui/material";
 
-
 export default function OrderSummary({ title, children }) {
   return (
     <Box sx={{ maxWidth: 400 }}>
       <Typography
         variant="h1"
         sx={{
+          marginTop: "10px",
           fontFamily: "Inter",
           fontSize: "20px",
           fontWeight: 600,

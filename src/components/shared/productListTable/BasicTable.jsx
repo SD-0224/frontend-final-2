@@ -7,28 +7,43 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
+import CartDetails from "../CartPopup/CartDetails";
+
+import { Box } from "@mui/material";
 
 function createData(name, Price, Qty, Subtotal) {
   return { name, Price, Qty, Subtotal };
 }
 
 // replace this by real component
-const MyComponent = () => (
-  <div style={{ display: "flex" }}>
-    <div
-      style={{
-        width: "50px",
-        height: "50px",
-        margin: "5px",
-        background: "#999",
-      }}
-    ></div>
-    <div>
-      <h1>Coach</h1>
-      <p>Leather Coach Bag</p>
-    </div>
-  </div>
-);
+const cartData = [
+  {
+    image: "../../public/images/image.svg",
+    title: "coach",
+    subtitle: "Leather Coach Bag",
+    price: "$665",
+  },
+];
+
+export function MyComponent() {
+  return (
+    <Box>
+      {/* Render CartDetails only once for all items */}
+      <Box
+        sx={{
+          marginTop: "20px",
+          display: "flex",
+          // justifyContent: { xs: "flex-start", sm: "space-evenly" },
+          marginLeft: { xs: "5px", sm: "20px" },
+        }}
+      >
+        {cartData.map((item, index) => (
+          <CartDetails key={index} item={item} />
+        ))}
+      </Box>
+    </Box>
+  );
+}
 
 const Remove = () => (
   <Button
@@ -60,9 +75,12 @@ const head = ["Product Name", "Price", "Qty", "Subtotal"];
 
 export default function BasicTable() {
   return (
-    <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
+    <TableContainer
+      component={Paper}
+      sx={{ boxShadow: "none", maxWidth: "70%" }}
+    >
       <Table
-        sx={{ minWidth: 650, width: "80%", margin: "auto" }}
+        sx={{ minWidth: 600, width: "80%", margin: "0px" }}
         aria-label="simple table"
       >
         <TableHead>
