@@ -11,6 +11,7 @@ import {
   fetchHandpicked,
   fetchNewArrivals,
 } from "../../components/products/services/ProductsService";
+import { fetchCategories } from "../../components/categories/services/CategoriesService";
 
 const baseURL = "backend-final-2-1.onrender.com";
 
@@ -26,8 +27,8 @@ const Home = () => {
       .then((data) => setNewArrivals(data.products))
       .catch((error) => console.error("Failed to load new arrivals:", error));
 
-    fetchHandpicked()
-      .then((data) => setHandpicked(data.products))
+    fetchCategories()
+      .then((data) => setHandpicked(data))
       .catch((error) => console.error("Failed to load handpicked:", error));
 
     fetchBrands()

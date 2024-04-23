@@ -18,7 +18,7 @@ const ProductsList = () => {
 
   const matchBrand = useMatch('/products/list/brand/:slug');
   const matchNewest = useMatch('/products/list/newest');
-  const matchHandpicked = useMatch('/products/list/handpicked');
+  const matchHandpicked = useMatch('/products/list/handpicked/:slug');
 
 
   const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ const ProductsList = () => {
   const [pageSize, setPageSize] = useState(9);
   const breadcrumbList = [
     { text: "Home", link: "/" },
-    { text: matchBrand ? capitalizeSlug(slug) : matchNewest ? "Newest" : "Handspicked" },
+    { text: (matchBrand || matchHandpicked) ? capitalizeSlug(slug) : "Newest" },
   ];
 
 
@@ -49,7 +49,7 @@ const ProductsList = () => {
         })
         .catch((error) => console.error("Failed to load new products:", error));
     } else if (matchHandpicked) {
-      fetchHandpicked(currentPage, pageSize)
+      fetchHandpicked(slug, currentPage, pageSize)
         .then((data) => {
           setLoading(false);
           setProductsResult(data);

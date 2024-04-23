@@ -16,8 +16,14 @@ export const fetchNewArrivals = (page = 1, limit = 4) => {
   return fetchPath(`${environment.baseUrl}/products/new?page=${page}&limit=${limit}`);
 };
 
-export const fetchHandpicked = (page = 1, limit = 4) => {
-  return fetchPath(`${environment.baseUrl}/products/handpicked/skin-care?page=${page}&limit=${limit}`);
+export const fetchHandpicked = (categorySlug, page = 1, limit = 4) => {
+  return fetchPath(`${environment.baseUrl}/products/handpicked/${categorySlug}?page=${page}&limit=${limit}`);
+};
+export const fetchTrendyProducts = (page = 1, limit = 4) => {
+  return fetchPath(`${environment.baseUrl}/products/trendy?page=${page}&limit=${limit}`);
+};
+export const fetchDiscountProducts = (page = 1, limit = 4) => {
+  return fetchPath(`${environment.baseUrl}/products/discount?page=${page}&limit=${limit}`);
 };
 
 export const fetchBrands = () => {

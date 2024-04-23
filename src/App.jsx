@@ -44,7 +44,7 @@ export default function App() {
           <Route path="/products/list" element={<Layout><ProductsList /></Layout>}>
             <Route path="brand/:slug" element={<Outlet />} />
             <Route path="newest" element={<Outlet />} />
-            <Route path="handpicked" element={<Outlet />} />
+            <Route path="handpicked/:slug" element={<Outlet />} />
           </Route>
           <Route
             path="/about"
