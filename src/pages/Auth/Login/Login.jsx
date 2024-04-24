@@ -13,6 +13,7 @@ import Copyright from '../../../components/authentication/components/Copyright';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { login } from '../../../components/authentication/services/AuthenticationService';
 
 const loginValidationSchema = yup.object({
     email: yup.string().required('Email is required').email('Enter a valid email'),
@@ -31,8 +32,18 @@ export default function Login() {
         }
     });
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        const { email, password } = data;
+        try {
+
+            const result = await login({ email, password });
+        } catch (error) {
+
+            console.log(error.errors);
+        }
+
+
+
     }
 
 
