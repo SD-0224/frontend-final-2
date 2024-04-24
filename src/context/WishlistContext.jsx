@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { fetchWishlist, toggleWishlistItem } from "../components/wishlist/services/wishlistService";
 
 // Define the context
 const WishlistContext = createContext();
@@ -109,12 +110,25 @@ const WishlistData = [
 
 export default function WishlistContextProvider({ children }) {
   const [showWishlist, setShowWishlist] = useState(false);
-  const [Wishlist, setWishlist] = useState(WishlistData);
-  //   const [Wishlist, setWishlist] = useStorageState("Wishlist", []);
+  const [isLoading, setIsLoading] = useState(false);
+  const [Wishlist, setWishlist] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchWishlist()
+      .then((data) => {
+        setWishlist(data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch Wishlist:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
 
   // Function to toggle visibility of Wishlist
   const toggleShowWishlist = () => {
-    console.log("wishlist");
     setShowWishlist((prevShowWishlist) => !prevShowWishlist);
   };
   const openWishlist = () => {
@@ -124,31 +138,19 @@ export default function WishlistContextProvider({ children }) {
     setShowWishlist(false);
   };
 
-  // Function to add an item to Wishlist
-  const addToWishlist = (value) => {
-    setWishlist((prevWishlist) => [...prevWishlist, value]);
-  };
-
-  // Function to remove an item from Wishlist
-  const removeFromWishlist = (value) => {
-    setWishlist((prevWishlist) =>
-      prevWishlist.filter((item) => item.productID !== value.productID)
-    );
-  };
-
   // Function to check if an item is in Wishlist
   const isInWishlist = (id) => {
     return Wishlist.some((item) => item.productID === id);
   };
 
-  // Function to toggle an item in Wishlist
-  const toggleWishlist = (value) => {
-    if (isInWishlist(value.productID)) {
-      removeFromWishlist(value);
-    } else {
-      addToWishlist(value);
+  // Function to add or remove an item from Wishlist
+  const toggleWishlist = async (productId) => {
+    try {
+      const updatedWishlist = await toggleWishlistItem(productId);
+      setWishlist(updatedWishlist);
+    } catch (error) {
+      console.error("Failed to toggle Wishlist item:", error);
     }
-    openWishlist();
   };
 
   // Render the context provider with its value
