@@ -6,7 +6,7 @@ import CartDetails from "./CartDetails";
 import Divider from "@mui/material/Divider";
 import CartInteractionBox from "./CartInteractionBox";
 
-export default function MyCartDataContainer({ cartData, invoiceData }) {
+export default function MyCartDataContainer({ cart, invoiceData }) {
   return (
     <>
       <Box
@@ -17,8 +17,8 @@ export default function MyCartDataContainer({ cartData, invoiceData }) {
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column", maxHeight: "50svh", overflow: "auto" }}>
-          {cartData.map((item, index) => (
-            <Box key={index}>
+          {cart.map((item, index) => (
+            <Box key={item.productID}>
               <Box
                 sx={{
                   display: "flex",
