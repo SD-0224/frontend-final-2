@@ -7,7 +7,7 @@ export default function OrderSummary({ title, children }) {
       <Typography
         variant="h1"
         sx={{
-          marginTop: "10px",
+          marginTop: "30px",
           fontFamily: "Inter",
           fontSize: "20px",
           fontWeight: 600,
