@@ -16,6 +16,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { signup } from '../../../components/authentication/services/AuthenticationService';
 import { useState, useEffect } from 'react';
 import { ErrorMessages } from '../../../components/shared/ErrorsMessages/ErrorsMessages';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const signupValidationSchema = yup.object({
     firstName: yup.string().required('First Name is required'),
@@ -47,6 +48,7 @@ export default function SignUp() {
 
     const onSubmit = async (data) => {
         setLoading(true);
+        setBackendErrors([]);
         const { firstName, lastName, phoneNumber, email, password, confirmPassword } = data;
 
         try {
@@ -188,14 +190,17 @@ export default function SignUp() {
                             </Grid>
 
                         </Grid>
-                        <Button
+                        <LoadingButton
                             type="submit"
                             fullWidth
                             variant="contained"
+                            loading={loading}
+                            loadingIndicator="Registering..."
                             sx={{ mt: 3, mb: 2 }}
+
                         >
                             Sign Up
-                        </Button>
+                        </LoadingButton>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link to={"/auth/login"} variant="body2">
