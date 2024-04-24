@@ -3,7 +3,7 @@ import OrderSummary from "../../components/shared/OrderSummary/OrderSummary";
 import Invoice from "../../components/shared/Invoice/Invoice";
 import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
 import { Stack, Box, collapseClasses, colors, Typography } from "@mui/material";
-import MyCartButtons from "./MuCartButtons";
+import MyCartButtons from "../../components/shared/Invoice/MuCartButtons";
 // import { capitalizeSlug } from "../../utilities/helpers";
 // import { useParams } from "react-router-dom";
 // const { slug } = useParams();

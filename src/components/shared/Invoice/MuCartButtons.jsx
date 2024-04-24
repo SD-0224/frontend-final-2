@@ -1,5 +1,5 @@
-import PrimaryButton from "../../components/shared/PrimaryButton/PrimaryButton";
-import SecondaryButton from "../../components/shared/SecondaryButton/SecondaryButton";
+import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import SecondaryButton from "../SecondaryButton/SecondaryButton";
 import { Stack, Box } from "@mui/material";
 
 export default function MyCartButtons() {
