@@ -17,6 +17,8 @@ import { signup } from '../../../components/authentication/services/Authenticati
 import { useState, useEffect } from 'react';
 import { ErrorMessages } from '../../../components/shared/ErrorsMessages/ErrorsMessages';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUser';
+import { useNavigate } from 'react-router-dom';
 
 const signupValidationSchema = yup.object({
     firstName: yup.string().required('First Name is required'),
@@ -33,6 +35,10 @@ const signupValidationSchema = yup.object({
 export default function SignUp() {
     const [backendErrors, setBackendErrors] = useState([]);
     const [loading, setLoading] = useState(false);
+    const { setUserData, isAuthenticated } = useAuthenticatedUserContext();
+    const navigate = useNavigate();
+
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(signupValidationSchema),
         defaultValues: {
@@ -53,10 +59,12 @@ export default function SignUp() {
 
         try {
             const result = await signup({ firstName, lastName, phoneNumber, email, password, confirmPassword });
+            console.log(result);
+            setUserData(result.user, result.token);
+
 
         } catch (error) {
-            console.log(error.errors);
-            setBackendErrors(error.errors);
+            setBackendErrors(error.response.data.errors || ['Something went wrong']);
         } finally {
             setLoading(false);
         }
@@ -65,7 +73,11 @@ export default function SignUp() {
 
     }
 
-
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
 
     return (
 

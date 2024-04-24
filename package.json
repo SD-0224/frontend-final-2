@@ -17,6 +17,7 @@
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "latest",
     "axios": "^1.6.8",
+    "js-cookie": "^3.0.5",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.51.3",
