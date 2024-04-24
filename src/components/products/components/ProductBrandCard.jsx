@@ -1,5 +1,6 @@
 import { Card, CardActionArea, CardMedia, Link } from "@mui/material";
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 const ProductBrandCard = ({ brand }) => {
   const { imagePath, slug } = brand;
@@ -17,7 +18,7 @@ const ProductBrandCard = ({ brand }) => {
         alignItems: "center",
       }}
     >
-      <Link href={`/category/${slug}`} draggable="false" sx={{ height: "100%", width: "100%" }}>
+      <Link component={RouterLink} to={`/products/list/brand/${slug}`} draggable="false" sx={{ height: "100%", width: "100%" }}>
         <CardActionArea sx={{ height: "100%", width: "100%" }}>
           <CardMedia draggable="false" component="img" image={imagePath} sx={{ padding: "1.6rem" }} />
         </CardActionArea>
