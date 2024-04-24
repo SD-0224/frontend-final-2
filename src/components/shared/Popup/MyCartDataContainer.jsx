@@ -16,7 +16,7 @@ export default function MyCartDataContainer({ cartData, invoiceData }) {
           justifyContent: "center",
         }}
       >
-        <Box>
+        <Box sx={{ display: "flex", flexDirection: "column", maxHeight: "50svh", overflow: "auto" }}>
           {cartData.map((item, index) => (
             <Box key={index}>
               <Box
