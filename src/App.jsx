@@ -10,6 +10,7 @@ import About from "./pages/About/About";
 import { CategoriesProvider } from "./context/CategoriesContext";
 import Login from "./pages/Auth/Login/Login";
 import SignUp from "./pages/Auth/Signup/Signup";
+import MyCart from "./pages/MyCart/MyCart";
 import ProductsList from "./pages/ProductsList/ProductsList";
 
 export default function App() {
@@ -56,6 +57,14 @@ export default function App() {
               </Layout>
             }
           />
+          <Route
+            path="/mycart"
+            element={
+              <Layout>
+                <MyCart />
+              </Layout>
+            }
+          />
 
 
 
@@ -68,6 +77,3 @@ export default function App() {
     </>
   );
 }
-
-
-
