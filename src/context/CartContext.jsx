@@ -131,16 +131,16 @@ export function useCartContext() {
 function makeItem(item) {
   const { productID, title, subTitle, price, discount, images } = item;
 
-  const discountAmount = price * item.discount;
+  const discountedPrice = Number((price - price * item.discount).toFixed(2));
 
   return {
     productID: productID,
     productTitle: title,
     productSubtitle: subTitle,
-    productPrice: price,
+    productPrice: discountedPrice,
     productDiscount: discount,
     productQuantity: 1,
-    subTotal: (price - discountAmount).toFixed(2),
+    subTotal: discountedPrice,
     imgPath: images[0].imgPath,
   };
 }
