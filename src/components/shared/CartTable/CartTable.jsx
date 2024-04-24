@@ -58,7 +58,6 @@ export default function CartTable({ cart, removeCartItem }) {
               </TableCell>
               <RemoveCartItemButton
                 onClick={() => {
-                  console.log("remove");
                   removeCartItem(item.productID);
                 }}
               />
