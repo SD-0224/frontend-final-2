@@ -10,12 +10,15 @@ import About from "./pages/About/About";
 import { CategoriesProvider } from "./context/CategoriesContext";
 import Login from "./pages/Auth/Login/Login";
 import SignUp from "./pages/Auth/Signup/Signup";
+import WishlistContextProvider from "./context/WishlistContext";
 import MyCart from "./pages/MyCart/MyCart";
 import ProductsList from "./pages/ProductsList/ProductsList";
+
 
 export default function App() {
   return (
     <>
+     <WishlistContextProvider>
       <CategoriesProvider>
         <Routes>
           <Route
@@ -74,6 +77,7 @@ export default function App() {
 
 
       </CategoriesProvider>
+</WishlistContextProvider>
     </>
   );
 }
