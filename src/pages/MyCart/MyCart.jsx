@@ -18,6 +18,20 @@ export default function MyCary({}) {
       text: "MyCart",
     },
   ];
+
+  if (cart.length < 1) {
+    return (
+      <Container sx={{ marginTop: "100px", minHeight: "50vh" }}>
+        <Breadcrumb sx={{ marginTop: "200px" }} list={breadcrumbList} />
+        <Typography
+          component="h1"
+          sx={{ color: "primary.main", fontSize: "24px", fontWeight: "600", marginTop: "100px" }}
+        >
+          Your Cart is empty
+        </Typography>
+      </Container>
+    );
+  }
   return (
     <Container sx={{ marginTop: "100px" }}>
       <Breadcrumb sx={{ marginTop: "200px" }} list={breadcrumbList} />
