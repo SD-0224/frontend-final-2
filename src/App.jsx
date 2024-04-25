@@ -13,11 +13,13 @@ import SignUp from "./pages/Auth/Signup/Signup";
 import WishlistContextProvider from "./context/WishlistContext";
 import MyCart from "./pages/MyCart/MyCart";
 import ProductsList from "./pages/ProductsList/ProductsList";
+import { AuthenticatedUserProvider } from "./context/AuthenticatedUser";
 
 
 export default function App() {
   return (
     <>
+     <AuthenticatedUserProvider>
      <WishlistContextProvider>
       <CategoriesProvider>
         <Routes>
@@ -71,13 +73,17 @@ export default function App() {
 
 
 
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/signup" element={<SignUp />} />
-        </Routes>
+
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/signup" element={<SignUp />} />
+          </Routes>
+
 
 
       </CategoriesProvider>
 </WishlistContextProvider>
+</AuthenticatedUserProvider>
+
     </>
   );
 }
