@@ -1,12 +1,14 @@
 import { Box, Divider, Rating, Stack, Typography } from "@mui/material";
 import React from "react";
-import Counter from "../Counter/Counter";
+import CartItemQuantity from "../CartItemQuantity/CartItemQuantity";
 import { useTheme } from "@mui/material/styles";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import SecondaryButton from "../SecondaryButton/SecondaryButton";
+import { useCartContext } from "../../../context/CartContext";
 
 export default function ProductInfo({ product }) {
-  const { title, subTitle, price, discount, avgReview, reviewsCount } = product;
+  const { productID, title, subTitle, price, discount, avgReview, reviewsCount } = product;
+  const { addCartItem, openCart, getCartItemQuantity, detectCartItem, removeCartItem } = useCartContext();
 
   const theme = useTheme();
   return (
@@ -120,7 +122,7 @@ export default function ProductInfo({ product }) {
           marginTop: "25px",
         }}
       />
-      <Stack direction={"row"} sx={{ marginBottom: "50px" }}>
+      <Stack direction={"row"} alignItems="center" gap={2} sx={{ marginBottom: "50px" }}>
         <Typography
           component={"p"}
           sx={{
@@ -130,10 +132,32 @@ export default function ProductInfo({ product }) {
             color: "#13101E",
           }}
         >{`Quantity:`}</Typography>
-        <Counter value={1} />
+        {detectCartItem(productID) ? (
+          <CartItemQuantity itemID={productID} quantity={getCartItemQuantity(productID)} />
+        ) : (
+          <Typography>Add to bag to set Quantity</Typography>
+        )}
       </Stack>
+
       <Box sx={{ display: "flex" }}>
-        <PrimaryButton label={"Add to bag"} icon={"work"} />
+        {detectCartItem(productID) ? (
+          <PrimaryButton
+            label={"Remove From bag"}
+            icon={"work"}
+            onClick={() => {
+              removeCartItem(productID);
+            }}
+          />
+        ) : (
+          <PrimaryButton
+            label={"Add to bag"}
+            icon={"work"}
+            onClick={() => {
+              addCartItem(product);
+              openCart();
+            }}
+          />
+        )}
         <SecondaryButton label={"Add To Wishlist"} icon={"favorite"} />
       </Box>
     </Box>

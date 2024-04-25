@@ -20,7 +20,6 @@ export default function WishlistButton({ productId }) {
 
   const onClick = () => {
     setIsInWishlist(!isInWishlist);
-    console.log("Toggle Wishlist");
   };
 
   return (

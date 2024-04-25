@@ -2,8 +2,11 @@ import { Padding } from "@mui/icons-material";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import SecondaryButton from "../SecondaryButton/SecondaryButton";
 import { Stack, Box, Link } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function MyCartButtons() {
+  const navigate = useNavigate();
+
   return (
     <>
       <Box
@@ -14,12 +17,14 @@ export default function MyCartButtons() {
           display: "flex",
         }}
       >
-        <PrimaryButton
-          sx={{ width: "50%", marginRight: "5px" }}
-          label={"GO to checkout"}
-        />
+        <PrimaryButton label={"Place Order"} />
 
-        <SecondaryButton sx={{ width: "50%" }} label={"Continue Shopping"} />
+        <SecondaryButton
+          label={"Continue Shopping"}
+          onClick={() => {
+            navigate("/");
+          }}
+        />
       </Box>
     </>
   );

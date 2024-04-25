@@ -1,5 +1,5 @@
 import * as React from "react";
-import Counter from "../Counter/Counter";
+import CartItemQuantity from "../CartItemQuantity/CartItemQuantity";
 import CardVertical from "../CardVertical/CardVertical";
 import { Box } from "@mui/material";
 
@@ -8,7 +8,7 @@ export default function CartDetails({ item }) {
     <>
       <Box>
         <CardVertical item={item}>
-          <Counter sx={{ margin: "0px" }} value={1} />
+          <CartItemQuantity sx={{ margin: "0px" }} itemID={item.productID} quantity={item.productQuantity} />
         </CardVertical>
       </Box>
     </>
