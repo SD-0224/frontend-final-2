@@ -1,13 +1,30 @@
-import { useWishlistContext } from "../../../context/WishlistContext";
 import { environment } from "../../../utilities/environment";
-import { fetchPath } from "../../../utilities/fetch";
 
-export const fetchWishlist = () => {
-    // const { authUser } = useWishlistContext();
-    // return fetchPath(`${environment.baseUrl}/wishList/${authUser.userID}`);
-    return fetchPath(`${environment.baseUrl}/wishList/${authUser.userID}`);
+
+export const fetchWishList = async (isAuthenticated) => {
+    try {
+        // Append authentication details if user is authenticated
+        if (isAuthenticated) {
+            const path = `${environment.baseUrl}/wishList/`;
+            const response = await fetch(path, {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            // Check response status
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data;
+        }
+    } catch (error) {
+        return error;
+    }
 };
-
 
 // Function to toggle a wishlist item in the backend API
 export const toggleWishlistItem = async (productId) => {

@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import { Padding } from "@mui/icons-material";
 import { useWishlistContext } from "../../../../context/WishlistContext";
 import { useUserPopupContext } from "../../../../context/UserPopupContext";
+import { useAuthenticatedUserContext } from "../../../../context/AuthenticatedUser";
 
 const HeaderIconsRaber = styled("div")(({ theme }) => ({
   width: "114px",
@@ -32,10 +33,11 @@ const StyledImage = styled("img")(({ theme }) => ({
 export default function HeaderIcons() {
   const { toggleShowWishlist } = useWishlistContext();
   const { toggleUserPopup } = useUserPopupContext();
+  const { isAuthenticated } = useAuthenticatedUserContext();
   return (
     <>
       <HeaderIconsRaber>
-        <IconButton onClick={toggleShowWishlist}>
+        <IconButton onClick={toggleShowWishlist} disabled={!isAuthenticated}>
           <StyledImage src={wishlist} alt="wishlist-logo" />
         </IconButton>
         <IconButton onClick={toggleUserPopup}>

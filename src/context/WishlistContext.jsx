@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { fetchWishlist, toggleWishlistItem } from "../components/wishlist/services/wishlistService";
+import { fetchWishList, toggleWishlistItem } from "../components/wishlist/services/wishlistService";
+import { useAuthenticatedUserContext } from "./AuthenticatedUser";
 
 // Define the context
 const WishlistContext = createContext();
@@ -111,22 +112,24 @@ const WishlistData = [
 export default function WishlistContextProvider({ children }) {
   const [showWishlist, setShowWishlist] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [Wishlist, setWishlist] = useState([]);
+  const [Wishlist, setWishlist] = useState(WishlistData);
+
+  const { isAuthenticated } = useAuthenticatedUserContext();
 
   useEffect(() => {
-    setWishlist(products);
-    // setIsLoading(true);
-    // fetchWishlist()
-    //   .then((data) => {
-    //     setWishlist(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Failed to fetch Wishlist:", error);
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
-  }, []);
+    setIsLoading(true);
+    fetchWishList(isAuthenticated)
+      .then((data) => {
+        console.log(`data from api : ${JSON.stringify(data)}`);
+        setWishlist(data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch Wishlist:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [isAuthenticated]);
 
   // Function to toggle visibility of Wishlist
   const toggleShowWishlist = () => {

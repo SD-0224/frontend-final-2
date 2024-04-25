@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUser';
 import SecondaryButton from '../SecondaryButton/SecondaryButton';
