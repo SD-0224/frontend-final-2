@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { fetchProductsByCategorySlug } from "../../components/products/services/ProductsService";
-import { Container, Box } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 import ProductGrid from "../../components/products/components/ProductGrid";
 import AppPagination from "../../components/shared/AppPagination/AppPagination";
 import { useParams } from "react-router-dom";
@@ -10,6 +10,7 @@ import { Grid } from "@mui/material";
 import { capitalizeSlug } from "../../utilities/helpers";
 import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
 import TitleBanner from "../../components/shared/CateogryTitleBanner/TitleBanner";
+
 
 const Category = () => {
   const { slug } = useParams();
@@ -55,12 +56,17 @@ const Category = () => {
 
               <Grid item xs={10}>
                 <ProductGrid products={productsResult.products} />
-                <AppPagination
-                  currentPage={currentPage}
-                  onPageChange={setCurrentPage}
-                  count={productsResult.count}
-                  pageSize={pageSize}
-                />
+                {
+                  productsResult.count > 0 ?
+                    <AppPagination
+                      currentPage={currentPage}
+                      onPageChange={setCurrentPage}
+                      count={productsResult.count}
+                      pageSize={pageSize}
+                    />
+                    : <Typography variant="h5" sx={{ textAlign: "center" }}>No products found</Typography>
+
+                }
               </Grid>
             </Grid>
           )}

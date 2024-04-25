@@ -40,6 +40,7 @@ export default function Services() {
             type="short"
             textPosition="right"
             color="#1B4B66"
+            link={"/products/list/limited"}
           >
             <Box
               sx={{
