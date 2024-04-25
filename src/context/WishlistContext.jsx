@@ -90,37 +90,34 @@ const products = [
 
 const WishlistData = [
   {
-    image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$665",
+    image: "/images/school.jpg",
+    productTitle: "coach",
+    productSubtitle: "Leather Coach Bag",
   },
   {
     image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$33",
+    productTitle: "coach",
+    productSubtitle: "Leather Coach Bag",
   },
   {
     image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$225",
+    productTitle: "coach",
+    productSubtitle: "Leather Coach Bag",
   },
 ];
 
 export default function WishlistContextProvider({ children }) {
   const [showWishlist, setShowWishlist] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [Wishlist, setWishlist] = useState(WishlistData);
+  const [Wishlist, setWishlist] = useState([]);
 
   const { isAuthenticated } = useAuthenticatedUserContext();
+  console.log('isAuthenticated ' + isAuthenticated);
 
   useEffect(() => {
     setIsLoading(true);
     fetchWishList(isAuthenticated)
       .then((data) => {
-        console.log(`data from api : ${JSON.stringify(data)}`);
         setWishlist(data);
       })
       .catch((error) => {
