@@ -13,7 +13,7 @@ import SignUp from "./pages/Auth/Signup/Signup";
 import WishlistContextProvider from "./context/WishlistContext";
 import MyCart from "./pages/MyCart/MyCart";
 import ProductsList from "./pages/ProductsList/ProductsList";
-import { AuthenticatedUserProvider } from "./context/AuthenticatedUser";
+import { AuthenticatedUserProvider } from "./context/AuthenticatedUserContext";
 import UserPopupContextProvider from "./context/UserPopupContext";
 
 
@@ -22,69 +22,69 @@ export default function App() {
     <>
       <AuthenticatedUserProvider>
         <UserPopupContextProvider>
-        <WishlistContextProvider>
-          <CategoriesProvider>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Layout>
-                    <Home />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/category/:slug"
-                element={
-                  <Layout>
-                    <Category />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/products/:slug"
-                element={
-                  <Layout>
-                    <ProductDetails />
-                  </Layout>
-                }
-              />
-              <Route path="/products/list" element={<Layout><ProductsList /></Layout>}>
-                <Route path="brand/:slug" element={<Outlet />} />
-                <Route path="newest" element={<Outlet />} />
-                <Route path="handpicked/:slug" element={<Outlet />} />
-                <Route path="trendy" element={<Outlet />} />
-                <Route path="discount" element={<Outlet />} />
-                <Route path="limited" element={<Outlet />} />
-              </Route>
-              <Route
-                path="/about"
-                element={
-                  <Layout>
-                    <About />
-                  </Layout>
-                }
-              />
-              <Route
-                path="/mycart"
-                element={
-                  <Layout>
-                    <MyCart />
-                  </Layout>
-                }
-              />
+          <WishlistContextProvider>
+            <CategoriesProvider>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Layout>
+                      <Home />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path="/category/:slug"
+                  element={
+                    <Layout>
+                      <Category />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path="/products/:slug"
+                  element={
+                    <Layout>
+                      <ProductDetails />
+                    </Layout>
+                  }
+                />
+                <Route path="/products/list" element={<Layout><ProductsList /></Layout>}>
+                  <Route path="brand/:slug" element={<Outlet />} />
+                  <Route path="newest" element={<Outlet />} />
+                  <Route path="handpicked/:slug" element={<Outlet />} />
+                  <Route path="trendy" element={<Outlet />} />
+                  <Route path="discount" element={<Outlet />} />
+                  <Route path="limited" element={<Outlet />} />
+                </Route>
+                <Route
+                  path="/about"
+                  element={
+                    <Layout>
+                      <About />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path="/mycart"
+                  element={
+                    <Layout>
+                      <MyCart />
+                    </Layout>
+                  }
+                />
 
 
 
 
-              <Route path="/auth/login" element={<Login />} />
-              <Route path="/auth/signup" element={<SignUp />} />
-            </Routes>
+                <Route path="/auth/login" element={<Login />} />
+                <Route path="/auth/signup" element={<SignUp />} />
+              </Routes>
 
 
 
-          </CategoriesProvider>
-        </WishlistContextProvider>
+            </CategoriesProvider>
+          </WishlistContextProvider>
         </UserPopupContextProvider>
       </AuthenticatedUserProvider>
 

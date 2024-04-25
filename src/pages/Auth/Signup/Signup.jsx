@@ -17,7 +17,7 @@ import { signup } from '../../../components/authentication/services/Authenticati
 import { useState, useEffect } from 'react';
 import { ErrorMessages } from '../../../components/shared/ErrorsMessages/ErrorsMessages';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUser';
+import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUserContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 

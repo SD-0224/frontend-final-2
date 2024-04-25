@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { logout } from "../components/authentication/services/AuthenticationService";
 import Cookies from "js-cookie";
 
 const AuthenticatedUserContext = createContext();
@@ -18,6 +19,7 @@ export const AuthenticatedUserProvider = ({ children }) => {
   };
 
   const clearUserData = () => {
+    console.log('clearing');
     setAuthUser(null);
     setIsAuthenticated(false);
     setToken(null);
@@ -26,11 +28,22 @@ export const AuthenticatedUserProvider = ({ children }) => {
     Cookies.remove('isAuthenticated');
   };
 
+
+  const logoutUser = async () => {
+    try {
+      await logout();
+      clearUserData();
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
+
+
   useEffect(() => {
     console.log(authUser, isAuthenticated, token);
   }, [authUser, isAuthenticated, token]);
   return (
-    <AuthenticatedUserContext.Provider value={{ authUser, isAuthenticated, setUserData, clearUserData, token }}>{children}</AuthenticatedUserContext.Provider>
+    <AuthenticatedUserContext.Provider value={{ authUser, isAuthenticated, setUserData, logoutUser, token }}>{children}</AuthenticatedUserContext.Provider>
   );
 };
 
