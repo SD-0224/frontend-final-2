@@ -13,6 +13,12 @@ import Copyright from '../../../components/authentication/components/Copyright';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { signup } from '../../../components/authentication/services/AuthenticationService';
+import { useState, useEffect } from 'react';
+import { ErrorMessages } from '../../../components/shared/ErrorsMessages/ErrorsMessages';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUser';
+import { useNavigate } from 'react-router-dom';
 
 const signupValidationSchema = yup.object({
     firstName: yup.string().required('First Name is required'),
@@ -27,6 +33,11 @@ const signupValidationSchema = yup.object({
 
 
 export default function SignUp() {
+    const [backendErrors, setBackendErrors] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const { setUserData, isAuthenticated } = useAuthenticatedUserContext();
+    const navigate = useNavigate();
+
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(signupValidationSchema),
@@ -41,11 +52,32 @@ export default function SignUp() {
         }
     });
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        setLoading(true);
+        setBackendErrors([]);
+        const { firstName, lastName, phoneNumber, email, password, confirmPassword } = data;
+
+        try {
+            const result = await signup({ firstName, lastName, phoneNumber, email, password, confirmPassword });
+            console.log(result);
+            setUserData(result.user, result.token);
+
+
+        } catch (error) {
+            setBackendErrors(error.response.data.errors || ['Something went wrong']);
+        } finally {
+            setLoading(false);
+        }
+
+
+
     }
 
-
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
 
     return (
 
@@ -78,9 +110,12 @@ export default function SignUp() {
                     <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" sx={{ marginBottom: '10px' }}>
                         Sign Up
                     </Typography>
+
+                    <ErrorMessages errors={backendErrors}></ErrorMessages>
+
                     <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
 
                         <Grid container spacing={2}>
@@ -167,14 +202,17 @@ export default function SignUp() {
                             </Grid>
 
                         </Grid>
-                        <Button
+                        <LoadingButton
                             type="submit"
                             fullWidth
                             variant="contained"
+                            loading={loading}
+                            loadingIndicator="Registering..."
                             sx={{ mt: 3, mb: 2 }}
+
                         >
                             Sign Up
-                        </Button>
+                        </LoadingButton>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Link to={"/auth/login"} variant="body2">
