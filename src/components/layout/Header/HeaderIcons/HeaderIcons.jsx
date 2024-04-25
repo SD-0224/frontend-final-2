@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import { useWishlistContext } from "../../../../context/WishlistContext";
 import { useCartContext } from "../../../../context/CartContext";
 import { useUserPopupContext } from "../../../../context/UserPopupContext";
-import { useAuthenticatedUserContext } from "../../../../context/AuthenticatedUser";
+import { useAuthenticatedUserContext } from "../../../../context/AuthenticatedUserContext";
 
 const HeaderIconsRaber = styled("div")(({ theme }) => ({
   width: "114px",

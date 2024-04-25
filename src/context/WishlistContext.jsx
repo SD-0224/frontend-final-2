@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { fetchWishList, toggleWishlistItem } from "../components/wishlist/services/wishlistService";
-import { useAuthenticatedUserContext } from "./AuthenticatedUser";
+import { useAuthenticatedUserContext } from "./AuthenticatedUserContext";
 
 // Define the context
 const WishlistContext = createContext();

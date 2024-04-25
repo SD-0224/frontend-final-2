@@ -4,7 +4,7 @@ import Footer from "./Footer/Footer";
 import Wishlist from "./Wishlist/Wishlist";
 import CartPopup from "./CartPopup";
 import UserPopup from "./userPopup/UserPopup";
-import { useAuthenticatedUserContext } from "../../context/AuthenticatedUser";
+import { useAuthenticatedUserContext } from "../../context/AuthenticatedUserContext";
 
 
 const Layout = ({ children }) => {
