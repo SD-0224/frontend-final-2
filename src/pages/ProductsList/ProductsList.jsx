@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { fetchProductsByCategorySlug, fetchProductsByBrandSlug, fetchHandpicked, fetchNewArrivals, fetchTrendyProducts, fetchDiscountProducts } from "../../components/products/services/ProductsService";
-import { Container, Box } from "@mui/material";
+import {
+  fetchProductsByBrandSlug, fetchHandpicked, fetchNewArrivals,
+  fetchTrendyProducts, fetchDiscountProducts, fetchLimitedProducts
+} from "../../components/products/services/ProductsService";
+import { Container, Box, Typography } from "@mui/material";
 import ProductGrid from "../../components/products/components/ProductGrid";
 import AppPagination from "../../components/shared/AppPagination/AppPagination";
 import { useParams } from "react-router-dom";
@@ -10,6 +13,7 @@ import { Grid } from "@mui/material";
 import { capitalizeSlug } from "../../utilities/helpers";
 import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
 import TitleBanner from "../../components/shared/CateogryTitleBanner/TitleBanner";
+
 
 import { useMatch } from 'react-router-dom';
 
@@ -21,6 +25,7 @@ const ProductsList = () => {
   const matchHandpicked = useMatch('/products/list/handpicked/:slug');
   const matchTrendy = useMatch('/products/list/trendy');
   const matchDiscount = useMatch('/products/list/discount');
+  const matchLimited = useMatch('/products/list/limited');
 
 
 
@@ -30,7 +35,7 @@ const ProductsList = () => {
   const [pageSize, setPageSize] = useState(9);
   const breadcrumbList = [
     { text: "Home", link: "/" },
-    { text: (matchBrand || matchHandpicked) ? capitalizeSlug(slug) : matchTrendy ? "Trendy" : matchDiscount ? "Discount" : "Newest" },
+    { text: (matchBrand || matchHandpicked) ? capitalizeSlug(slug) : matchTrendy ? "Trendy" : matchDiscount ? "Discount" : matchLimited ? "Limited" : "Newest" },
   ];
 
 
@@ -72,7 +77,14 @@ const ProductsList = () => {
           setLoading(false);
           setProductsResult(data);
         })
-        .catch((error) => console.error("Failed to load handpicked products:", error));
+        .catch((error) => console.error("Failed to load discount products:", error));
+    } else if (matchLimited) {
+      fetchLimitedProducts(currentPage, pageSize, 20)
+        .then((data) => {
+          setLoading(false);
+          setProductsResult(data);
+        })
+        .catch((error) => console.error("Failed to load limited products:", error));
     }
 
   }, [currentPage, slug, matchBrand, matchNewest, matchHandpicked, matchTrendy, matchDiscount]);
@@ -96,12 +108,17 @@ const ProductsList = () => {
 
               <Grid item xs={10}>
                 <ProductGrid products={productsResult.products} />
-                <AppPagination
-                  currentPage={currentPage}
-                  onPageChange={setCurrentPage}
-                  count={productsResult.count}
-                  pageSize={pageSize}
-                />
+                {
+                  productsResult.count > 0 ?
+                    <AppPagination
+                      currentPage={currentPage}
+                      onPageChange={setCurrentPage}
+                      count={productsResult.count}
+                      pageSize={pageSize}
+                    />
+                    : <Typography variant="h5" sx={{ textAlign: "center" }}>No products found</Typography>
+
+                }
               </Grid>
             </Grid>
           )}
