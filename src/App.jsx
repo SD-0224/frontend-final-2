@@ -14,12 +14,14 @@ import WishlistContextProvider from "./context/WishlistContext";
 import MyCart from "./pages/MyCart/MyCart";
 import ProductsList from "./pages/ProductsList/ProductsList";
 import { AuthenticatedUserProvider } from "./context/AuthenticatedUser";
+import UserPopupContextProvider from "./context/UserPopupContext";
 
 
 export default function App() {
   return (
     <>
       <AuthenticatedUserProvider>
+        <UserPopupContextProvider>
         <WishlistContextProvider>
           <CategoriesProvider>
             <Routes>
@@ -83,6 +85,7 @@ export default function App() {
 
           </CategoriesProvider>
         </WishlistContextProvider>
+        </UserPopupContextProvider>
       </AuthenticatedUserProvider>
 
     </>
