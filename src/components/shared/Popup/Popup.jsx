@@ -17,7 +17,8 @@ export default function PopUp({ open, handleClose, children }) {
           right: "5px",
           width: "90%",
           maxWidth: "441px",
-          maxHeight: "500px",
+          minHeight: "500px",
+          maxHeight: "90svh",
           margin: "0px",
         },
         // Media query for smaller screens

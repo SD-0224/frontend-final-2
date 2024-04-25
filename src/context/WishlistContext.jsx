@@ -114,7 +114,6 @@ export default function WishlistContextProvider({ children }) {
 
   // Function to toggle visibility of Wishlist
   const toggleShowWishlist = () => {
-    console.log("wishlist");
     setShowWishlist((prevShowWishlist) => !prevShowWishlist);
   };
   const openWishlist = () => {
