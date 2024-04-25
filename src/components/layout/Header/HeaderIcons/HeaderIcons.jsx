@@ -4,6 +4,7 @@ import wishlist from "../../../../assets/HedearLogo/wishlist.svg";
 import profile from "../../../../assets/HedearLogo/profile.svg";
 import IconButton from "@mui/material/IconButton";
 import { Padding } from "@mui/icons-material";
+import { useWishlistContext } from "../../../../context/WishlistContext";
 
 const HeaderIconsRaber = styled("div")(({ theme }) => ({
   width: "114px",
@@ -28,10 +29,11 @@ const StyledImage = styled("img")(({ theme }) => ({
 }));
 
 export default function HeaderIcons() {
+  const { toggleShowWishlist } = useWishlistContext();
   return (
     <>
       <HeaderIconsRaber>
-        <IconButton>
+        <IconButton onClick={toggleShowWishlist}>
           <StyledImage src={wishlist} alt="wishlist-logo" />
         </IconButton>
         <IconButton>
