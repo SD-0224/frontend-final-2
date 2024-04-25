@@ -13,6 +13,13 @@ import Copyright from '../../../components/authentication/components/Copyright';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { login } from '../../../components/authentication/services/AuthenticationService';
+import { useState, useEffect } from 'react';
+import { ErrorMessages } from '../../../components/shared/ErrorsMessages/ErrorsMessages';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUser';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const loginValidationSchema = yup.object({
     email: yup.string().required('Email is required').email('Enter a valid email'),
@@ -23,6 +30,12 @@ const loginValidationSchema = yup.object({
 
 export default function Login() {
 
+
+    const [backendErrors, setBackendErrors] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const { setUserData, isAuthenticated } = useAuthenticatedUserContext();
+    const navigate = useNavigate();
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(loginValidationSchema),
         defaultValues: {
@@ -31,8 +44,27 @@ export default function Login() {
         }
     });
 
-    const onSubmit = (data) => {
-        console.log(data);
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
+
+    const onSubmit = async (data) => {
+        setLoading(true);
+        setBackendErrors([]);
+        const { email, password } = data;
+        try {
+
+            const result = await login({ email, password });
+            setUserData(result.user, result.token);
+            toast.success(`Welcome Back ${result.user.firstName} !`);
+        } catch (error) {
+            toast.error('Something went wrong. Please try again.');
+            setBackendErrors(error.response.data.errors || ['Something went wrong']);
+        } finally {
+            setLoading(false);
+        }
     }
 
 
@@ -71,6 +103,8 @@ export default function Login() {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
+                    <ErrorMessages errors={backendErrors}></ErrorMessages>
+
                     <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
                         <TextField
                             error={!!errors.email}
@@ -99,14 +133,17 @@ export default function Login() {
                             {...register('password')}
                         />
 
-                        <Button
+                        <LoadingButton
                             type="submit"
                             fullWidth
                             variant="contained"
+                            loading={loading}
+                            loadingIndicator="Signing In..."
                             sx={{ mt: 3, mb: 2 }}
+
                         >
                             Sign In
-                        </Button>
+                        </LoadingButton>
                         <Grid container justifyContent={"flex-end"}>
 
                             <Grid item >

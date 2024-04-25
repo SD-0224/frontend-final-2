@@ -81,6 +81,7 @@ const AppPagination = ({ currentPage, onPageChange, count, pageSize }) => {
                 type="button"
                 onClick={() => onPageChange(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
+
             >
                 Previous
             </TextStyledButton>

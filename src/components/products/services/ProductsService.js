@@ -25,6 +25,9 @@ export const fetchTrendyProducts = (page = 1, limit = 4) => {
 export const fetchDiscountProducts = (page = 1, limit = 4) => {
   return fetchPath(`${environment.baseUrl}/products/discount?page=${page}&limit=${limit}`);
 };
+export const fetchLimitedProducts = (page = 1, limit = 4, quantity = 20) => {
+  return fetchPath(`${environment.baseUrl}/products/limited?page=${page}&limit=${limit}&quantity=${quantity}`);
+};
 
 export const fetchBrands = () => {
   return fetchPath(`${environment.baseUrl}/brands/`);

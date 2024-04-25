@@ -3,9 +3,9 @@ import bag from "../../../../assets/HedearLogo/bag.svg";
 import wishlist from "../../../../assets/HedearLogo/wishlist.svg";
 import profile from "../../../../assets/HedearLogo/profile.svg";
 import IconButton from "@mui/material/IconButton";
-import { Padding } from "@mui/icons-material";
 import { useWishlistContext } from "../../../../context/WishlistContext";
 import { useCartContext } from "../../../../context/CartContext";
+import { useUserPopupContext } from "../../../../context/UserPopupContext";
 
 const HeaderIconsRaber = styled("div")(({ theme }) => ({
   width: "114px",
@@ -32,13 +32,15 @@ const StyledImage = styled("img")(({ theme }) => ({
 export default function HeaderIcons() {
   const { toggleShowWishlist } = useWishlistContext();
   const { toggleCart } = useCartContext();
+  const { toggleUserPopup } = useUserPopupContext();
+
   return (
     <>
       <HeaderIconsRaber>
         <IconButton onClick={toggleShowWishlist}>
           <StyledImage src={wishlist} alt="wishlist-logo" />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={toggleUserPopup}>
           <StyledImage src={profile} alt="profile-logo" />
         </IconButton>
         <IconButton onClick={toggleCart}>
