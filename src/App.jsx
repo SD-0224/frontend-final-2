@@ -10,8 +10,9 @@ import SignUp from "./pages/Auth/Signup/Signup";
 import WishlistContextProvider from "./context/WishlistContext";
 import MyCart from "./pages/MyCart/MyCart";
 import ProductsList from "./pages/ProductsList/ProductsList";
+
 import { CartProvider } from "./context/CartContext";
-import { AuthenticatedUserProvider } from "./context/AuthenticatedUser";
+import { AuthenticatedUserProvider } from "./context/AuthenticatedUserContext";
 import UserPopupContextProvider from "./context/UserPopupContext";
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
                     </Layout>
                   }
                 />
+
                 <Route
                   path="/products/list"
                   element={
@@ -78,7 +80,6 @@ export default function App() {
                     </Layout>
                   }
                 />
-
                 <Route path="/auth/login" element={<Login />} />
                 <Route path="/auth/signup" element={<SignUp />} />
               </Routes>
