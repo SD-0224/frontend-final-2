@@ -3,10 +3,28 @@ import { Stack, Link, useTheme } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUserContext';
 import { useUserPopupContext } from '../../../context/UserPopupContext';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserPopupLinks() {
-  const { isAuthenticated } = useAuthenticatedUserContext();
+  const { isAuthenticated, logoutUser } = useAuthenticatedUserContext();
   const { closeUserPopup } = useUserPopupContext();
+  const navigate = useNavigate();
+
+
+
+  const onClickLogout = async () => {
+    try {
+      const result = await logoutUser();
+      toast.success('Logout successful.');
+      closeUserPopup();
+      navigate('/auth/login');
+    } catch (error) {
+      toast.error('Something went wrong. Please try again.');
+    }
+  }
+
+
 
   return (
     <>
@@ -37,10 +55,7 @@ export default function UserPopupLinks() {
 
               onClick={() => closeUserPopup()}
             >Profile </Link>
-            <Link onClick={() => {
-              console.log("Logout");
-              closeUserPopup();
-            }} sx={{
+            <Link onClick={() => onClickLogout()} sx={{
               textDecoration: "none ",
               paddingBlock: "10px",
               ":hover": { backgroundColor: "#f5f5f5", cursor: "pointer" }

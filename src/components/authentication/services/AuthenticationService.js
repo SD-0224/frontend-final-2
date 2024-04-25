@@ -28,3 +28,14 @@ export async function signup(signupRequest) {
         throw error;
     }
 }
+
+
+export async function logout() {
+    try {
+        const response = await axios.post(`${environment.baseUrl}/user/logout`);
+        return response.data;
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    }
+}
