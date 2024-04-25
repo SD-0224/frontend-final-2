@@ -19,6 +19,7 @@ import { ErrorMessages } from '../../../components/shared/ErrorsMessages/ErrorsM
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUser';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const loginValidationSchema = yup.object({
     email: yup.string().required('Email is required').email('Enter a valid email'),
@@ -57,7 +58,9 @@ export default function Login() {
 
             const result = await login({ email, password });
             setUserData(result.user, result.token);
+            toast.success(`Welcome Back ${result.user.firstName} !`);
         } catch (error) {
+            toast.error('Something went wrong. Please try again.');
             setBackendErrors(error.response.data.errors || ['Something went wrong']);
         } finally {
             setLoading(false);

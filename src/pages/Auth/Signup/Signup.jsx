@@ -19,6 +19,7 @@ import { ErrorMessages } from '../../../components/shared/ErrorsMessages/ErrorsM
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useAuthenticatedUserContext } from '../../../context/AuthenticatedUser';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const signupValidationSchema = yup.object({
     firstName: yup.string().required('First Name is required'),
@@ -59,11 +60,12 @@ export default function SignUp() {
 
         try {
             const result = await signup({ firstName, lastName, phoneNumber, email, password, confirmPassword });
-            console.log(result);
             setUserData(result.user, result.token);
+            toast.success(`Registration Successful. Welcome ${result.user.firstName} !`);
 
 
         } catch (error) {
+            toast.error('Something went wrong. Please try again.');
             setBackendErrors(error.response.data.errors || ['Something went wrong']);
         } finally {
             setLoading(false);
