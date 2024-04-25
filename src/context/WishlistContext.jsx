@@ -114,17 +114,18 @@ export default function WishlistContextProvider({ children }) {
   const [Wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchWishlist()
-      .then((data) => {
-        setWishlist(data);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch Wishlist:", error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    setWishlist(products);
+    // setIsLoading(true);
+    // fetchWishlist()
+    //   .then((data) => {
+    //     setWishlist(data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Failed to fetch Wishlist:", error);
+    //   })
+    //   .finally(() => {
+    //     setIsLoading(false);
+    //   });
   }, []);
 
   // Function to toggle visibility of Wishlist

@@ -1,8 +1,11 @@
+import { useWishlistContext } from "../../../context/WishlistContext";
 import { environment } from "../../../utilities/environment";
 import { fetchPath } from "../../../utilities/fetch";
 
 export const fetchWishlist = () => {
-    return fetchPath(`${environment.baseUrl}/wishList/2`);
+    // const { authUser } = useWishlistContext();
+    // return fetchPath(`${environment.baseUrl}/wishList/${authUser.userID}`);
+    return fetchPath(`${environment.baseUrl}/wishList/${authUser.userID}`);
 };
 
 
