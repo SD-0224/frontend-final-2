@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { fetchWishList, toggleWishlistItem } from "../components/wishlist/services/wishlistService";
+import {
+  fetchWishList,
+  toggleWishlistItem,
+} from "../components/wishlist/services/wishlistService";
 import { useAuthenticatedUserContext } from "./AuthenticatedUserContext";
 
 // Define the context
@@ -109,16 +112,15 @@ const WishlistData = [
 export default function WishlistContextProvider({ children }) {
   const [showWishlist, setShowWishlist] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [Wishlist, setWishlist] = useState([]);
+  const [Wishlist, setWishlist] = useState(WishlistData);
 
-  const { isAuthenticated } = useAuthenticatedUserContext();
-  console.log('isAuthenticated ' + isAuthenticated);
+  const { isAuthenticated, token } = useAuthenticatedUserContext();
 
   useEffect(() => {
     setIsLoading(true);
-    fetchWishList(isAuthenticated)
+    fetchWishList(isAuthenticated, token)
       .then((data) => {
-        setWishlist(data);
+        setWishlist(data.userWishList);
       })
       .catch((error) => {
         console.error("Failed to fetch Wishlist:", error);
@@ -147,11 +149,22 @@ export default function WishlistContextProvider({ children }) {
   // Function to add or remove an item from Wishlist
   const toggleWishlist = async (productId) => {
     try {
-      const updatedWishlist = await toggleWishlistItem(productId);
+      const updatedWishlist = await toggleWishlistItem(productId, token);
       setWishlist(updatedWishlist);
     } catch (error) {
       console.error("Failed to toggle Wishlist item:", error);
     }
+  };
+
+  const isProductInWishlist = (productID) => {
+    if (Wishlist && Wishlist.userWishList && Wishlist.userWishList.length > 0) {
+      for (const item of Wishlist.userWishList) {
+        if (item.productID === productID) {
+          return true;
+        }
+      }
+    }
+    return false;
   };
 
   // Render the context provider with its value
@@ -165,6 +178,7 @@ export default function WishlistContextProvider({ children }) {
         toggleWishlist,
         closeWishlist,
         openWishlist,
+        isProductInWishlist,
       }}
     >
       {children}
