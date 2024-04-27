@@ -1,0 +1,76 @@
+import React from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import { ListSubheader } from "@mui/material";
+import { useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
+
+export default function QuickLinks({ listHeader, menuItems }) {
+  const theme = useTheme();
+  return (
+    <List
+      sx={{
+        paddingBottom: "30px",
+        [theme.breakpoints.down("sm")]: {
+          maxWidth: 300,
+          width: "100%",
+        },
+        [theme.breakpoints.up("sm")]: {
+          maxWidth: 200,
+          width: "30%",
+        },
+      }}
+      subheader={
+        <ListSubheader
+          sx={{
+            color: "#FFFFFF",
+            paddingBottom: "0",
+            bgcolor: "#1b4b66",
+            fontSize: "16px",
+            lineHeight: "22px",
+            fontWeight: 500,
+            padding: "0",
+          }}
+        >
+          {listHeader}
+        </ListSubheader>
+      }
+    >
+      {menuItems.map((item, index) => {
+        return (
+          <ListItem
+            disablePadding
+            sx={{ width: "fit-content", maxWidth: '100%' }}
+            key={item.text}
+          >
+            <ListItemButton
+              component={Link}
+              to={item.path}
+              sx={{
+                padding: "0",
+                "&:hover": {
+                  backgroundColor: "transparent",
+                },
+              }}
+            >
+              <ListItemText
+                primary={item.text}
+                sx={{
+                  fontSize: "16px",
+                  lineHeight: "22px",
+                  fontWeight: 500,
+                  color: "#B6B6B6",
+                  "&:hover": {
+                    color: "#FFFFFF",
+                  },
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
+    </List>
+  );
+}
