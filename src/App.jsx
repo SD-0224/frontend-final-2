@@ -14,6 +14,7 @@ import ProductsList from "./pages/ProductsList/ProductsList";
 import { CartProvider } from "./context/CartContext";
 import { AuthenticatedUserProvider } from "./context/AuthenticatedUserContext";
 import UserPopupContextProvider from "./context/UserPopupContext";
+import TestPage from "./pages/Test";
 
 export default function App() {
   return (
@@ -77,6 +78,16 @@ export default function App() {
                   element={
                     <Layout>
                       <MyCart />
+                    </Layout>
+                  }
+                />
+
+                {/* For testing componenets (temporary) */}
+                <Route
+                  path="/test"
+                  element={
+                    <Layout>
+                      <TestPage />
                     </Layout>
                   }
                 />
