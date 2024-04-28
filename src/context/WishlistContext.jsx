@@ -1,4 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import {
+  fetchWishList,
+  toggleWishlistItem,
+} from "../components/wishlist/services/wishlistService";
+import { useAuthenticatedUserContext } from "./AuthenticatedUserContext";
 
 // Define the context
 const WishlistContext = createContext();
@@ -88,29 +93,42 @@ const products = [
 
 const WishlistData = [
   {
-    image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$665",
+    image: "/images/school.jpg",
+    productTitle: "coach",
+    productSubtitle: "Leather Coach Bag",
   },
   {
     image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$33",
+    productTitle: "coach",
+    productSubtitle: "Leather Coach Bag",
   },
   {
     image: "../../../../public/images/image.svg",
-    title: "coach",
-    subtitle: "Leather Coach Bag",
-    price: "$225",
+    productTitle: "coach",
+    productSubtitle: "Leather Coach Bag",
   },
 ];
 
 export default function WishlistContextProvider({ children }) {
   const [showWishlist, setShowWishlist] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [Wishlist, setWishlist] = useState(WishlistData);
-  //   const [Wishlist, setWishlist] = useStorageState("Wishlist", []);
+
+  const { isAuthenticated, token } = useAuthenticatedUserContext();
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchWishList(isAuthenticated, token)
+      .then((data) => {
+        setWishlist(data.userWishList);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch Wishlist:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [isAuthenticated]);
 
   // Function to toggle visibility of Wishlist
   const toggleShowWishlist = () => {
@@ -123,31 +141,30 @@ export default function WishlistContextProvider({ children }) {
     setShowWishlist(false);
   };
 
-  // Function to add an item to Wishlist
-  const addToWishlist = (value) => {
-    setWishlist((prevWishlist) => [...prevWishlist, value]);
-  };
-
-  // Function to remove an item from Wishlist
-  const removeFromWishlist = (value) => {
-    setWishlist((prevWishlist) =>
-      prevWishlist.filter((item) => item.productID !== value.productID)
-    );
-  };
-
   // Function to check if an item is in Wishlist
   const isInWishlist = (id) => {
     return Wishlist.some((item) => item.productID === id);
   };
 
-  // Function to toggle an item in Wishlist
-  const toggleWishlist = (value) => {
-    if (isInWishlist(value.productID)) {
-      removeFromWishlist(value);
-    } else {
-      addToWishlist(value);
+  // Function to add or remove an item from Wishlist
+  const toggleWishlist = async (productId) => {
+    try {
+      const updatedWishlist = await toggleWishlistItem(productId, token);
+      setWishlist(updatedWishlist);
+    } catch (error) {
+      console.error("Failed to toggle Wishlist item:", error);
     }
-    openWishlist();
+  };
+
+  const isProductInWishlist = (productID) => {
+    if (Wishlist && Wishlist.userWishList && Wishlist.userWishList.length > 0) {
+      for (const item of Wishlist.userWishList) {
+        if (item.productID === productID) {
+          return true;
+        }
+      }
+    }
+    return false;
   };
 
   // Render the context provider with its value
@@ -161,6 +178,7 @@ export default function WishlistContextProvider({ children }) {
         toggleWishlist,
         closeWishlist,
         openWishlist,
+        isProductInWishlist,
       }}
     >
       {children}

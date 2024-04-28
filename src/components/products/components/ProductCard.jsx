@@ -11,8 +11,9 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import React from "react";
 import { Link } from "react-router-dom";
+import WishlistButton from "../../shared/WishlistButton/WishlistButton"
 
-const ProductCard = ({ product, onClick }) => {
+const ProductCard = ({ product }) => {
   const { title, category, price, discount, imgPath, slug, avgReview, reviewCount } = product;
   return (
     <Card sx={{ minWidth: 285, boxShadow: "none", borderRadius: 2 }}>
@@ -46,9 +47,10 @@ const ProductCard = ({ product, onClick }) => {
           >
             {title}
           </Typography>
-          <IconButton sx={{ padding: 0 }} onClick={onClick}>
+          <WishlistButton productId={product.productID} />
+          {/* <IconButton sx={{ padding: 0 }} onClick={onClick}>
             <FavoriteBorderIcon />
-          </IconButton>
+          </IconButton> */}
         </Box>
         <Typography
           sx={{

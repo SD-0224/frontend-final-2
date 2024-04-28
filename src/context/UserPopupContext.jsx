@@ -7,7 +7,6 @@ export default function UserPopupContextProvider({ children }) {
   const [showUserPopup, setShowUserPopup] = useState(false);
 
   const toggleUserPopup = () => {
-    console.log("wishlist");
     setShowUserPopup((prev) => !prev);
   };
   const openUserPopup = () => {
