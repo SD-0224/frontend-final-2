@@ -17,7 +17,6 @@ class UserService {
     async uploadImage(file) {
         const formData = new FormData();
         formData.append('file', file);
-
         try {
             const response = await this.axiosInstance.post('/profile/upload-photo/', formData, {
                 headers: {
