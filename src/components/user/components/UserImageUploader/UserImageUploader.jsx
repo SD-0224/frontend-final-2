@@ -3,7 +3,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import { useAuthenticatedUserContext } from '../../../../context/AuthenticatedUserContext';
 export default function UserImageUploader() {
+    const { token } = useAuthenticatedUserContext();
+
     return (
         <Box
             sx={{
