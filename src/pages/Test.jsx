@@ -1,4 +1,5 @@
 import { Box, Container } from "@mui/material";
+import UserImageUploader from "../components/user/components/UserImageUploader/UserImageUploader";
 
 export default function TestPage() {
     return (
@@ -11,7 +12,7 @@ export default function TestPage() {
                     margin: "7rem 0",
                 }}
             >
-                <h1>Test Page</h1>
+                <UserImageUploader />
 
             </Box>
         </Container>
