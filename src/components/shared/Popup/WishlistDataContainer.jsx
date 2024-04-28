@@ -3,9 +3,11 @@ import React from "react";
 import CardVertical from "../CardVertical/CardVertical";
 import WishlistButton from "../WishlistButton/WishlistButton";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import { useWishlistContext } from "../../../context/WishlistContext";
 
-export default function WishlistDataContainer({ WishlistData }) {
-  if (WishlistData.length === 0) {
+export default function WishlistDataContainer() {
+  const { Wishlist } = useWishlistContext();
+  if (Wishlist.length === 0) {
     return (
       <Typography
         variant="subtitle1"
@@ -29,21 +31,22 @@ export default function WishlistDataContainer({ WishlistData }) {
       }}
     >
       <Box>
-        {WishlistData.map((item, index) => (
-          <Box key={index}>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <CardVertical item={item} />
-              <WishlistButton productId={item.productID} />
+        {Array.isArray(Wishlist) &&
+          Wishlist.map((item, index) => (
+            <Box key={index}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <CardVertical item={item} />
+                <WishlistButton productId={item.product.productID} />
+              </Box>
+              <Divider />
             </Box>
-            <Divider />
-          </Box>
-        ))}
+          ))}
       </Box>
       <PrimaryButton
         label={"Show All"}

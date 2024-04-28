@@ -15,10 +15,8 @@ export default function CardVertical({ item, children }) {
         src={item.imgPath}
       />
       <Box sx={{ paddingLeft: "20px" }}>
-        <Typography>{item.productTitle}</Typography>
-        <Typography sx={{ color: "#626262" }}>
-          {item.productSubtitle}
-        </Typography>
+        <Typography>{item.product.title}</Typography>
+        <Typography sx={{ color: "#626262" }}>{item.product.subTitle}</Typography>
         {children}
       </Box>
     </Box>
