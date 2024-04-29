@@ -31,6 +31,50 @@ class UserService {
         }
     }
 
+    /**
+    * Update User Profile
+    * @param {{firstName: string, lastName: string, phoneNumber: string,email: string}} updateProfileRequest - The update profile request.
+    *  
+    */
+    async updateProfile(updateProfileRequest) {
+        try {
+            const response = await this.axiosInstance.put('/profile/update-details', updateProfileRequest, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+            return response.data;
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+
+    }
+
+
+    /**
+   * Gets User Details
+   *  
+   */
+    async getUserDetails() {
+        try {
+            const response = await this.axiosInstance.get('/profile/details', {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+            return response.data;
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+
+    }
+
+
+
 
 }
 

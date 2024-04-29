@@ -3,17 +3,35 @@ import { Box, Grid, TextField } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAuthenticatedUserContext } from '../../../../context/AuthenticatedUserContext';
+import UserService from '../../services/UserService';
 
 
 const UserDetailsForm = () => {
+    const { token } = useAuthenticatedUserContext();
+
     const [dateOfBirth, setDateOfBirth] = useState(null);
 
     const handleDateChange = (newDate) => {
         setDateOfBirth(newDate);
     };
 
+
+    useEffect(() => {
+        const userService = new UserService(token);
+        const fetchUserDetails = async () => {
+            try {
+                const userDetails = await userService.getUserDetails();
+                console.log(userDetails);
+            } catch (error) {
+                console.error('Failed to fetch user details:', error);
+            }
+        };
+
+        fetchUserDetails();
+
+    }, [token]);
     return (
 
         <>

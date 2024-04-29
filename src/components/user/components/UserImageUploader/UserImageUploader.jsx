@@ -6,7 +6,7 @@ import { useAuthenticatedUserContext } from '../../../../context/AuthenticatedUs
 import UserService from '../../services/UserService';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 
 
@@ -22,13 +22,15 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-export default function UserImageUploader() {
-    const { token } = useAuthenticatedUserContext();
-    const [file, setFile] = useState(null);
+export default function UserImageUploader({ file, setFile, authUser, onUploadSubmit }) {
+
     const [avatarUrl, setAvatarUrl] = useState('');
+    useEffect(() => {
 
+        setAvatarUrl(authUser.image);
 
-    const userService = new UserService(token);
+    }, [authUser]);
+
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         if (selectedFile) {
@@ -37,17 +39,6 @@ export default function UserImageUploader() {
         }
     };
 
-    const handleUpload = async () => {
-        if (file) {
-            try {
-                const response = await userService.uploadImage(file);
-                console.log('Image uploaded successfully:', response);
-
-            } catch (error) {
-                console.error('Error uploading image:', error);
-            }
-        }
-    };
 
     return (
         <Box
@@ -64,6 +55,7 @@ export default function UserImageUploader() {
                 alt="User"
                 src={avatarUrl}
                 sx={{ width: 80, height: 80, marginRight: 2 }}
+
             />
             <Button
                 component="label"
@@ -95,7 +87,7 @@ export default function UserImageUploader() {
                 variant="contained"
                 color="primary"
                 sx={{ paddingInline: 4, borderRadius: '8px', alignSelf: 'end' }}
-                onClick={handleUpload}
+                onClick={onUploadSubmit}
                 disabled={!file}
             >
                 Submit
