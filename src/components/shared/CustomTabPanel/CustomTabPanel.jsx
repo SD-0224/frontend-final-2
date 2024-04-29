@@ -17,11 +17,7 @@ export function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -44,8 +40,8 @@ const CustomTabs = {
     display: "none",
   },
   ".css-heg063-MuiTabs-flexContainer": {
-    alignItems: 'center',
-    height: '100%',
+    alignItems: "center",
+    height: "100%",
   },
   backgroundColor: "#F1F1F1",
   borderRadius: "10px",
@@ -86,19 +82,9 @@ function BasicTabs({ tabs }) {
   return (
     <Box sx={{ width: "100%" }}>
       <Box>
-        <Tabs
-          sx={{ ...CustomTabs }}
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs"
-        >
+        <Tabs sx={{ ...CustomTabs }} value={value} onChange={handleChange} aria-label="basic tabs">
           {tabs.map((tab, index) => (
-            <Tab
-              sx={{ ...tabStyles }}
-              label={tab.label}
-              key={index}
-              {...a11yProps(index)}
-            />
+            <Tab sx={{ ...tabStyles }} label={tab.label} key={index} {...a11yProps(index)} />
           ))}
         </Tabs>
       </Box>
