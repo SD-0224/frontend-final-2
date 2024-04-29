@@ -10,7 +10,6 @@ const SecondaryButton = ({ label, icon, onClick }) => {
         backgroundColor: "#fff",
         color: "primary.main",
         flexGrow: 1,
-        padding: "5px 35px",
         borderRadius: "8px",
         border: `1px solid`,
         minWidth: "fit-content",
