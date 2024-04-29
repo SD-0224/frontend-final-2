@@ -8,6 +8,10 @@ import ProductInfo from "../../components/shared/ProductInfo/ProductInfo";
 import ProductTapDetails from "../../components/products/ProductPageTap/ProductTapDetails";
 import { useParams } from "react-router-dom";
 import LoadingIndicator from "../../components/shared/LoadingIndicator/LoadingIndicator";
+import BasicTabs from "../../components/shared/CustomTabPanel/CustomTabPanel";
+import RelatedProducts from "../../components/products/ProductPageTap/RelatedProduct";
+import ProductDescription from "../../components/products/ProductPageTap/ProductDescription";
+import ComingSoon from "../../components/products/ProductPageTap/ComingSoon";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
@@ -63,6 +67,21 @@ const ProductDetails = () => {
     );
   }
 
+  const tabsData = [
+    {
+      label: "Product Description",
+      content: <ProductDescription description={product.description} />,
+    },
+    {
+      label: "Related Products",
+      content: <RelatedProducts products={relatedProducts} />,
+    },
+    {
+      label: "Ratings and Reviews",
+      content: <ComingSoon />,
+    },
+  ];
+
   return (
     <>
       <Container>
@@ -95,7 +114,7 @@ const ProductDetails = () => {
               <ProductInfo product={product} />
             </Box>
           </Box>
-          <ProductTapDetails description={product.description} relatedProducts={relatedProducts} />
+          <BasicTabs tabs={tabsData} />
         </Box>
       </Container>
     </>
