@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { useAuthenticatedUserContext } from '../../../../context/AuthenticatedUserContext';
-import UserService from '../../services/UserService'; // Import the UserService class
+import UserService from '../../services/UserService';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 import { useState } from 'react';
