@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material";
 
-// This remains the same
 export function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -51,8 +50,6 @@ const CustomTabs = {
   backgroundColor: "#F1F1F1",
   borderRadius: "10px",
   "@media (max-width: 700px)": {
-    // marginRight: "5px",
-    // marginLeft: "5px",
     borderRadius: "10px",
   },
 };
@@ -79,7 +76,6 @@ const tabStyles = {
   },
 };
 
-// Refactored BasicTabs to accept tabs data as props
 function BasicTabs({ tabs }) {
   const [value, setValue] = useState(0);
 
@@ -89,7 +85,6 @@ function BasicTabs({ tabs }) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}></Box> */}
       <Box>
         <Tabs
           sx={{ ...CustomTabs }}
