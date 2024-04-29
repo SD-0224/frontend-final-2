@@ -23,17 +23,17 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-export default function UserImageUploader({ file, setFile, userDetails, loading, onUploadSubmit }) {
+export default function UserImageUploader({ file, setFile, userDetails, loading, onUploadSubmit, onDeleteImage }) {
 
     const [avatarUrl, setAvatarUrl] = useState('');
     const theme = useTheme();
     useEffect(() => {
 
-        if (userDetails) {
-            setAvatarUrl(userDetails.image);
-        }
 
-    }, [userDetails, loading]);
+        setAvatarUrl(userDetails.image);
+
+
+    }, [loading]);
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
@@ -97,6 +97,13 @@ export default function UserImageUploader({ file, setFile, userDetails, loading,
                 color="error"
                 sx={{ paddingInline: 4, borderRadius: '8px', alignSelf: 'end' }}
                 startIcon={<DeleteOutlineOutlinedIcon />}
+
+                onClick={() => {
+                    const confirm = window.confirm('Are you sure you want to delete this image?');
+                    if (confirm) {
+                        onDeleteImage();
+                    }
+                }}
             >
                 Delete
             </Button>

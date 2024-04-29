@@ -4,27 +4,27 @@ import UserDetailsForm from "../components/user/components/UserDetailsForm/UserD
 import { useAuthenticatedUserContext } from "../context/AuthenticatedUserContext";
 import UserService from "../components/user/services/UserService";
 import { useEffect, useState } from "react";
-import LoadingIndicator from "../components/shared/LoadingIndicator/LoadingIndicator";
+import { toast } from 'react-toastify';
 
 export default function TestPage() {
 
     const { token, getUserData, updateUserData } = useAuthenticatedUserContext();
     const [file, setFile] = useState(null);
-    const [UserDetailsLoading, setUserDetailsLoading] = useState(false);
+    const [imageLoading, setImageLoading] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
     const userService = new UserService(token);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                setUserDetailsLoading(true);
+                setImageLoading(true);
                 const userDetails = await userService.getUserDetails();
                 setUserDetails(userDetails);
 
             } catch (error) {
                 console.error('Failed to fetch user details:', error);
             } finally {
-                setUserDetailsLoading(false);
+                setImageLoading(false);
             }
         };
 
@@ -35,21 +35,43 @@ export default function TestPage() {
     const handleUpload = async () => {
         if (file) {
             try {
+                setImageLoading(true);
                 const response = await userService.uploadImage(file);
                 console.log('Image uploaded successfully:', response);
                 const userData = getUserData();
                 userData.image = response.imageURL;
                 updateUserData(userData);
-
+                toast.success('Image uploaded successfully!');
 
 
             } catch (error) {
                 console.error('Error uploading image:', error);
+                toast.error('Error uploading image!');
+            } finally {
+                setImageLoading(false);
             }
+
         }
     };
 
-    const handleOnDeleteImage = async () => { }
+    const handleOnDeleteImage = async () => {
+        try {
+            setImageLoading(true);
+            const response = await userService.deleteImage();
+            console.log('Image deleted successfully:', response);
+            const userData = getUserData();
+            userData.image = null;
+            setFile(null);
+
+            updateUserData(userData);
+            toast.success('Image deleted successfully!');
+        } catch (error) {
+            console.error('Error deleting image:', error);
+            toast.error('Error deleting image!');
+        } finally {
+            setImageLoading(false);
+        }
+    }
 
     return (
         <Container>
@@ -63,7 +85,7 @@ export default function TestPage() {
             >
 
                 <UserImageUploader file={file} setFile={setFile} onUploadSubmit={handleUpload}
-                    userDetails={userDetails} loading={UserDetailsLoading} />
+                    userDetails={getUserData()} loading={imageLoading} onDeleteImage={handleOnDeleteImage} />
 
 
 

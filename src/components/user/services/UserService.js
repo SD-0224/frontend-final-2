@@ -30,6 +30,22 @@ class UserService {
             throw error;
         }
     }
+    /**
+     * Delete Image from  the user profile.
+     */
+    async deleteImage() {
+        try {
+            const response = await this.axiosInstance.put('/profile/delete-photo', {}, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error("Error:", error);
+            throw error;
+        }
+    }
 
     /**
     * Update User Profile
