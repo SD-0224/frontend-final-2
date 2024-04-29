@@ -1,6 +1,6 @@
-export const fetchPath = async (path) => {
+export const fetchPath = async (path, options) => {
   try {
-    const response = await fetch(path);
+    const response = await fetch(path, options);
 
     // Check response status
     if (!response.ok) {

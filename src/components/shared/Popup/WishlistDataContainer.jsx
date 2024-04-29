@@ -39,7 +39,7 @@ export default function WishlistDataContainer({ WishlistData }) {
               }}
             >
               <CardVertical item={item} />
-              <WishlistButton item={item} />
+              <WishlistButton productId={item.productID} />
             </Box>
             <Divider />
           </Box>
