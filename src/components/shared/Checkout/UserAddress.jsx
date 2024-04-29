@@ -1,6 +1,7 @@
 import * as React from "react";
 import MenuSide from "./MenuSide";
 import { Box, TextField, Grid, Typography } from "@mui/material";
+import PrimaryButton from "../PrimaryButton/PrimaryButton";
 
 const CustomTextField = ({ label, ...props }) => {
   return (
@@ -8,7 +9,7 @@ const CustomTextField = ({ label, ...props }) => {
       variant="filled"
       required
       sx={{
-        width: "80%",
+        width: "92%",
         "& .MuiFilledInput-underline:before": {
           borderBottom: "none",
         },
@@ -36,7 +37,10 @@ export default function UserAddress() {
   return (
     <>
       <MenuSide title={"Add New Address"}>
-        <Box component="form" sx={{ width: "100%", marginLeft: "20px" }}>
+        <Box
+          component="form"
+          sx={{ width: "100%", marginLeft: "20px", marginRight: "20px" }}
+        >
           <Grid container spacing={2}>
             {/* First Row */}
             <Grid item xs={12} sm={6}>
@@ -100,6 +104,16 @@ export default function UserAddress() {
                 />
               </Box>
             </Grid>
+            <Box
+              sx={{
+                display: "flex",
+                marginTop: "20px",
+                marginLeft: "20px",
+                width: "20%",
+              }}
+            >
+              <PrimaryButton label={"Submit"}></PrimaryButton>
+            </Box>
           </Grid>
         </Box>
       </MenuSide>
