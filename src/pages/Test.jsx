@@ -10,21 +10,21 @@ export default function TestPage() {
 
     const { token, getUserData, updateUserData } = useAuthenticatedUserContext();
     const [file, setFile] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [UserDetailsLoading, setUserDetailsLoading] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
     const userService = new UserService(token);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                setLoading(true);
+                setUserDetailsLoading(true);
                 const userDetails = await userService.getUserDetails();
                 setUserDetails(userDetails);
 
             } catch (error) {
                 console.error('Failed to fetch user details:', error);
             } finally {
-                setLoading(false);
+                setUserDetailsLoading(false);
             }
         };
 
@@ -49,6 +49,8 @@ export default function TestPage() {
         }
     };
 
+    const handleOnDeleteImage = async () => { }
+
     return (
         <Container>
             <Box
@@ -59,12 +61,12 @@ export default function TestPage() {
                     margin: "7rem 0",
                 }}
             >
-                {
-                    !loading && userDetails ? <UserImageUploader file={file} setFile={setFile} onUploadSubmit={handleUpload}
-                        authUser={userDetails} /> : <LoadingIndicator />
+
+                <UserImageUploader file={file} setFile={setFile} onUploadSubmit={handleUpload}
+                    userDetails={userDetails} loading={UserDetailsLoading} />
 
 
-                }
+
 
             </Box>
             <Box

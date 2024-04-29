@@ -7,7 +7,8 @@ import UserService from '../../services/UserService';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 import { useEffect, useState } from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
+import { CircularProgress } from '@mui/material';
 
 
 const VisuallyHiddenInput = styled('input')({
@@ -22,14 +23,17 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-export default function UserImageUploader({ file, setFile, authUser, onUploadSubmit }) {
+export default function UserImageUploader({ file, setFile, userDetails, loading, onUploadSubmit }) {
 
     const [avatarUrl, setAvatarUrl] = useState('');
+    const theme = useTheme();
     useEffect(() => {
 
-        setAvatarUrl(authUser.image);
+        if (userDetails) {
+            setAvatarUrl(userDetails.image);
+        }
 
-    }, [authUser]);
+    }, [userDetails, loading]);
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
@@ -51,12 +55,26 @@ export default function UserImageUploader({ file, setFile, authUser, onUploadSub
                 gap: 1,
             }}
         >
-            <Avatar
-                alt="User"
-                src={avatarUrl}
-                sx={{ width: 80, height: 80, marginRight: 2 }}
+            <Box sx={{ position: 'relative' }}>
+                <Avatar
+                    alt="User"
+                    src={avatarUrl}
+                    sx={{ width: 80, height: 80, marginRight: 2, opacity: loading ? 0.2 : 1 }}
 
-            />
+                />
+                {loading && (
+                    <CircularProgress
+                        size={80}
+                        sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            zIndex: 1,
+                            color: theme.palette.primary.main,
+                        }}
+                    />
+                )}
+            </Box>
             <Button
                 component="label"
                 role={undefined}
