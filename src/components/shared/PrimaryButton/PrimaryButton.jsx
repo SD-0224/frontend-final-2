@@ -10,7 +10,6 @@ const PrimaryButton = ({ label, icon, onClick }) => {
         backgroundColor: "main",
         flexGrow: 1,
         color: "white",
-        padding: "5px 35px",
         borderRadius: "8px",
         minWidth: "fit-content",
         height: "44px",

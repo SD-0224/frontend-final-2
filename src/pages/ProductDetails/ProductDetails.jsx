@@ -19,11 +19,9 @@ const ProductDetails = () => {
   const { slug } = useParams();
 
   useEffect(() => {
-    fetchPath(`https://backend-final-2-1.onrender.com/products/${slug}`).then(
-      (data) => {
-        setProduct(data.product);
-      }
-    );
+    fetchPath(`https://backend-final-2-1.onrender.com/products/${slug}`).then((data) => {
+      setProduct(data.product);
+    });
   }, [slug]);
 
   useEffect(() => {
@@ -97,7 +95,17 @@ const ProductDetails = () => {
         >
           <Box>
             <Breadcrumb list={breadcrumbList} />
-            <Box sx={{ display: "flex", gap: "3rem" }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "3rem",
+                flexDirection:{
+                  xs: "column",
+                  sm: "column",
+                  md: "row",
+                }
+              }}
+            >
               <SwipeableGallery
                 images={product.images.map((image) => {
                   return { label: product.title, imgPath: image.imgPath };

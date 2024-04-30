@@ -3,21 +3,18 @@ import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
 import { useTheme } from "@mui/material/styles";
 
-const SecondaryButton = ({ label, icon, onClick, style }) => {
-  const theme = useTheme();
 
+const SecondaryButton = ({ label, icon, onClick }) => {
   return (
     <Button
       sx={{
         backgroundColor: "#fff",
         color: "primary.main",
         flexGrow: 1,
-        padding: "5px 35px",
         borderRadius: "8px",
         border: `1px solid`,
         minWidth: "fit-content",
         height: "44px",
-        margin: "0 10px",
         "&:hover": {
           backgroundColor: "primary.main",
           color: "#fff",
