@@ -14,7 +14,7 @@ import ProductsList from "./pages/ProductsList/ProductsList";
 import { CartProvider } from "./context/CartContext";
 import { AuthenticatedUserProvider } from "./context/AuthenticatedUserContext";
 import UserPopupContextProvider from "./context/UserPopupContext";
-import TestPage from "./pages/Test";
+import PersonalInformationTab from "./pages/PersonalInformationTab";
 
 export default function App() {
   return (
@@ -87,7 +87,7 @@ export default function App() {
                   path="/test"
                   element={
                     <Layout>
-                      <TestPage />
+                      <PersonalInformationTab />
                     </Layout>
                   }
                 />

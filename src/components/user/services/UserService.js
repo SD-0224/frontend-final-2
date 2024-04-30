@@ -91,6 +91,28 @@ class UserService {
 
 
 
+    /**
+    * Change User Password
+    * @param {{currentPassword: string, newPassword: string}} changePasswordRequest - The change password request.
+    *  
+    */
+    async changePassword(changePasswordRequest) {
+        try {
+            const response = await this.axiosInstance.put('/profile/change-password', changePasswordRequest, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+            return response.data;
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+
+    }
+
+
 
 }
 

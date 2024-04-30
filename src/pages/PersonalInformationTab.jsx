@@ -15,6 +15,7 @@ import dayjs from 'dayjs';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import LoadingButton from '@mui/lab/LoadingButton';
+import ChangePassword from "../components/user/components/ChangePassword/ChangePassword";
 
 
 
@@ -28,7 +29,7 @@ const updateProfileValidationSchema = yup.object({
 }).required();
 
 
-export default function TestPage() {
+export default function PersonalInformationTab() {
 
     const { token, getUserData, updateUserData } = useAuthenticatedUserContext();
     const userData = getUserData();
@@ -104,13 +105,16 @@ export default function TestPage() {
 
     //#endregion
 
+
     //#region user details form states
     const [backendErrors, setBackendErrors] = useState([]);
     const [submitUserDetailsLoading, setSubmitUserDetailsLoading] = useState(false);
     const [dateOfBirth, setDateOfBirth] = useState(dayjs('2024-01-01'));
 
 
-    const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm({
+
+
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(updateProfileValidationSchema),
         defaultValues: {
             firstName: userData?.firstName || '',
@@ -160,6 +164,29 @@ export default function TestPage() {
         }
     }
     //#endregion
+
+    //#region change password states
+    const [changePasswordLoading, setChangePasswordLoading] = useState(false);
+    const [changePasswordBackendErrors, setChangePasswordBackendErrors] = useState([]);
+    const handleOnChangePasswordSubmit = async (data) => {
+        console.log(data);
+        setChangePasswordBackendErrors([]);
+        try {
+            setChangePasswordLoading(true);
+            const response = await userService.changePassword(data);
+            console.log('Password changed successfully:', response);
+            toast.success('Password changed successfully!');
+        } catch (error) {
+            console.error('Error changing password:', error);
+            setChangePasswordBackendErrors(['Something went wrong']);
+            // setChangePasswordBackendErrors(error.response.data.errors || ['Something went wrong']);
+            toast.error('Something went wrong. Please try again.');
+        } finally {
+            setChangePasswordLoading(false);
+        }
+    }
+    //#endregion
+
 
 
 
@@ -304,6 +331,18 @@ export default function TestPage() {
 
                 </Box>
 
+            </Box>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "3rem",
+                    margin: "7rem 0",
+                }}
+            >
+
+                <ChangePassword backendErrors={changePasswordBackendErrors}
+                    loading={changePasswordLoading} onSubmit={handleOnChangePasswordSubmit} />
             </Box>
         </Container>
     );
