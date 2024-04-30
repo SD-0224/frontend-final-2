@@ -9,11 +9,7 @@ export default function CardVertical({ item, children }) {
         padding: "20px 0",
       }}
     >
-      <Box
-        sx={{ objectFit: "cover", width: "75px", height: "75px" }}
-        component="img"
-        src={item.imgPath}
-      />
+      <Box sx={{ objectFit: "cover", Width: "75px", height: "75px" }} component="img" src={item.imgPath} />
       <Box sx={{ paddingLeft: "20px" }}>
         <Typography>{item.product.title}</Typography>
         <Typography sx={{ color: "#626262" }}>{item.product.subTitle}</Typography>

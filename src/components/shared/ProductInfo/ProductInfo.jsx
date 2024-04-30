@@ -176,7 +176,19 @@ export default function ProductInfo({ product }) {
         )}
       </Stack>
 
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          gap: ".6rem",
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         {detectCartItem(productID) ? (
           <PrimaryButton
             label={"Remove From bag"}
