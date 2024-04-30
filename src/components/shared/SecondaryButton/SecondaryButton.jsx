@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
 import { useTheme } from "@mui/material/styles";
 
+
 const SecondaryButton = ({ label, icon, onClick }) => {
   return (
     <Button
@@ -22,8 +23,13 @@ const SecondaryButton = ({ label, icon, onClick }) => {
         fontSize: "1rem",
       }}
       variant="contained"
-      startIcon={icon ? <Icon sx={{ fontSize: "1rem !important" }}>{icon}</Icon> : undefined}
+      startIcon={
+        icon ? (
+          <Icon sx={{ fontSize: "1rem !important" }}>{icon}</Icon>
+        ) : undefined
+      }
       onClick={onClick}
+      style={style}
     >
       {label}
     </Button>

@@ -17,7 +17,7 @@ export function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ padding: "18px 0" }}>{children}</Box>}
     </div>
   );
 }
@@ -59,13 +59,13 @@ const tabStyles = {
   borderRadius: "10px",
   minHeight: "auto",
   margin: "unset",
-  margin: "0 30px",
+  margin: "0 15px",
   "&.Mui-selected": {
     backgroundColor: "#1B4B66",
     color: "white",
   },
   "@media (max-width: 700px)": {
-    marginRight: "0px",
+    marginRight: "5px",
     marginLeft: "5px",
     fontSize: "12px",
     fontWeight: "400",
