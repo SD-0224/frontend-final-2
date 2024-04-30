@@ -13,6 +13,7 @@ export default function Invoice({ invoiceData }) {
           minWidth: 200,
           bgcolor: "background.paper",
           marginTop: "20px",
+          paddingRight: "10px",
         }}
       >
         {invoiceData.map((value, index) => (
