@@ -3,7 +3,7 @@ import { Box, Divider, Typography } from "@mui/material";
 
 export default function OrderSummary({ title, children }) {
   return (
-    <Box sx={{ maxWidth: 400 }}>
+    <Box>
       <Typography
         variant="h1"
         sx={{

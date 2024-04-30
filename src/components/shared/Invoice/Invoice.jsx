@@ -10,6 +10,7 @@ export default function Invoice({ invoiceData }) {
         sx={{
           width: "100%",
           maxWidth: 400,
+          minWidth: 200,
           bgcolor: "background.paper",
           marginTop: "20px",
         }}
