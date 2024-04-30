@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -13,35 +13,38 @@ const CustomIconButton = styled(IconButton)(() => ({
   height: "40px",
 }));
 
-export default function WishlistButton({ productId }) {
-  const { toggleWishlist, isProductInWishlist } = useWishlistContext();
+const WishlistButton = ({ productId }) => {
+  const { toggleWishlist, Wishlist } = useWishlistContext();
   const { isAuthenticated } = useAuthenticatedUserContext();
-  const isProductInWishlistMemoized = useMemo(
-    () => isProductInWishlist(productId),
-    [isProductInWishlist, productId]
-  );
 
-  if (!isAuthenticated)
+  // Check if the product is in the wishlist
+  const isInWishlist = Wishlist.some((item) => item.productID === productId);
+  // Toggle wishlist state
+  const handleToggleWishlist = () => {
+    toggleWishlist(productId);
+  };
+
+  if (!isAuthenticated) {
     return (
       <Link to={"/auth/login"}>
         <FavoriteBorderOutlinedIcon
-          sx={{ color: [theme.palette.primary.main] }}
+          sx={{ color: theme.palette.primary.main }}
         />
       </Link>
     );
+  }
 
   return (
-    <CustomIconButton
-      disabled={!isAuthenticated}
-      onClick={() => toggleWishlist(productId)}
-    >
-      {isProductInWishlistMemoized ? (
-        <FavoriteIcon sx={{ color: [theme.palette.primary.main] }} />
+    <IconButton disabled={!isAuthenticated} onClick={handleToggleWishlist}>
+      {isInWishlist ? (
+        <FavoriteIcon sx={{ color: theme.palette.primary.main }} />
       ) : (
         <FavoriteBorderOutlinedIcon
-          sx={{ color: [theme.palette.primary.main] }}
+          sx={{ color: theme.palette.primary.main }}
         />
       )}
-    </CustomIconButton>
+    </IconButton>
   );
-}
+};
+
+export default WishlistButton;

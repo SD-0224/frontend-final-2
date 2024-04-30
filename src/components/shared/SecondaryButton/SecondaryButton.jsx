@@ -1,10 +1,9 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
-import { useTheme } from "@mui/material/styles";
 
 
-const SecondaryButton = ({ label, icon, onClick }) => {
+const SecondaryButton = ({ label, icon, onClick, style }) => {
   return (
     <Button
       sx={{

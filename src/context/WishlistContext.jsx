@@ -16,18 +16,20 @@ export default function WishlistContextProvider({ children }) {
   const { isAuthenticated, token } = useAuthenticatedUserContext();
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchWishList(isAuthenticated, token)
-      .then((data) => {
-        setWishlist(data.userWishList);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch Wishlist:", error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [isAuthenticated, Wishlist]);
+    if (isAuthenticated) {
+      setIsLoading(true);
+      fetchWishList(token)
+        .then((data) => {
+          setWishlist(data.userWishList);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch Wishlist:", error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isAuthenticated, Wishlist, showWishlist]);
 
   // Function to toggle visibility of Wishlist
   const toggleShowWishlist = () => {
@@ -40,16 +42,13 @@ export default function WishlistContextProvider({ children }) {
     setShowWishlist(false);
   };
 
-  // Function to check if an item is in Wishlist
-  const isInWishlist = (id) => {
-    return Wishlist.some((item) => item.productID === id);
-  };
-
   // Function to add or remove an item from Wishlist
   const toggleWishlist = async (productId) => {
     try {
       const updatedWishlist = await toggleWishlistItem(productId, token);
-      setWishlist(updatedWishlist);
+      fetchWishList(token).then((data) => {
+        setWishlist(data.userWishList);
+      });
     } catch (error) {
       console.error("Failed to toggle Wishlist item:", error);
     }
@@ -66,14 +65,12 @@ export default function WishlistContextProvider({ children }) {
     return false;
   };
 
-  // Render the context provider with its value
   return (
     <WishlistContext.Provider
       value={{
         Wishlist,
         showWishlist,
         toggleShowWishlist,
-        isInWishlist,
         toggleWishlist,
         closeWishlist,
         openWishlist,
