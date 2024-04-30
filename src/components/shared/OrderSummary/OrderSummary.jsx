@@ -5,7 +5,6 @@ export default function OrderSummary({ title, children }) {
   return (
     <Box
       sx={{
-        maxWidth: 400,
         marginLeft: {
           xs: "20px",
           sm: "0px",
