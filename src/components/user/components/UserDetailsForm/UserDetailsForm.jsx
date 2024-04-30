@@ -1,4 +1,4 @@
-import { Box, Grid, TextField } from '@mui/material';
+import { Box, Grid, TextField, Typography } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -58,6 +58,9 @@ const UserDetailsForm = ({ onSubmit, loading, backendErrors, userData }) => {
 
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
+                        <Typography variant="body1" fontWeight={'500'} gutterBottom>
+                            First Name
+                        </Typography>
                         <TextField
                             error={!!errors.firstName}
                             helperText={errors?.firstName?.message}
@@ -68,12 +71,21 @@ const UserDetailsForm = ({ onSubmit, loading, backendErrors, userData }) => {
                             required
                             fullWidth
                             id="firstName"
-                            label="First Name"
                             autoFocus
+                            sx={{
+                                '& .MuiInputBase-input ': {
+                                    padding: '16px  12px 16px 16px',
+                                },
+                            }}
+
                             {...register('firstName')}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+
+                        <Typography variant="body1" fontWeight={'500'} gutterBottom>
+                            Last Name
+                        </Typography>
                         <TextField
                             error={!!errors.lastName}
                             helperText={errors?.lastName?.message}
@@ -82,14 +94,22 @@ const UserDetailsForm = ({ onSubmit, loading, backendErrors, userData }) => {
                             required
                             fullWidth
                             id="lastName"
-                            label="Last Name"
-                            name="lastName"
+                            sx={{
+                                '& .MuiInputBase-input ': {
+                                    padding: '16px  12px 16px 16px',
+                                },
+                            }}
+
                             autoComplete="family-name"
                             {...register('lastName')}
                         />
                     </Grid>
 
                     <Grid item xs={12}>
+
+                        <Typography variant="body1" fontWeight={'500'} gutterBottom>
+                            Email
+                        </Typography>
                         <TextField
                             error={!!errors.email}
                             helperText={errors?.email?.message}
@@ -98,14 +118,23 @@ const UserDetailsForm = ({ onSubmit, loading, backendErrors, userData }) => {
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
                             name="email"
                             autoComplete="email"
                             {...register('email')}
+                            sx={{
+                                '& .MuiInputBase-input ': {
+                                    padding: '16px  12px 16px 16px',
+                                },
+                            }}
+
                         />
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
+
+                        <Typography variant="body1" fontWeight={'500'} gutterBottom>
+                            Phone Number
+                        </Typography>
                         <TextField
                             error={!!errors.phoneNumber}
                             helperText={errors?.phoneNumber?.message}
@@ -114,18 +143,27 @@ const UserDetailsForm = ({ onSubmit, loading, backendErrors, userData }) => {
                             required
                             fullWidth
                             id="phoneNumber"
-                            label="Phone Number"
                             name="phoneNumber"
                             autoComplete="phoneNumber"
                             {...register('phoneNumber')}
+                            sx={{
+                                '& .MuiInputBase-input ': {
+                                    padding: '16px  12px 16px 16px',
+                                },
+                            }}
+
                         />
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
+
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <Typography variant="body1" fontWeight={'500'} gutterBottom>
+                                Date Of Birth
+                            </Typography>
                             <DatePicker
 
-                                label="Date Of Birth" name="dateOfBirth"
+                                name="dateOfBirth"
                                 value={dateOfBirth}
                                 onChange={handleDateOfBirthChange}
                                 slotProps={{
@@ -133,6 +171,14 @@ const UserDetailsForm = ({ onSubmit, loading, backendErrors, userData }) => {
                                         size: "small",
                                         variant: "filled",
                                         fullWidth: true,
+                                        sx: {
+                                            '& .MuiInputBase-input ': {
+                                                padding: '16px  12px 16px 16px',
+                                            },
+                                        },
+
+
+
                                     },
                                 }}
 

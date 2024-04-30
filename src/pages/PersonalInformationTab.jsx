@@ -170,6 +170,7 @@ export default function PersonalInformationTab() {
                     flexDirection: "column",
                     gap: "3rem",
                     margin: "7rem 0",
+                    maxWidth: '700px'
                 }}
             >
                 <UserDetailsForm onSubmit={onUserDetailsSubmit}
@@ -181,6 +182,7 @@ export default function PersonalInformationTab() {
                     flexDirection: "column",
                     gap: "3rem",
                     margin: "7rem 0",
+                    maxWidth: '350px'
                 }}
             >
 

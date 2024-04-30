@@ -37,7 +37,7 @@ const ChangePassword = ({ onSubmit, loading, backendErrors }) => {
             </Typography>
             <ErrorMessages errors={backendErrors}></ErrorMessages>
 
-            <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1, maxWidth: '350px' }}>
+            <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
 
 
                 <Grid container spacing={2}>
@@ -58,6 +58,11 @@ const ChangePassword = ({ onSubmit, loading, backendErrors }) => {
                             variant="filled"
                             autoFocus
                             {...register('currentPassword')}
+                            sx={{
+                                '& .MuiInputBase-input ': {
+                                    padding: '16px  12px 16px 16px',
+                                },
+                            }}
                         />
                     </Grid>
 
@@ -78,6 +83,11 @@ const ChangePassword = ({ onSubmit, loading, backendErrors }) => {
                             variant="filled"
                             autoFocus
                             {...register('newPassword')}
+                            sx={{
+                                '& .MuiInputBase-input ': {
+                                    padding: '16px  12px 16px 16px',
+                                },
+                            }}
                         />
                     </Grid>
 
@@ -98,20 +108,31 @@ const ChangePassword = ({ onSubmit, loading, backendErrors }) => {
                             variant="filled"
                             autoFocus
                             {...register('confirmNewPassword')}
+                            sx={{
+                                '& .MuiInputBase-input ': {
+                                    padding: '16px  12px 16px 16px',
+                                },
+                            }}
                         />
                     </Grid>
                 </Grid>
-                <LoadingButton
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    loading={loading}
-                    loadingIndicator="Updating Password..."
-                    sx={{ mt: 3, mb: 2 }}
+                <Grid item xs={12} sx={{ textAlign: "end" }}>
+                    <LoadingButton
+                        type="submit"
+                        fullWidth
+                        variant="contained"
 
-                >
-                    Change
-                </LoadingButton>
+                        loading={loading}
+
+                        loadingIndicator="Updating..."
+
+                        sx={{ mt: 3, mb: 2, maxWidth: "200px", }}
+
+                    >
+                        Change
+                    </LoadingButton>
+                </Grid>
+
             </Box>
         </>
     )
