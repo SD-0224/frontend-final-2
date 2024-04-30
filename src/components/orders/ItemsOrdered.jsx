@@ -1,11 +1,12 @@
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import Invoice from "../shared/Invoice/Invoice";
 import PaymentDetails from "./PaymentDetails";
 import AddressDetails from "./AddressDetails";
 import OrderSummary from "../shared/OrderSummary/OrderSummary";
-import CartTable from "../shared/CartTable/CartTable";
 import ProductsTable from "./ProductsTable";
+import PrimaryButton from "../shared/PrimaryButton/PrimaryButton";
+import SecondaryButton from "../shared/SecondaryButton/SecondaryButton";
 
 export default function ItemsOrdered() {
   const invoiceData = [
@@ -118,6 +119,21 @@ export default function ItemsOrdered() {
           </Box>
         </Box>
       </OrderSummary>
+      <Box sx={{ display: "flex", justifyContent: "end" }}>
+        <Box sx={{ width: "fit-content" }}>
+          <PrimaryButton
+            label={"Reorder"}
+            icon={""}
+            onClick={() => console.log("Reorder")}
+          />
+          <SecondaryButton
+            label={"Add Rating"}
+            icon={""}
+            onClick={() => console.log("Add Rating")}
+            style={{ marginRight: 0, padding: "5px 20px" }}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 }

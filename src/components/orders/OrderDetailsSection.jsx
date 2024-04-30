@@ -2,6 +2,7 @@ import React from "react";
 import BasicTabs from "../shared/CustomTabPanel/CustomTabPanel";
 import AddressDetails from "./AddressDetails";
 import ItemsOrdered from "./ItemsOrdered";
+import ComingSoon from "../products/ProductPageTap/ComingSoon";
 
 export default function OrderDetailsSection() {
   const orderDetails = {
@@ -81,15 +82,15 @@ export default function OrderDetailsSection() {
   const tabsData = [
     {
       label: "Items Ordered",
-      content: <ItemsOrdered /> ,
+      content: <ItemsOrdered />,
     },
     {
       label: "Invoices",
-      content: <AddressDetails address={address} />,
+      content: <ComingSoon />,
     },
     {
       label: "Order Shipment",
-      content: <AddressDetails address={address} />,
+      content: <ComingSoon />,
     },
   ];
 
