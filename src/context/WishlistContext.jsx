@@ -1,8 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import {
-  fetchWishList,
-  toggleWishlistItem,
-} from "../components/wishlist/services/wishlistService";
+import { fetchWishList, toggleWishlistItem } from "../components/wishlist/services/wishlistService";
 import { useAuthenticatedUserContext } from "./AuthenticatedUserContext";
 
 // Define the context
@@ -29,7 +26,7 @@ export default function WishlistContextProvider({ children }) {
           setIsLoading(false);
         });
     }
-  }, [isAuthenticated, Wishlist, showWishlist]);
+  }, [isAuthenticated, showWishlist]);
 
   // Function to toggle visibility of Wishlist
   const toggleShowWishlist = () => {
