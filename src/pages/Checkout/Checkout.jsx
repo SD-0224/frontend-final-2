@@ -60,7 +60,7 @@ export default function Checkout() {
           width: "100%",
         }}
       >
-        <Box sx={{ marginRight: "8%" }}>
+        <Box sx={{ width: "100%", marginRight: "8%" }}>
           <UserAddress />
           <PaymentComp stripePromise={stripePromise} options={options} />
           <CheckoutButtons />
