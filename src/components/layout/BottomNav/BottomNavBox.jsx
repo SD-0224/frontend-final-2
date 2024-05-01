@@ -66,13 +66,6 @@ export default function BottomNavBox() {
   const { isAuthenticated } = useAuthenticatedUserContext();
   const navigate = useNavigate();
   const location = useLocation();
-  const [isCartToggled, setIsCartToggled] = useState(false);
-  // useEffect(() => {
-  //   // Check if the cart is initially toggled (for example, if it's open on page load)
-  //   // Set isCartToggled to true if the cart is initially toggled, otherwise set it to false
-  //   const isInitialCartToggled = toggleCart;
-  //   setIsCartToggled(isInitialCartToggled);
-  // }, []);
 
   return (
     <>
@@ -133,11 +126,6 @@ export default function BottomNavBox() {
           label="Bag"
           isActive={location.pathname === "/mycart"}
           onClick={toggleCart}
-          // onClick={() => {
-          //   toggleCart();
-          //   setIsCartToggled((prev) => !prev);
-          // }}
-          // isCartToggled={isCartToggled}
         />
       </Box>
     </>
