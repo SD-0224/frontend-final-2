@@ -2,11 +2,11 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import Invoice from "../shared/Invoice/Invoice";
 import PaymentDetails from "./PaymentDetails";
-import AddressDetails from "./AddressDetails";
 import OrderSummary from "../shared/OrderSummary/OrderSummary";
 import ProductsTable from "./ProductsTable";
 import PrimaryButton from "../shared/PrimaryButton/PrimaryButton";
 import SecondaryButton from "../shared/SecondaryButton/SecondaryButton";
+import AddressDetails from "../myAddressBook/AddressDetails";
 
 export default function ItemsOrdered() {
   const invoiceData = [
