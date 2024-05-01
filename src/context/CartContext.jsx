@@ -8,7 +8,10 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { isAuthenticated, token } = useAuthenticatedUserContext();
-  const [cart, setCart] = useState(!isAuthenticated ? JSON.parse(localStorage.getItem("cart")) : []);
+  console.log(localStorage.getItem("cart"));
+  const [cart, setCart] = useState(
+    !isAuthenticated ? (localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []) : []
+  );
   const [showCart, setShowcart] = useState(false);
 
   useEffect(() => {
