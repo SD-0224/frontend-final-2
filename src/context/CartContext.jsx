@@ -24,7 +24,6 @@ export const CartProvider = ({ children }) => {
         .then((data) => {
           {
             if (Array.isArray(data)) {
-              console.log("setting cart", data);
               setCart(data);
             }
           }
@@ -36,11 +35,10 @@ export const CartProvider = ({ children }) => {
           setIsLoading(false);
         });
     }
-  }, []);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
-      console.log("posting cart", cart);
       fetch(`${environment.baseUrl}/cart/sync`, {
         method: "POST",
         headers: {
@@ -56,7 +54,6 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   function addCartItem(item) {
-    console.log(cart);
     if (!detectCartItem(item.productID)) {
       setCart([...cart, makeItem(item)]);
     }
