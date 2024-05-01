@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <>
-      <Container sx={{ mx: 2 }}>
+      <Container>
         <AppBar
           sx={{
             bgcolor: "white",
@@ -27,9 +27,20 @@ export default function Header() {
             boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Toolbar
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingright: { xs: "5px", md: "0px" },
+            }}
+          >
             <Link to={"/"}>
-              <Box component={"img"} sx={{ width: "108" }} src={logo} alt="home-logo" />
+              <Box
+                component={"img"}
+                sx={{ width: "108" }}
+                src={logo}
+                alt="home-logo"
+              />
             </Link>
             {isLargerScreen && (
               <>

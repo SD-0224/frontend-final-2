@@ -9,24 +9,25 @@ import { useUserPopupContext } from "../../../../context/UserPopupContext";
 import { useAuthenticatedUserContext } from "../../../../context/AuthenticatedUserContext";
 
 const HeaderIconsRaber = styled("div")(({ theme }) => ({
-  width: "114px",
   display: "flex",
-  justifyContent: "space-around",
-  alignItems: "center",
+
   [theme.breakpoints.down("md")]: {
     display: "flex",
-    padding: theme.spacing(0),
   },
 }));
 const StyledImage = styled("img")(({ theme }) => ({
-  display: "flex",
-  width: "24px",
-  height: "24px",
-  fontSize: "small",
   [theme.breakpoints.down("md")]: {
-    padding: theme.spacing(0),
-    width: "25px",
+    width: "23px",
     height: "15px",
+  },
+}));
+
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  padding: "5px",
+  margin: "5px",
+  [theme.breakpoints.down("md")]: {
+    padding: 0,
+    margin: 0,
   },
 }));
 
@@ -39,15 +40,18 @@ export default function HeaderIcons() {
   return (
     <>
       <HeaderIconsRaber>
-        <IconButton onClick={toggleShowWishlist} disabled={!isAuthenticated}>
+        <StyledIconButton
+          onClick={toggleShowWishlist}
+          disabled={!isAuthenticated}
+        >
           <StyledImage src={wishlist} alt="wishlist-logo" />
-        </IconButton>
-        <IconButton onClick={toggleUserPopup}>
+        </StyledIconButton>
+        <StyledIconButton onClick={toggleUserPopup}>
           <StyledImage src={profile} alt="profile-logo" />
-        </IconButton>
-        <IconButton onClick={toggleCart}>
+        </StyledIconButton>
+        <StyledIconButton onClick={toggleCart}>
           <StyledImage src={bag} alt="bag-logo" />
-        </IconButton>
+        </StyledIconButton>
       </HeaderIconsRaber>
     </>
   );

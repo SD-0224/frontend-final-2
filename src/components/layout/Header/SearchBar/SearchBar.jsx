@@ -7,7 +7,7 @@ const Search = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: "#F1F1F1",
   marginLeft: 0,
-  width: "362px",
+  // width: "362px",
   [theme.breakpoints.up("lg")]: {
     marginLeft: theme.spacing(30),
     width: "auto",
@@ -32,13 +32,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "#626262",
   width: "365px",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
+    // padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
   },
   [theme.breakpoints.down("lg")]: {
     display: "flex",
-    width: "auto",
+    maxWidth: "230px",
+    fontSize: "12px",
+  },
+  [theme.breakpoints.down("md")]: {
+    display: "flex",
+    maxWidth: "110px",
     fontSize: "10px",
+  },
+  [theme.breakpoints.down("sm")]: {
+    display: "flex",
+    height: "44px",
+    color: "#626262",
+    maxWidth: "300px",
+    fontSize: "14px",
   },
 }));
 
