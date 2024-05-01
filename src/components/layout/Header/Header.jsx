@@ -24,7 +24,7 @@ export default function Header() {
             bgcolor: "white",
             margin: "0px",
             Height: "80px",
-            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            boxShadow: "none",
           }}
         >
           <Toolbar
@@ -35,12 +35,7 @@ export default function Header() {
             }}
           >
             <Link to={"/"}>
-              <Box
-                component={"img"}
-                sx={{ width: "108" }}
-                src={logo}
-                alt="home-logo"
-              />
+              <Box component={"img"} sx={{ width: "108" }} src={logo} alt="home-logo" />
             </Link>
             {isLargerScreen && (
               <>
