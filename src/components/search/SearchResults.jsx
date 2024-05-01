@@ -4,7 +4,7 @@ import { fetchPath } from "../../utilities/fetch";
 import { environment } from "../../utilities/environment";
 import ProductGrid from "../products/components/ProductGrid";
 import ProductBrands from "../products/components/ProductBrands";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import TitleBanner from "../shared/CateogryTitleBanner/TitleBanner";
 import LoadingIndicator from "../shared/LoadingIndicator/LoadingIndicator";
 import Breadcrumb from "../shared/Breadcrumb/Breadcrumb";
@@ -85,7 +85,8 @@ function SearchResults() {
                 </Typography>
               )}
               {brands.length > 0 ? (
-                <Box sx={{ margin: "70px 0" }}>
+                <Box sx={{ margin: "150px 0" }}>
+                    <Divider sx={{margin:'20px 0'}} />
                   <ProductBrands brands={brands} />
                 </Box>
               ) : null}
