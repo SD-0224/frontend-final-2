@@ -1,4 +1,4 @@
-import { Container, Box, Grid, TextField } from "@mui/material";
+import { Container, Box, Typography, Divider } from "@mui/material";
 import UserImageUploader from "../../../components/user/components/UserImageUploader/UserImageUploader";
 import { useAuthenticatedUserContext } from "../../../context/AuthenticatedUserContext";
 import UserService from "../../../components/user/services/UserService";
@@ -9,7 +9,6 @@ import UserDetailsForm from "../../../components/user/components/UserDetailsForm
 
 export default function PersonalInformationTab() {
   const { token, getUserData, updateUserData } = useAuthenticatedUserContext();
-  const userData = getUserData();
   const userService = new UserService(token);
 
   //#region image upload states
@@ -21,18 +20,18 @@ export default function PersonalInformationTab() {
   //#region image upload
   useEffect(() => {
     const fetchUserDetails = async () => {
+      fetchUserDetails();
       try {
         setImageLoading(true);
         const userDetails = await userService.getUserDetails();
+        setImageLoading(false);
+
         setUserDetails(userDetails);
       } catch (error) {
         console.error("Failed to fetch user details:", error);
       } finally {
-        setImageLoading(false);
       }
     };
-
-    fetchUserDetails();
   }, [token]);
 
   const handleUpload = async () => {
@@ -131,12 +130,28 @@ export default function PersonalInformationTab() {
 
   return (
     <Container>
+      <Typography
+        variant="h1"
+        sx={{
+          marginTop: "30px",
+          fontFamily: "Inter",
+          fontSize: { xs: "15px", sm: "20px" },
+          fontWeight: 600,
+          lineHeight: "26px",
+          textAlign: "left",
+          marginBottom: "10px",
+          color: "#13101E",
+        }}
+      >
+        My Personal Information
+      </Typography>
+      <Divider width={"100%"} />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           gap: "3rem",
-          margin: "7rem 0",
+          margin: "1rem 0",
         }}
       >
         <UserImageUploader
@@ -153,7 +168,7 @@ export default function PersonalInformationTab() {
           display: "flex",
           flexDirection: "column",
           gap: "3rem",
-          margin: "7rem 0",
+          margin: "2rem 0",
           maxWidth: "700px",
         }}
       >
@@ -169,7 +184,7 @@ export default function PersonalInformationTab() {
           display: "flex",
           flexDirection: "column",
           gap: "3rem",
-          margin: "7rem 0",
+          margin: "2rem 0",
           maxWidth: "350px",
         }}
       >
