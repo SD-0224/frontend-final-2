@@ -2,6 +2,7 @@ import UserAddress from "../../components/shared/Checkout/UserAddress";
 import OrderSummary from "../../components/shared/OrderSummary/OrderSummary";
 import Invoice from "../../components/shared/Invoice/Invoice";
 import CardVertical from "../../components/shared/CardVertical/CardVertical";
+import CartCardVertical from "../../components/shared/CardVertical/CartCardVertical";
 import { Typography, Stack, Box, Container } from "@mui/material";
 import { useCartContext } from "../../context/CartContext";
 import PaymentComp from "../../components/shared/Checkout/PaymentComp";
@@ -58,11 +59,11 @@ export default function Checkout({ item }) {
           <OrderSummary title={"Order Summary"}>
             <Box>
               {cart.map((item, index) => (
-                <CardVertical key={index} cart={cart} item={item}>
+                <CartCardVertical key={index} cart={cart} item={item}>
                   <Typography sx={{ color: "#626262" }}>
                     Qty- {item.productQuantity}
                   </Typography>
-                </CardVertical>
+                </CartCardVertical>
               ))}
             </Box>
           </OrderSummary>
