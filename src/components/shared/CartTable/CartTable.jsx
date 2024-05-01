@@ -16,8 +16,24 @@ const head = ["Product Name", "Price", "Qty", "Subtotal"];
 
 export default function CartTable({ cart, removeCartItem }) {
   return (
-    <TableContainer component={Paper} sx={{ boxShadow: "none", maxWidth: "70%" }}>
-      <Table sx={{ minWidth: 600, width: "80%", margin: "0px" }} aria-label="simple table">
+    <TableContainer
+      component={Paper}
+      sx={{
+        boxShadow: "none",
+        maxWidth: "100%",
+      }}
+    >
+      <Table
+        sx={{
+          minWidth: {
+            xs: "100%",
+            lg: "600px",
+          },
+          width: "100%",
+          margin: "0px",
+        }}
+        aria-label="simple table"
+      >
         <TableHead>
           <TableRow>
             {head.map((title, index) =>
@@ -42,7 +58,11 @@ export default function CartTable({ cart, removeCartItem }) {
                 position: "relative",
               }}
             >
-              <TableCell component="th" scope="row" sx={{ border: 0, outline: 0, borderRadius: 0 }}>
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ border: 0, outline: 0, borderRadius: 0, verticalAlign: "top" }}
+              >
                 <CardVertical item={item}>
                   <Typography sx={{ color: "#626262" }}>Qty- {item.productQuantity}</Typography>
                 </CardVertical>

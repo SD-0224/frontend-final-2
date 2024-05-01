@@ -82,19 +82,9 @@ function BasicTabs({ tabs }) {
   return (
     <Box sx={{ width: "100%" }}>
       <Box>
-        <Tabs
-          sx={{ ...CustomTabs }}
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs"
-        >
+        <Tabs sx={{ ...CustomTabs }} value={value} onChange={handleChange} aria-label="basic tabs">
           {tabs.map((tab, index) => (
-            <Tab
-              sx={{ ...tabStyles }}
-              label={tab.label}
-              key={index}
-              {...a11yProps(index)}
-            />
+            <Tab sx={{ ...tabStyles }} label={tab.label} key={index} {...a11yProps(index)} />
           ))}
         </Tabs>
       </Box>
