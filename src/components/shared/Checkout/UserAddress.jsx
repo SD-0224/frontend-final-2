@@ -37,25 +37,18 @@ export default function UserAddress() {
   return (
     <>
       <MenuSide title={"Add New Address"}>
-        <Box
-          component="form"
-          sx={{ width: "100%", marginLeft: "20px", marginRight: "20px" }}
-        >
+        <Box component="form" sx={{ width: "100%" }}>
           <Grid container spacing={2}>
             {/* First Row */}
             <Grid item xs={12} sm={6}>
               <Box>
-                <StyledTypography variant="subtitle1">
-                  Full name
-                </StyledTypography>
+                <StyledTypography variant="subtitle1">Full name</StyledTypography>
                 <CustomTextField id="fullName" label="Enter Name" type="text" />
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <StyledTypography variant="subtitle1">
-                  Mobile Number
-                </StyledTypography>
+                <StyledTypography variant="subtitle1">Mobile Number</StyledTypography>
                 <CustomTextField
                   id="mobileNumber"
                   label="+967"
@@ -68,14 +61,8 @@ export default function UserAddress() {
             {/* Second Row */}
             <Grid item xs={12} sm={6}>
               <Box>
-                <StyledTypography variant="subtitle1">
-                  Street Address
-                </StyledTypography>
-                <CustomTextField
-                  id="streetAddress"
-                  label="Enter Address"
-                  type="text"
-                />
+                <StyledTypography variant="subtitle1">Street Address</StyledTypography>
+                <CustomTextField id="streetAddress" label="Enter Address" type="text" />
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -94,14 +81,8 @@ export default function UserAddress() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <StyledTypography variant="subtitle1">
-                  Pin Code
-                </StyledTypography>
-                <CustomTextField
-                  id="pinCode"
-                  label="Enter Pin Code"
-                  type="text"
-                />
+                <StyledTypography variant="subtitle1">Pin Code</StyledTypography>
+                <CustomTextField id="pinCode" label="Enter Pin Code" type="text" />
               </Box>
             </Grid>
             <Box
@@ -112,7 +93,7 @@ export default function UserAddress() {
                 width: "20%",
               }}
             >
-              <PrimaryButton label={"Submit"}></PrimaryButton>
+              <PrimaryButton type={"submit"} label={"Submit"} />
             </Box>
           </Grid>
         </Box>
