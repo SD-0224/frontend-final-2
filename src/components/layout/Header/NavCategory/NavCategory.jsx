@@ -7,17 +7,11 @@ import LoadingIndicator from "../../../shared/LoadingIndicator/LoadingIndicator"
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   display: "flex",
-  margin: theme.spacing(1),
   fontSize: "14px",
   fontWeight: 500,
   font: "500",
-  minWidth: "96px",
-  [theme.breakpoints.down("md")]: {
-    fontSize: "13px",
-    margin: theme.spacing(1),
-    width: "auto",
-    minWidth: "0px",
-  },
+  minWidth: "fit-content",
+  color: "#626262",
   "& a": {
     textDecoration: "none",
     color: "inherit",
@@ -37,7 +31,18 @@ export default function NavCategory() {
 
   return (
     <>
-      <Box display="flex" alignItems="center" color="black" sx={{ maxWidth: "500px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: "1.2rem",
+          width: "fit-content",
+          overflow: "auto",
+          text: "black",
+          marginLeft: "2rem",
+          marginRight: "2rem",
+          padding: "0.5rem 0",
+        }}
+      >
         {limitCategories?.map((category) => (
           <StyledTypography key={category.categoryID}>
             <Link to={`/category/${category.slug}`}>{category.name}</Link>
