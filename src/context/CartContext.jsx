@@ -1,22 +1,33 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { environment } from "../utilities/environment";
+import { useAuthenticatedUserContext } from "./AuthenticatedUserContext";
+import { fetchPath } from "../utilities/fetch";
 
 const CartContext = createContext();
 
-const user = false;
-
 export const CartProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [cart, setCart] = useState(
-    localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
-  );
+  const [isLoading, setIsLoading] = useState(true);
+  const { isAuthenticated, token } = useAuthenticatedUserContext();
+  const [cart, setCart] = useState(!isAuthenticated ? JSON.parse(localStorage.getItem("cart")) : []);
   const [showCart, setShowcart] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    if (user) {
-      fetch(`${environment.baseUrl}/cart/${user.id}`)
+    if (isAuthenticated) {
+      fetchPath(`${environment.baseUrl}/cart`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      })
         .then((data) => {
-          setCart(data);
+          {
+            if (Array.isArray(data)) {
+              console.log("setting cart", data);
+              setCart(data);
+            }
+          }
         })
         .catch((error) => {
           console.error("Failed to fetch cart items:", error);
@@ -28,13 +39,24 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (user) {
-    } else {
+    if (isAuthenticated && !isLoading) {
+      console.log("posting cart", cart);
+      fetch(`${environment.baseUrl}/cart/sync`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ cartItems: cart }),
+        redirect: "follow",
+      });
+    } else if (!isLoading) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
 
   function addCartItem(item) {
+    console.log(cart);
     if (!detectCartItem(item.productID)) {
       setCart([...cart, makeItem(item)]);
     }
@@ -68,7 +90,7 @@ export const CartProvider = ({ children }) => {
         break;
       }
     }
-    setCart([...cart]); // Update the cart state to trigger a re-render
+    setCart([...cart]);
   }
 
   function getCartItemQuantity(itemID) {

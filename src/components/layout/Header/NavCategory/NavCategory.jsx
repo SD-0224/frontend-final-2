@@ -29,7 +29,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 }));
 export default function NavCategory() {
   const { categories, isLoading } = useCategoriesContext();
-  const limitCategories = categories.slice(0, 5);
+  const limitCategories = categories.length > 5 ? categories.slice(0, 5) : categories;
 
   if (isLoading) {
     return <LoadingIndicator />;
@@ -37,13 +37,8 @@ export default function NavCategory() {
 
   return (
     <>
-      <Box
-        display="flex"
-        alignItems="center"
-        color="black"
-        sx={{ maxWidth: "500px" }}
-      >
-        {limitCategories.map((category) => (
+      <Box display="flex" alignItems="center" color="black" sx={{ maxWidth: "500px" }}>
+        {limitCategories?.map((category) => (
           <StyledTypography key={category.categoryID}>
             <Link to={`/category/${category.slug}`}>{category.name}</Link>
           </StyledTypography>
