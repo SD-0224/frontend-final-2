@@ -13,10 +13,13 @@ import ProductsList from "./pages/ProductsList/ProductsList";
 import { CartProvider } from "./context/CartContext";
 import { AuthenticatedUserProvider } from "./context/AuthenticatedUserContext";
 import UserPopupContextProvider from "./context/UserPopupContext";
-import PersonalInformationTab from "./pages/PersonalInformationTab";
-
+import Profile from "./pages/Profile/Profile";
+import PersonalInformationTab from "./pages/Profile/PersonalInformation/PersonalInformationTab";
 
 import Checkout from "./pages/Checkout/Checkout";
+import MyOrdersSection from "./components/orders/MyOrdersSection";
+import MyWishlistSection from "./components/MyWishlistSection/MyWishlistSection";
+import MyAddressBookSection from "./components/myAddressBook/MyAddressBookSection";
 
 export default function App() {
   return (
@@ -84,23 +87,24 @@ export default function App() {
                   }
                 />
 
-
-                {/* For testing componenets (temporary) */}
                 <Route
-                  path="/test"
+                  path="/profile"
                   element={
                     <Layout>
-                      <PersonalInformationTab />
+                      <Profile />
                     </Layout>
                   }
-                />
-
+                >
+                  <Route path="personal-information" element={<PersonalInformationTab />} />
+                  <Route path="my-orders" element={<MyOrdersSection />} />
+                  <Route path="my-wishlist" element={<MyWishlistSection />} />
+                  <Route path="my-address-book" element={<MyAddressBookSection />} />
+                </Route>
                 <Route
                   path="/checkout"
                   element={
                     <Layout>
                       <Checkout />
-
                     </Layout>
                   }
                 />
