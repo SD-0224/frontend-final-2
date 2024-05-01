@@ -2,6 +2,9 @@ import * as React from "react";
 import MenuSide from "./MenuSide";
 import { Box, TextField, Grid, Typography } from "@mui/material";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import { fetchCheckoutAddress } from "./Services/CheckoutService";
+import { useAuthenticatedUserContext } from "../../../context/AuthenticatedUserContext";
+import { useState, useEffect } from "react";
 
 const CustomTextField = ({ label, ...props }) => {
   return (
@@ -34,6 +37,28 @@ const StyledTypography = ({ children, ...props }) => {
 };
 
 export default function UserAddress() {
+  const { isAuthenticated, token } = useAuthenticatedUserContext();
+  console.log("isAuthenticated", isAuthenticated, "token", token);
+  const [address, setAddress] = useState();
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchCheckoutAddress(token)
+        .then((data) => {
+          setAddress(data);
+          console.log("data", data);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch address", error);
+        })
+        .finally(() => {});
+    }
+  }, [isAuthenticated]);
+
+  // useEffect(() => {
+  //   fetchCheckoutAddress().then((data) => console.log("data", data));
+  //   // console.log("address", address, data);
+  //   // .catch((error) => console.error("Failed to load handpicked:", error));
+  // }, []);
   return (
     <>
       <MenuSide title={"Add New Address"}>
