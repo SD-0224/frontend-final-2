@@ -18,6 +18,15 @@ export const AuthenticatedUserProvider = ({ children }) => {
     Cookies.set('isAuthenticated', true, { expires: 7 });
   };
 
+  const updateUserData = (userData) => {
+    setAuthUser(userData);
+    Cookies.set('userData', JSON.stringify(userData), { expires: 7 });
+  };
+
+  const getUserData = () => {
+    return JSON.parse(Cookies.get('userData'));
+  };
+
   const clearUserData = () => {
     console.log('clearing');
     setAuthUser(null);
@@ -43,7 +52,7 @@ export const AuthenticatedUserProvider = ({ children }) => {
     console.log(authUser, isAuthenticated, token);
   }, [authUser, isAuthenticated, token]);
   return (
-    <AuthenticatedUserContext.Provider value={{ authUser, isAuthenticated, setUserData, logoutUser, token }}>{children}</AuthenticatedUserContext.Provider>
+    <AuthenticatedUserContext.Provider value={{ authUser, isAuthenticated, setUserData, getUserData, updateUserData, logoutUser, token }}>{children}</AuthenticatedUserContext.Provider>
   );
 };
 

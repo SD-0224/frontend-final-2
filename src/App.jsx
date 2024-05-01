@@ -10,10 +10,13 @@ import SignUp from "./pages/Auth/Signup/Signup";
 import WishlistContextProvider from "./context/WishlistContext";
 import MyCart from "./pages/MyCart/MyCart";
 import ProductsList from "./pages/ProductsList/ProductsList";
-
 import { CartProvider } from "./context/CartContext";
 import { AuthenticatedUserProvider } from "./context/AuthenticatedUserContext";
 import UserPopupContextProvider from "./context/UserPopupContext";
+import PersonalInformationTab from "./pages/PersonalInformationTab";
+
+
+import Checkout from "./pages/Checkout/Checkout";
 
 export default function App() {
   return (
@@ -77,6 +80,27 @@ export default function App() {
                   element={
                     <Layout>
                       <MyCart />
+                    </Layout>
+                  }
+                />
+
+
+                {/* For testing componenets (temporary) */}
+                <Route
+                  path="/test"
+                  element={
+                    <Layout>
+                      <PersonalInformationTab />
+                    </Layout>
+                  }
+                />
+
+                <Route
+                  path="/checkout"
+                  element={
+                    <Layout>
+                      <Checkout />
+
                     </Layout>
                   }
                 />
