@@ -8,10 +8,12 @@ import { useCategoriesContext } from "../../../context/CategoriesContext";
 
 export default function Footer() {
   const { categories } = useCategoriesContext();
-  const categoryMenuItems = categories.map((category) => ({
-    text: category.name,
-    path: `/category/${category.slug}`,
-  }));
+  const categoryMenuItems = Array.isArray(categories)
+    ? categories.map((category) => ({
+        text: category.name,
+        path: `/category/${category.slug}`,
+      }))
+    : [];
 
   const productsMenuItems = [
     { text: "Featured", path: "" },
