@@ -15,8 +15,8 @@ import { AuthenticatedUserProvider } from "./context/AuthenticatedUserContext";
 import UserPopupContextProvider from "./context/UserPopupContext";
 import PersonalInformationTab from "./pages/PersonalInformationTab";
 
-
 import Checkout from "./pages/Checkout/Checkout";
+import SearchResults from "./components/search/SearchResults";
 
 export default function App() {
   return (
@@ -84,7 +84,6 @@ export default function App() {
                   }
                 />
 
-
                 {/* For testing componenets (temporary) */}
                 <Route
                   path="/test"
@@ -100,7 +99,14 @@ export default function App() {
                   element={
                     <Layout>
                       <Checkout />
-
+                    </Layout>
+                  }
+                />
+                <Route
+                  path="/products/search"
+                  element={
+                    <Layout>
+                      <SearchResults />
                     </Layout>
                   }
                 />
