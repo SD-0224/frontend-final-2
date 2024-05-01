@@ -23,24 +23,20 @@ export default function Header() {
           sx={{
             bgcolor: "white",
             margin: "0px",
-            Height: "80px",
-            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+            boxShadow: "none",
           }}
         >
           <Toolbar
             sx={{
               display: "flex",
+              height: "80px",
+              alignItems: "center",
               justifyContent: "space-between",
               paddingright: { xs: "5px", md: "0px" },
             }}
           >
             <Link to={"/"}>
-              <Box
-                component={"img"}
-                sx={{ width: "108" }}
-                src={logo}
-                alt="home-logo"
-              />
+              <Box component={"img"} sx={{ width: "108px", height: "40px" }} src={logo} alt="home-logo" />
             </Link>
             {isLargerScreen && (
               <>

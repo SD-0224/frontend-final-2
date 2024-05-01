@@ -58,8 +58,8 @@ const tabStyles = {
   padding: "6px 18px",
   borderRadius: "10px",
   minHeight: "auto",
-  margin: "unset",
   // margin: "0 15px",
+  margin: "0 15px",
   "&.Mui-selected": {
     backgroundColor: "#1B4B66",
     color: "white",

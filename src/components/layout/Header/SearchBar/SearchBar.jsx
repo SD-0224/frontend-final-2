@@ -3,18 +3,7 @@ import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import search from "../../../../assets/HedearLogo/search.svg";
-
-const SearchBarWrapper = styled("form")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: "#F1F1F1",
-  marginLeft: 0,
-  // width: "362px",
-  [theme.breakpoints.up("lg")]: {
-    marginLeft: theme.spacing(30),
-    width: "auto",
-  },
-}));
+import { Box } from "@mui/material";
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -32,27 +21,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   display: "flex",
   height: "44px",
   color: "#626262",
-  width: "365px",
   "& .MuiInputBase-input": {
-    // padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-  },
-  [theme.breakpoints.down("lg")]: {
-    display: "flex",
-    maxWidth: "230px",
-    fontSize: "12px",
-  },
-  [theme.breakpoints.down("md")]: {
-    display: "flex",
-    maxWidth: "110px",
-    fontSize: "10px",
-  },
-  [theme.breakpoints.down("sm")]: {
-    display: "flex",
-    height: "44px",
-    color: "#626262",
-    maxWidth: "300px",
-    fontSize: "14px",
+    paddingLeft: "3rem",
   },
 }));
 
@@ -67,21 +37,26 @@ export default function SearchBar() {
 
   return (
     <>
-      <SearchBarWrapper onSubmit={handleSearch}>
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: {
+            xs: "140px",
+            md: "290px",
+            lg: "360px",
+          },
+          position: "relative",
+          marginRight: "1.2rem",
+          marginLeft: "auto",
+          borderRadius: "8px",
+          backgroundColor: "#F1F1F1",
+        }}
+      >
         <SearchIconWrapper>
           <img src={search} alt="search-logo" />
         </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search for products or brands..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <Link
-          to={`/products/search/?search=${searchQuery}`}
-          style={{ display: "none" }}
-          ref={searchLinkRef}
-        />
-      </SearchBarWrapper>
+        <StyledInputBase placeholder="Search for products or brands..." />
+      </Box>
     </>
   );
 }

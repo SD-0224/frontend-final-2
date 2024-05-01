@@ -7,28 +7,15 @@ import { useWishlistContext } from "../../../../context/WishlistContext";
 import { useCartContext } from "../../../../context/CartContext";
 import { useUserPopupContext } from "../../../../context/UserPopupContext";
 import { useAuthenticatedUserContext } from "../../../../context/AuthenticatedUserContext";
+import { Box } from "@mui/material";
 
-const HeaderIconsRaber = styled("div")(({ theme }) => ({
+const HeaderIconsRaber = styled("div")(() => ({
   display: "flex",
-
-  [theme.breakpoints.down("md")]: {
-    display: "flex",
-  },
-}));
-const StyledImage = styled("img")(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
-    width: "23px",
-    height: "15px",
-  },
 }));
 
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
+const StyledIconButton = styled(IconButton)(() => ({
   padding: "5px",
   margin: "5px",
-  [theme.breakpoints.down("md")]: {
-    padding: 0,
-    margin: 0,
-  },
 }));
 
 export default function HeaderIcons() {
@@ -40,17 +27,14 @@ export default function HeaderIcons() {
   return (
     <>
       <HeaderIconsRaber>
-        <StyledIconButton
-          onClick={toggleShowWishlist}
-          disabled={!isAuthenticated}
-        >
-          <StyledImage src={wishlist} alt="wishlist-logo" />
+        <StyledIconButton onClick={toggleShowWishlist} disabled={!isAuthenticated}>
+          <Box component={"img"} src={wishlist} alt="wishlist-logo" />
         </StyledIconButton>
         <StyledIconButton onClick={toggleUserPopup}>
-          <StyledImage src={profile} alt="profile-logo" />
+          <Box component={"img"} src={profile} alt="profile-logo" />
         </StyledIconButton>
         <StyledIconButton onClick={toggleCart}>
-          <StyledImage src={bag} alt="bag-logo" />
+          <Box component={"img"} src={bag} alt="bag-logo" />
         </StyledIconButton>
       </HeaderIconsRaber>
     </>

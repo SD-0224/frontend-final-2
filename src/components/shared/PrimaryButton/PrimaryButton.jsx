@@ -3,9 +3,10 @@ import Button from "@mui/material/Button";
 import Icon from "@mui/material/Icon";
 import { useTheme } from "@mui/material/styles";
 
-const PrimaryButton = ({ label, icon, onClick }) => {
+const PrimaryButton = ({ label, icon, onClick, type }) => {
   return (
     <Button
+      type={type}
       sx={{
         backgroundColor: "main",
         flexGrow: 1,
