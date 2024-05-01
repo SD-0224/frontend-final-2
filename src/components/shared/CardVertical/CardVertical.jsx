@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-export default function CardVertical({ item, children }) {
+export default function CardVertical({ title, subTitle, imgPath, children }) {
   return (
     <Box
       sx={{
@@ -9,7 +9,7 @@ export default function CardVertical({ item, children }) {
         padding: "20px 0",
       }}
     >
-      <Box sx={{ objectFit: "cover", Width: "75px", height: "75px" }} component="img" src={item.imgPath} />
+      <Box sx={{ objectFit: "cover", Width: "75px", height: "75px" }} component="img" src={imgPath} />
       <Box sx={{ paddingLeft: "20px" }}>
         <Typography
           sx={{
@@ -21,7 +21,7 @@ export default function CardVertical({ item, children }) {
             color: "#171520",
           }}
         >
-          {item.product.title}
+          {title}
         </Typography>
         <Typography
           sx={{
@@ -33,7 +33,7 @@ export default function CardVertical({ item, children }) {
             color: "#626262",
           }}
         >
-          {item.product.subTitle}
+          {subTitle}
         </Typography>
         {children}
       </Box>

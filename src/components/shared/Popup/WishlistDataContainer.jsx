@@ -14,7 +14,9 @@ export default function WishlistDataContainer() {
   }, [showWishlist]);
 
   const removeFromWishlist = (productId) => {
-    setFilteredWishlist(prevWishlist => prevWishlist.filter(item => item.product.productID !== productId));
+    setFilteredWishlist((prevWishlist) =>
+      prevWishlist.filter((item) => item.product.productID !== productId)
+    );
   };
 
   if (filteredWishlist.length === 0) {
@@ -52,7 +54,11 @@ export default function WishlistDataContainer() {
                   alignItems: "center",
                 }}
               >
-                <CardVertical item={item} />
+                <CardVertical
+                  title={item.product.title}
+                  subTitle={item.product.subTitle}
+                  imgPath={item.imgPath}
+                />
                 <WishlistButton
                   productId={item.product.productID}
                   onRemove={() => removeFromWishlist(item.product.productID)}
