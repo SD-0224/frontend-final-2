@@ -91,6 +91,9 @@ export default function App() {
                   element={
                     <Layout>
                       <PersonalInformationTab />
+                    </Layout>
+                  }
+                />
 
                 <Route
                   path="/checkout"
