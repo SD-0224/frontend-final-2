@@ -18,7 +18,12 @@ export default function MyCartButtons() {
           gap: "1rem",
         }}
       >
-        <PrimaryButton label={"Place Order"} />
+        <PrimaryButton
+          label={"Place Order"}
+          onClick={() => {
+            navigate("/checkout");
+          }}
+        />
 
         <SecondaryButton
           label={"Continue Shopping"}

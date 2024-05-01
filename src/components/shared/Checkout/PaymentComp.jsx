@@ -1,51 +1,21 @@
-import { Box, TextField, Button, Grid } from "@mui/material";
+import { Box, FormControl } from "@mui/material";
 import MenuSide from "./MenuSide";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import { Elements, PaymentElement } from "@stripe/react-stripe-js";
 
-export default function PaymentMethod() {
+export default function PaymentMethod({ stripePromise, options }) {
   return (
     <>
-      <MenuSide title={"Select Payment Method"}>
-        <Box sx={{ maxWidth: 400, margin: "20px" }}>
-          <form>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Name"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Card Number"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="Expiry Date"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <TextField
-                  label="CVV"
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                />
-              </Grid>
-            </Grid>
-            <Button variant="contained" type="submit" fullWidth>
-              Submit
-            </Button>
-          </form>
+      <MenuSide title={"Payment"}>
+        <Box sx={{ width: "100%", marginTop: "20px" }}>
+          <Elements stripe={stripePromise} options={options}>
+            <FormControl sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "2rem" }}>
+              <PaymentElement />
+              <Box>
+                <PrimaryButton type={"submit"} label={"Place Order"} />
+              </Box>
+            </FormControl>
+          </Elements>
         </Box>
       </MenuSide>
     </>

@@ -8,9 +8,28 @@ import { useCartContext } from "../../context/CartContext";
 import PaymentComp from "../../components/shared/Checkout/PaymentComp";
 import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
 import CheckoutButtons from "../../components/shared/Checkout/CheckoutButtons";
+import { loadStripe } from "@stripe/stripe-js";
 
-export default function Checkout({ item }) {
-  const { cart, getInvoice, removeCartItem } = useCartContext();
+export default function Checkout() {
+  const { cart, getInvoice } = useCartContext();
+  const stripePromise = loadStripe(
+    "pk_test_51PB0qOExyylvHUrWpZQtSZKFnnUxlSianPwSwYyeEnFyUn1pb1nDWbSLVnTpDimHcXwNELk1MBzJgJSwH53Hb5wq00jFpTa1Ri"
+  );
+  console.log("amount", getInvoice()[2].amount);
+  const options = {
+    mode: "payment",
+    amount: 300,
+    currency: "usd",
+    // Fully customizable with appearance API.
+    appearance: {
+      labels: "floating",
+      variables: {
+        colorBackground: "#f1f1f1",
+        colorText: "#30313d",
+        borderWidth: "0px",
+      },
+    },
+  };
 
   const breadcrumbList = [
     {
@@ -23,20 +42,18 @@ export default function Checkout({ item }) {
   ];
 
   return (
-    <>
-      <Container sx={{ marginTop: "100px", marginLeft: "20px" }}>
-        <Breadcrumb list={breadcrumbList} />
-        <Typography
-          component="h1"
-          sx={{
-            color: "primary.main",
-            fontSize: "24px",
-            fontWeight: "600",
-          }}
-        >
-          Checkout
-        </Typography>
-      </Container>
+    <Container sx={{ marginTop: "100px" }}>
+      <Breadcrumb list={breadcrumbList} />
+      <Typography
+        component="h1"
+        sx={{
+          color: "primary.main",
+          fontSize: "2rem",
+          fontWeight: "600",
+        }}
+      >
+        Checkout
+      </Typography>
       <Box
         sx={{
           display: "flex",
@@ -44,14 +61,13 @@ export default function Checkout({ item }) {
           width: "100%",
         }}
       >
-        <Box sx={{ width: { xs: "90%", sm: "66%" }, marginRight: "8%" }}>
+        <Box sx={{ width: "100%", marginRight: "8%" }}>
           <UserAddress />
-          <PaymentComp />
+          <PaymentComp stripePromise={stripePromise} options={options} />
           <CheckoutButtons />
         </Box>
         <Box
           sx={{
-            width: { xs: "100%", sm: "26%" },
             marginTop: "50px",
             marginLeft: "20px",
           }}
@@ -75,6 +91,6 @@ export default function Checkout({ item }) {
           </OrderSummary>
         </Box>
       </Box>
-    </>
+    </Container>
   );
 }
