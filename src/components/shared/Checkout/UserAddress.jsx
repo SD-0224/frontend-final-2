@@ -42,7 +42,7 @@ export default function UserAddress() {
   const [address, setAddress] = useState();
   useEffect(() => {
     if (isAuthenticated) {
-      fetchCheckoutAddress(token)
+      fetchCheckoutAddress(isAuthenticated, token)
         .then((data) => {
           setAddress(data);
           console.log("data", data);
@@ -54,11 +54,6 @@ export default function UserAddress() {
     }
   }, [isAuthenticated]);
 
-  // useEffect(() => {
-  //   fetchCheckoutAddress().then((data) => console.log("data", data));
-  //   // console.log("address", address, data);
-  //   // .catch((error) => console.error("Failed to load handpicked:", error));
-  // }, []);
   return (
     <>
       <MenuSide title={"Add New Address"}>
