@@ -20,6 +20,7 @@ import Checkout from "./pages/Checkout/Checkout";
 import MyOrdersSection from "./components/orders/MyOrdersSection";
 import MyWishlistSection from "./components/MyWishlistSection/MyWishlistSection";
 import MyAddressBookSection from "./components/myAddressBook/MyAddressBookSection";
+import SearchResults from "./components/searchResults/SearchResults";
 
 export default function App() {
   return (
@@ -95,10 +96,16 @@ export default function App() {
                     </Layout>
                   }
                 >
-                  <Route path="personal-information" element={<PersonalInformationTab />} />
+                  <Route
+                    path="personal-information"
+                    element={<PersonalInformationTab />}
+                  />
                   <Route path="my-orders" element={<MyOrdersSection />} />
                   <Route path="my-wishlist" element={<MyWishlistSection />} />
-                  <Route path="my-address-book" element={<MyAddressBookSection />} />
+                  <Route
+                    path="my-address-book"
+                    element={<MyAddressBookSection />}
+                  />
                 </Route>
                 <Route
                   path="/checkout"
@@ -108,6 +115,16 @@ export default function App() {
                     </Layout>
                   }
                 />
+
+                <Route
+                  path="/products/search"
+                  element={
+                    <Layout>
+                      <SearchResults />
+                    </Layout>
+                  }
+                />
+
                 <Route path="/auth/login" element={<Login />} />
                 <Route path="/auth/signup" element={<SignUp />} />
               </Routes>
