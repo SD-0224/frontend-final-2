@@ -2,6 +2,9 @@ import * as React from "react";
 import MenuSide from "./MenuSide";
 import { Box, TextField, Grid, Typography } from "@mui/material";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { Controller } from "react-hook-form";
 
 const CustomTextField = ({ label, ...props }) => {
   return (
@@ -33,7 +36,26 @@ const StyledTypography = ({ children, ...props }) => {
   );
 };
 
-export default function UserAddress() {
+export default function UserAddress({ onFormChange }) {
+  const { control, watch } = useForm({
+    defaultValues: {
+      fullName: '',
+      mobileNumber: '',
+      streetAddress: '',
+      state: '',
+      city: '',
+      pinCode: ''
+    }
+  });
+
+  const formValues = watch();
+
+  useEffect(() => {
+    onFormChange(formValues);
+  }, [formValues, onFormChange]);
+
+
+
   return (
     <>
       <MenuSide title={"Add New Address"}>
@@ -43,17 +65,44 @@ export default function UserAddress() {
             <Grid item xs={12} sm={6}>
               <Box>
                 <StyledTypography variant="subtitle1">Full name</StyledTypography>
-                <CustomTextField id="fullName" label="Enter Name" type="text" />
+                <Controller
+                  name="fullName"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Enter Name"
+                      variant="filled"
+                      fullWidth
+                      sx={{
+                        "& .MuiFilledInput-underline:before": {
+                          borderBottom: "none",
+                        },
+                      }}
+                    />
+                  )}
+                />
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
                 <StyledTypography variant="subtitle1">Mobile Number</StyledTypography>
-                <CustomTextField
-                  id="mobileNumber"
-                  label="+967"
-                  type="number"
-                  inputProps={{ inputMode: "numeric" }}
+                <Controller
+                  name="mobileNumber"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Enter Mobile Number"
+                      variant="filled"
+                      fullWidth
+                      sx={{
+                        "& .MuiFilledInput-underline:before": {
+                          borderBottom: "none",
+                        },
+                      }}
+                    />
+                  )}
                 />
               </Box>
             </Grid>
@@ -62,13 +111,45 @@ export default function UserAddress() {
             <Grid item xs={12} sm={6}>
               <Box>
                 <StyledTypography variant="subtitle1">Street Address</StyledTypography>
-                <CustomTextField id="streetAddress" label="Enter Address" type="text" />
+                <Controller
+                  name="streetAddress"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Enter Street Address"
+                      variant="filled"
+                      fullWidth
+                      sx={{
+                        "& .MuiFilledInput-underline:before": {
+                          borderBottom: "none",
+                        },
+                      }}
+                    />
+                  )}
+                />
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
                 <StyledTypography variant="subtitle1">State</StyledTypography>
-                <CustomTextField id="state" label="Enter State" type="text" />
+                <Controller
+                  name="state"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Enter State"
+                      variant="filled"
+                      fullWidth
+                      sx={{
+                        "& .MuiFilledInput-underline:before": {
+                          borderBottom: "none",
+                        },
+                      }}
+                    />
+                  )}
+                />
               </Box>
             </Grid>
 
@@ -76,13 +157,45 @@ export default function UserAddress() {
             <Grid item xs={12} sm={6}>
               <Box>
                 <StyledTypography variant="subtitle1">City</StyledTypography>
-                <CustomTextField id="city" label="Enter City" type="text" />
+                <Controller
+                  name="city"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Enter City"
+                      variant="filled"
+                      fullWidth
+                      sx={{
+                        "& .MuiFilledInput-underline:before": {
+                          borderBottom: "none",
+                        },
+                      }}
+                    />
+                  )}
+                />
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
                 <StyledTypography variant="subtitle1">Pin Code</StyledTypography>
-                <CustomTextField id="pinCode" label="Enter Pin Code" type="text" />
+                <Controller
+                  name="pinCode"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Enter Pin Code"
+                      variant="filled"
+                      fullWidth
+                      sx={{
+                        "& .MuiFilledInput-underline:before": {
+                          borderBottom: "none",
+                        },
+                      }}
+                    />
+                  )}
+                />
               </Box>
             </Grid>
             <Box
@@ -93,7 +206,7 @@ export default function UserAddress() {
                 width: "20%",
               }}
             >
-              <PrimaryButton type={"submit"} label={"Submit"} />
+              {/* <PrimaryButton type={"submit"} label={"Submit"} /> */}
             </Box>
           </Grid>
         </Box>

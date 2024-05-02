@@ -8,14 +8,26 @@ import { useCartContext } from "../../context/CartContext";
 import PaymentComp from "../../components/shared/Checkout/PaymentComp";
 import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
 import CheckoutButtons from "../../components/shared/Checkout/CheckoutButtons";
-import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
+import { useEffect, useState } from "react";
+const stripePromise = loadStripe(
+  "pk_test_51PB0qOExyylvHUrWpZQtSZKFnnUxlSianPwSwYyeEnFyUn1pb1nDWbSLVnTpDimHcXwNELk1MBzJgJSwH53Hb5wq00jFpTa1Ri"
+);
 export default function Checkout() {
   const { cart, getInvoice } = useCartContext();
-  const stripePromise = loadStripe(
-    "pk_test_51PB0qOExyylvHUrWpZQtSZKFnnUxlSianPwSwYyeEnFyUn1pb1nDWbSLVnTpDimHcXwNELk1MBzJgJSwH53Hb5wq00jFpTa1Ri"
-  );
-  console.log("amount", getInvoice()[2].amount);
+  var addressFormData = {};
+
+  const handleFormChange = (formData) => {
+    addressFormData = formData;
+    console.log("address form data", addressFormData);
+  };
+
+
+
+
+
   const options = {
     mode: "payment",
     amount: 300,
@@ -62,8 +74,11 @@ export default function Checkout() {
         }}
       >
         <Box sx={{ width: "100%", marginRight: "8%" }}>
-          <UserAddress />
-          <PaymentComp stripePromise={stripePromise} options={options} />
+          <UserAddress onFormChange={handleFormChange} />
+          <Elements stripe={stripePromise} options={options}>
+            <PaymentComp stripePromise={stripePromise} options={options} />
+          </Elements>
+
           <CheckoutButtons />
         </Box>
         <Box
