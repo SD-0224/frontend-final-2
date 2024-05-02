@@ -1,3 +1,5 @@
+import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import search from "../../../../assets/HedearLogo/search.svg";
@@ -25,9 +27,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBar() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchLinkRef = useRef(null);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    searchLinkRef.current.click();
+  };
   return (
     <>
       <Box
+        component={"form"}
+        onSubmit={handleSearch}
         sx={{
           width: "100%",
           maxWidth: {
@@ -45,7 +56,16 @@ export default function SearchBar() {
         <SearchIconWrapper>
           <img src={search} alt="search-logo" />
         </SearchIconWrapper>
-        <StyledInputBase placeholder="Search for products or brands..." />
+        <StyledInputBase
+          placeholder="Search for products or brands..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <Link
+          to={`/products/search/?search=${searchQuery}`}
+          style={{ display: "none" }}
+          ref={searchLinkRef}
+        />
       </Box>
     </>
   );
