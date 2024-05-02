@@ -40,11 +40,11 @@ export default function UserAddress({ onFormChange }) {
   const { control, watch } = useForm({
     defaultValues: {
       fullName: '',
-      mobileNumber: '',
-      streetAddress: '',
+      phoneNumber: '',
+      street: '',
       state: '',
       city: '',
-      pinCode: ''
+      postalCode: ''
     }
   });
 
@@ -88,7 +88,7 @@ export default function UserAddress({ onFormChange }) {
               <Box>
                 <StyledTypography variant="subtitle1">Mobile Number</StyledTypography>
                 <Controller
-                  name="mobileNumber"
+                  name="phoneNumber"
                   control={control}
                   render={({ field }) => (
                     <TextField
@@ -112,7 +112,7 @@ export default function UserAddress({ onFormChange }) {
               <Box>
                 <StyledTypography variant="subtitle1">Street Address</StyledTypography>
                 <Controller
-                  name="streetAddress"
+                  name="street"
                   control={control}
                   render={({ field }) => (
                     <TextField
@@ -180,7 +180,7 @@ export default function UserAddress({ onFormChange }) {
               <Box>
                 <StyledTypography variant="subtitle1">Pin Code</StyledTypography>
                 <Controller
-                  name="pinCode"
+                  name="postalCode"
                   control={control}
                   render={({ field }) => (
                     <TextField

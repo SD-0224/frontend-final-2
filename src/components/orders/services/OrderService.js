@@ -1,7 +1,7 @@
 import axios from "axios";
 import { environment } from "../../../utilities/environment";
 
-class OrderService {
+export class OrderService {
     constructor(token) {
         this.token = token;
         this.axiosInstance = axios.create({
@@ -28,4 +28,4 @@ class OrderService {
     }
 }
 
-export default OrderService;
+

@@ -17,12 +17,14 @@ const stripePromise = loadStripe(
 );
 export default function Checkout() {
   const { cart, getInvoice } = useCartContext();
-  var addressFormData = {};
+  const [addressFormData, setAddressFormData] = useState({});
 
   const handleFormChange = (formData) => {
-    addressFormData = formData;
-    console.log("address form data", addressFormData);
+    setAddressFormData(formData);
+
   };
+
+
 
 
 
@@ -76,7 +78,7 @@ export default function Checkout() {
         <Box sx={{ width: "100%", marginRight: "8%" }}>
           <UserAddress onFormChange={handleFormChange} />
           <Elements stripe={stripePromise} options={options}>
-            <PaymentComp stripePromise={stripePromise} options={options} />
+            <PaymentComp stripePromise={stripePromise} options={options} addressForm={addressFormData} />
           </Elements>
 
           <CheckoutButtons />
