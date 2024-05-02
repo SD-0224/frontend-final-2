@@ -5,6 +5,7 @@ import { useAuthenticatedUserContext } from "../../context/AuthenticatedUserCont
 import { OrderService } from "./services/OrderService";
 import { useState } from "react";
 
+
 export default function MyOrdersSection() {
   const { token } = useAuthenticatedUserContext();
   const orderService = new OrderService(token);
@@ -14,6 +15,7 @@ export default function MyOrdersSection() {
     const getOrders = async () => {
       const orders = await orderService.getOrders();
       setOrders(orders);
+      console.log(orders);
 
     };
 
@@ -68,15 +70,15 @@ export default function MyOrdersSection() {
   const tabsData = [
     {
       label: "Completed",
-      content: <OrderList orders={orders} />,
+      content: <OrderList orders={orders.filter((order) => order.status === 'completed')} />,
     },
     {
-      label: "Processing",
-      content: <OrderList orders={orders} />,
+      label: "Pending",
+      content: <OrderList orders={orders.filter((order) => order.status === 'pending')} />,
     },
     {
       label: "Cancelled",
-      content: <OrderList orders={orders} />,
+      content: <OrderList orders={orders.filter((order) => order.status === 'cancelled')} />,
     },
   ];
 
