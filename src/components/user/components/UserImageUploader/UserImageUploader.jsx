@@ -9,6 +9,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { CircularProgress } from '@mui/material';
+import CustomDialog from '../../../shared/CustomDialog/CustomDialog';
 
 
 const VisuallyHiddenInput = styled('input')({
@@ -26,6 +27,7 @@ const VisuallyHiddenInput = styled('input')({
 export default function UserImageUploader({ file, setFile, userDetails, loading, onUploadSubmit, onDeleteImage }) {
 
     const [avatarUrl, setAvatarUrl] = useState('');
+    const [openDialog, setOpenDialog] = useState(false);
     const theme = useTheme();
     useEffect(() => {
 
@@ -97,13 +99,15 @@ export default function UserImageUploader({ file, setFile, userDetails, loading,
                 color="error"
                 sx={{ paddingInline: 4, borderRadius: '8px', alignSelf: 'end' }}
                 startIcon={<DeleteOutlineOutlinedIcon />}
+                disabled={!userDetails.image}
 
-                onClick={() => {
-                    const confirm = window.confirm('Are you sure you want to delete this image?');
-                    if (confirm) {
-                        onDeleteImage();
-                    }
-                }}
+                onClick={() => setOpenDialog(true)}
+            // onClick={() => {
+            //     const confirm = window.confirm('Are you sure you want to delete this image?');
+            //     if (confirm) {
+            //         onDeleteImage();
+            //     }
+            // }}
             >
                 Delete
             </Button>
@@ -117,6 +121,12 @@ export default function UserImageUploader({ file, setFile, userDetails, loading,
             >
                 Submit
             </Button>
+
+            <CustomDialog title={"Delete Image"} message={"Are you sure you want to delete your profile image?"}
+                open={openDialog} onAgree={() => {
+                    onDeleteImage();
+                    setOpenDialog(false);
+                }} onDisagree={() => setOpenDialog(false)} />
         </Box>
     );
 }

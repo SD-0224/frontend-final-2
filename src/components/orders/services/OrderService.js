@@ -26,6 +26,21 @@ export class OrderService {
             throw error;
         }
     }
+
+
+    async getOrders() {
+        try {
+            const response = await this.axiosInstance.get('/profile/orders', {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error("Error:", error);
+            throw error;
+        }
+    }
 }
 
 

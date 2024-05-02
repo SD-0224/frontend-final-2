@@ -112,6 +112,27 @@ class UserService {
 
     }
 
+    /**
+     * Get User Addresses
+     */
+
+    async getUserAddresses() {
+        try {
+            const response = await this.axiosInstance.get('/profile/addresses', {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+            console.log(response.data);
+            return response.data;
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
+
 
 
 }

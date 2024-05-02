@@ -1,43 +1,60 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import AddressDetails from "./AddressDetails";
 import OrderSummary from "../shared/OrderSummary/OrderSummary";
+import UserService from "../user/services/UserService";
+import { useAuthenticatedUserContext } from "../../context/AuthenticatedUserContext";
+import { useState } from "react";
 
 export default function MyAddressBookSection() {
-  const addresses = [
-    {
-      addressID: 1,
-      userID: 21,
-      street: "123 Main St",
-      state: "California",
-      city: "Los Angeles",
-      postalCode: "90001",
-    },
-    {
-      addressID: 2,
-      userID: 21,
-      street: "123 Main St",
-      state: "California",
-      city: "Los Angeles",
-      postalCode: "90001",
-    },
-    {
-      addressID: 3,
-      userID: 21,
-      street: "123 Main St",
-      state: "California",
-      city: "Los Angeles",
-      postalCode: "90001",
-    },
-    {
-      addressID: 4,
-      userID: 21,
-      street: "123 Main St",
-      state: "California",
-      city: "Los Angeles",
-      postalCode: "90001",
-    },
-  ];
+  // const addresses = [
+  //   {
+  //     addressID: 1,
+  //     userID: 21,
+  //     street: "123 Main St",
+  //     state: "California",
+  //     city: "Los Angeles",
+  //     postalCode: "90001",
+  //   },
+  //   {
+  //     addressID: 2,
+  //     userID: 21,
+  //     street: "123 Main St",
+  //     state: "California",
+  //     city: "Los Angeles",
+  //     postalCode: "90001",
+  //   },
+  //   {
+  //     addressID: 3,
+  //     userID: 21,
+  //     street: "123 Main St",
+  //     state: "California",
+  //     city: "Los Angeles",
+  //     postalCode: "90001",
+  //   },
+  //   {
+  //     addressID: 4,
+  //     userID: 21,
+  //     street: "123 Main St",
+  //     state: "California",
+  //     city: "Los Angeles",
+  //     postalCode: "90001",
+  //   },
+  // ];
+  const [addresses, setAddresses] = useState([]);
+  const { token } = useAuthenticatedUserContext();
+  const userService = new UserService(token);
+  useEffect(() => {
+    const fetchAddresses = async () => {
+      try {
+        const response = await userService.getUserAddresses();
+        setAddresses(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAddresses();
+  }, []);
 
   return (
     <Container>
