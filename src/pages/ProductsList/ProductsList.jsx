@@ -13,7 +13,6 @@ import ProductGrid from "../../components/products/components/ProductGrid";
 import AppPagination from "../../components/shared/AppPagination/AppPagination";
 import { useParams } from "react-router-dom";
 import LoadingIndicator from "../../components/shared/LoadingIndicator/LoadingIndicator";
-import { Grid } from "@mui/material";
 import { capitalizeSlug } from "../../utilities/helpers";
 import Breadcrumb from "../../components/shared/Breadcrumb/Breadcrumb";
 import TitleBanner from "../../components/shared/CateogryTitleBanner/TitleBanner";
@@ -37,18 +36,13 @@ const ProductsList = () => {
   const breadcrumbList = [
     { text: "Home", link: "/" },
     {
-      text:
-        matchBrand || matchHandpicked
-          ? capitalizeSlug(slug)
-          : matchTrendy
-          ? "Trendy"
-          : matchDiscount
-          ? "Discount"
-          : matchLimited
-          ? "Limited"
-          : "Newest",
+      text: matchTrendy ? "Trendy" :
+        matchDiscount ? "Discount" :
+          matchLimited ? "Limited" :
+            matchBrand || matchHandpicked ? capitalizeSlug(slug) : "Newest"
     },
   ];
+
 
   useEffect(() => {
     setLoading(true);
