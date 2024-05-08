@@ -50,7 +50,7 @@ export default function MyAddressBookSection() {
         const response = await userService.getUserAddresses();
         setAddresses(response);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
     fetchAddresses();

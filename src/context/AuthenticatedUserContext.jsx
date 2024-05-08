@@ -28,7 +28,6 @@ export const AuthenticatedUserProvider = ({ children }) => {
   };
 
   const clearUserData = () => {
-    console.log('clearing');
     setAuthUser(null);
     setIsAuthenticated(false);
     setToken(null);
@@ -49,7 +48,6 @@ export const AuthenticatedUserProvider = ({ children }) => {
 
 
   useEffect(() => {
-    console.log(authUser, isAuthenticated, token);
   }, [authUser, isAuthenticated, token]);
   return (
     <AuthenticatedUserContext.Provider value={{ authUser, isAuthenticated, setUserData, getUserData, updateUserData, logoutUser, token }}>{children}</AuthenticatedUserContext.Provider>

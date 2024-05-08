@@ -71,7 +71,6 @@ export default function WishlistDataContainer() {
       <PrimaryButton
         label={"Show All"}
         icon={""}
-        onClick={() => console.log("clicked")}
       />
     </Box>
   );
