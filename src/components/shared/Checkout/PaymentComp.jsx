@@ -40,25 +40,19 @@ export default function PaymentMethod({ stripePromise, options, addressForm }) {
       card: cardElement,
     });
     if (error) {
-      console.log('[error]', error);
+      console.warn('[error]', error);
       toast.error('Please enter valid card details');
       return;
     } else {
-      console.log('Payment method:', paymentMethod);
     }
-    console.log(authUser);
-    // console.log('Order data before adding value for visa token ', orderData)
     orderData = {
       ...orderData, visaToken: paymentMethod.id, firstName: authUser.firstName,
       lastName: authUser.lastName, email: authUser.email
     };
-    // console.log('Order data before creating order ', orderData);
-    // create order 
-    // Now create the order
+
     try {
       setLoading(true);
       const order = await orderService.createOrder(orderData);
-      console.log('Order successful:', order);
       toast.success('Order created successfully');
 
       navigate("/");

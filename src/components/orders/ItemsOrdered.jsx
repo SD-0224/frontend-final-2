@@ -124,12 +124,10 @@ export default function ItemsOrdered() {
           <PrimaryButton
             label={"Reorder"}
             icon={""}
-            onClick={() => console.log("Reorder")}
           />
           <SecondaryButton
             label={"Add Rating"}
             icon={""}
-            onClick={() => console.log("Add Rating")}
             style={{ marginRight: 0, padding: "5px 20px" }}
           />
         </Box>

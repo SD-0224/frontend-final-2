@@ -41,14 +41,7 @@ export default function SearchBar() {
         onSubmit={handleSearch}
         sx={{
           width: "100%",
-          maxWidth: {
-            xs: "140px",
-            md: "290px",
-            lg: "360px",
-          },
           position: "relative",
-          marginRight: "1.2rem",
-          marginLeft: "auto",
           borderRadius: "8px",
           backgroundColor: "#F1F1F1",
         }}

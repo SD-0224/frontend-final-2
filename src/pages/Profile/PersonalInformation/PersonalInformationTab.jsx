@@ -39,7 +39,6 @@ export default function PersonalInformationTab() {
       try {
         setImageLoading(true);
         const response = await userService.uploadImage(file);
-        console.log("Image uploaded successfully:", response);
         const userData = getUserData();
         userData.image = response.imageURL;
         updateUserData(userData);
@@ -57,7 +56,6 @@ export default function PersonalInformationTab() {
     try {
       setImageLoading(true);
       const response = await userService.deleteImage();
-      console.log("Image deleted successfully:", response);
       const userData = getUserData();
       userData.image = null;
       setFile(null);
@@ -84,9 +82,7 @@ export default function PersonalInformationTab() {
     setUserDetailsBackendErrors([]);
     try {
       setSubmitUserDetailsLoading(true);
-      console.log(data);
       const response = await userService.updateProfile(data);
-      console.log("User details updated successfully:", response);
       const userData = getUserData();
       userData.firstName = response.user.firstName;
       userData.lastName = response.user.lastName;
@@ -110,12 +106,10 @@ export default function PersonalInformationTab() {
   const [changePasswordLoading, setChangePasswordLoading] = useState(false);
   const [changePasswordBackendErrors, setChangePasswordBackendErrors] = useState([]);
   const handleOnChangePasswordSubmit = async (data) => {
-    console.log(data);
     setChangePasswordBackendErrors([]);
     try {
       setChangePasswordLoading(true);
       const response = await userService.changePassword(data);
-      console.log("Password changed successfully:", response);
       toast.success("Password changed successfully!");
     } catch (error) {
       console.error("Error changing password:", error);

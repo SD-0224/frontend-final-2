@@ -41,7 +41,19 @@ export default function Header() {
             {isLargerScreen && (
               <>
                 <NavCategory />
-                <SearchBar />
+                <Box
+                  sx={{
+                    maxWidth: {
+                      xs: "140px",
+                      md: "290px",
+                      lg: "360px",
+                    },
+                    marginRight: "1.2rem",
+                    marginLeft: "auto",
+                  }}
+                >
+                  <SearchBar />
+                </Box>
                 <HeaderIcons />
               </>
             )}

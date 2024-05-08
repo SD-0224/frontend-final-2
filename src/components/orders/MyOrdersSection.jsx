@@ -15,7 +15,6 @@ export default function MyOrdersSection() {
     const getOrders = async () => {
       const orders = await orderService.getOrders();
       setOrders(orders);
-      console.log(orders);
 
     };
 

@@ -26,7 +26,6 @@ const UserDetailsForm = ({ onSubmit, loading, backendErrors, userData }) => {
   const handleDateOfBirthChange = (newDate) => {
     if (newDate) {
       const formattedDate = dayjs(newDate).format("YYYY-MM-DD");
-      console.log(formattedDate);
       setValue("dateOfBirth", formattedDate);
     }
   };
