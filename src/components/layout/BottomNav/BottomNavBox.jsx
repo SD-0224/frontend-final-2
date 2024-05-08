@@ -19,6 +19,7 @@ import { useAuthenticatedUserContext } from "../../../context/AuthenticatedUserC
 
 const NavItemWrapper = styled(Box)(({ theme }) => ({
   position: "relative",
+
   "&:hover .label": {
     visibility: "visible",
   },
@@ -36,21 +37,11 @@ const Label = styled(Typography)({
   fontWeight: "500",
 });
 
-const NavItem = ({
-  iconSrcGray,
-  iconSrcBlack,
-  label,
-  onClick,
-  isActive,
-  isCartToggled,
-}) => {
+const NavItem = ({ iconSrcGray, iconSrcBlack, label, onClick, isActive, isCartToggled }) => {
   return (
     <NavItemWrapper>
       <IconButton onClick={onClick}>
-        <img
-          src={isActive || isCartToggled ? iconSrcBlack : iconSrcGray}
-          alt={label}
-        />
+        <img src={isActive || isCartToggled ? iconSrcBlack : iconSrcGray} alt={label} />
       </IconButton>
       <Label className="label" variant="caption" fontSize="12px">
         {label}
@@ -79,6 +70,7 @@ export default function BottomNavBox() {
           position: "fixed",
           width: "100%",
           height: "80px",
+          zIndex: 1000,
         }}
       >
         <NavItem
